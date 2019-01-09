@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Spring Frameworkspring是一个开源应用框架，降低应用程序开发的复杂度，它是轻量级，松耦合，具有分层体系结构，允许用户选择组件，同时还为J2EE应用程序开发提供了一个有凝聚力的框架，它可以集成其他的框架，如 Structs，Hibernate，mybatis等，所以又被称为框架中的框架 应用程序不同的组件接口 - 定义功能Bean类 - 包含属性setter与getter方法AO">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈Spring">
+<meta property="og:url" content="http://yoursite.com/2019/01/09/浅谈Spring/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="Spring Frameworkspring是一个开源应用框架，降低应用程序开发的复杂度，它是轻量级，松耦合，具有分层体系结构，允许用户选择组件，同时还为J2EE应用程序开发提供了一个有凝聚力的框架，它可以集成其他的框架，如 Structs，Hibernate，mybatis等，所以又被称为框架中的框架 应用程序不同的组件接口 - 定义功能Bean类 - 包含属性setter与getter方法AO">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-01-09T02:20:38.169Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈Spring">
+<meta name="twitter:description" content="Spring Frameworkspring是一个开源应用框架，降低应用程序开发的复杂度，它是轻量级，松耦合，具有分层体系结构，允许用户选择组件，同时还为J2EE应用程序开发提供了一个有凝聚力的框架，它可以集成其他的框架，如 Structs，Hibernate，mybatis等，所以又被称为框架中的框架 应用程序不同的组件接口 - 定义功能Bean类 - 包含属性setter与getter方法AO">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>浅谈Spring</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/01/09/Java基础部分/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/01/08/人生的意义/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/09/浅谈Spring/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/01/09/浅谈Spring/&text=浅谈Spring"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/01/09/浅谈Spring/&title=浅谈Spring"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/01/09/浅谈Spring/&is_video=false&description=浅谈Spring"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=浅谈Spring&body=Check out this article: http://yoursite.com/2019/01/09/浅谈Spring/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/01/09/浅谈Spring/&title=浅谈Spring"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/01/09/浅谈Spring/&title=浅谈Spring"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/01/09/浅谈Spring/&title=浅谈Spring"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/01/09/浅谈Spring/&title=浅谈Spring"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/01/09/浅谈Spring/&name=浅谈Spring&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Framework"><span class="toc-number">1.</span> <span class="toc-text">Spring Framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用程序不同的组件"><span class="toc-number">2.</span> <span class="toc-text">应用程序不同的组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC容器"><span class="toc-number">3.</span> <span class="toc-text">IOC容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖注入"><span class="toc-number">4.</span> <span class="toc-text">依赖注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖注入的方式"><span class="toc-number">5.</span> <span class="toc-text">依赖注入的方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC的一些好处"><span class="toc-number">6.</span> <span class="toc-text">IOC的一些好处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring中IOC容器"><span class="toc-number">7.</span> <span class="toc-text">Spring中IOC容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Framework功能列举"><span class="toc-number">8.</span> <span class="toc-text">Spring Framework功能列举</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些注解"><span class="toc-number">9.</span> <span class="toc-text">一些注解</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        浅谈Spring
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-01-09T01:36:42.000Z" itemprop="datePublished">2019-01-09</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Spring/">Spring</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Spring-Framework"><a href="#Spring-Framework" class="headerlink" title="Spring Framework"></a>Spring Framework</h2><p>spring是一个开源应用框架，降低应用程序开发的复杂度，它是轻量级，松耦合，具有分层体系结构，允许用户选择组件，同时还为J2EE应用程序开发提供了一个有凝聚力的框架，它可以集成其他的框架，如 Structs，Hibernate，mybatis等，所以又被称为框架中的框架</p>
+<h2 id="应用程序不同的组件"><a href="#应用程序不同的组件" class="headerlink" title="应用程序不同的组件"></a>应用程序不同的组件</h2><p>接口 - 定义功能<br>Bean类 - 包含属性setter与getter方法<br>AOP - 提供面向切面的功能<br>Bean配置文件 - 包含类的信息以及如何配置它们<br>用户程序 - 使用接口</p>
+<h2 id="IOC容器"><a href="#IOC容器" class="headerlink" title="IOC容器"></a>IOC容器</h2><p>Spring框架的核心就是Spring容器，容器来创建对象，将它们装配在一起，配置它们并管理它们的完整生命周期。</p>
+<p>Spring容器使用依赖注入来管理组成应用程序的组件，容器通过读取配置元数据来接收对象进行实例化，配置和组装的指令。<br>元数据可以通过XML,Java注解或是Java代码来提供</p>
+<h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><p>在依赖注入中，不必创建对象，但是必须描述如何创建它们，不是直接在代码中将组建和服务来连接在一起，而是描述配置文件中哪些组件需要哪些服务，由IOC容器将它们装配在一起</p>
+<h2 id="依赖注入的方式"><a href="#依赖注入的方式" class="headerlink" title="依赖注入的方式"></a>依赖注入的方式</h2><p>构造函数注入<br>setter注入<br>接口注入<br><em>在Spring Framework中仅使用构造函数和setter注入</em></p>
+<h2 id="IOC的一些好处"><a href="#IOC的一些好处" class="headerlink" title="IOC的一些好处"></a>IOC的一些好处</h2><p>它将最小化程序中的代码量，使应用程序更易于测试，因为它不需要单元测试中的任何单例或JNDI查找机制。它以最小的影响和最少的入侵机制促进松耦合。它支持即时的实例化和延迟加载服务</p>
+<h2 id="Spring中IOC容器"><a href="#Spring中IOC容器" class="headerlink" title="Spring中IOC容器"></a>Spring中IOC容器</h2><p>BeanFactory - BeanFactory 就像一个包含 bean 集合的工厂类。它会在客户端要求时实例化 bean。</p>
+<p>ApplicationContext - ApplicationContext 接口扩展了 BeanFactory 接口。它在 BeanFactory 基础上提供了一些额外的功能。</p>
+<h2 id="Spring-Framework功能列举"><a href="#Spring-Framework功能列举" class="headerlink" title="Spring Framework功能列举"></a>Spring Framework功能列举</h2><p>轻量级 - Spring 在代码量和透明度方面都很轻便。<br>IOC - 控制反转AOP - 面向切面编程可以将应用业务逻辑和系统服务分离，以实现高内聚。<br>容器 - Spring 负责创建和管理对象（Bean）的生命周期和配置。<br>MVC - 对 web 应用提供了高度可配置性，其他框架的集成也十分方便。事务管理 - 提供了用于事务管理的通用抽象层。<br>Spring 的事务支持也可用于容器较少的环境。<br>JDBC 异常 - Spring 的 JDBC 抽象层提供了一个异常层次结构，简化了错误处理策略。</p>
+<h2 id="一些注解"><a href="#一些注解" class="headerlink" title="一些注解"></a>一些注解</h2><p>@Component：这将 java 类标记为 bean。它是任何 Spring 管理组件的通用构造型。spring 的组件扫描机制现在可以将其拾取并将其拉入应用程序环境中。</p>
+<p>@Controller：这将一个类标记为 Spring Web MVC 控制器。标有它的 Bean 会自动导入到 IoC 容器中。</p>
+<p>@Service：此注解是组件注解的特化。它不会对 @Component 注解提供任何其他行为。您可以在服务层类中使用 @Service 而不是 @Component，因为它以更好的方式指定了意图。</p>
+<p>@Repository：这个注解是具有类似用途和功能的 @Component 注解的特化。它为 DAO 提供了额外的好处。它将 DAO 导入 IoC 容器，并使未经检查的异常有资格转换为 Spring DataAccessException。</p>
+<p>@RequestMapping 注解用于将特定 HTTP 请求方法映射到将处理相应请求的控制器中的特定类/方法。此注释可应用于两个级别：类级别：映射请求的 URL方法级别：映射 URL 以及 HTTP 请求方法</p>
+<p>@Autowired 可以更准确地控制应该在何处以及如何进行自动装配。此注解用于在 setter 方法，构造函数，具有任意名称或多个参数的属性或方法上自动装配 bean。默认情况下，它是类型驱动的注入。</p>
+<p>@Qualifier 当您创建多个相同类型的 bean 并希望仅使用属性装配其中一个 bean 时，您可以使用@Qualifier 注解和 @Autowired 通过指定应该装配哪个确切的 bean 来消除歧义。</p>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Framework"><span class="toc-number">1.</span> <span class="toc-text">Spring Framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用程序不同的组件"><span class="toc-number">2.</span> <span class="toc-text">应用程序不同的组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC容器"><span class="toc-number">3.</span> <span class="toc-text">IOC容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖注入"><span class="toc-number">4.</span> <span class="toc-text">依赖注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖注入的方式"><span class="toc-number">5.</span> <span class="toc-text">依赖注入的方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC的一些好处"><span class="toc-number">6.</span> <span class="toc-text">IOC的一些好处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring中IOC容器"><span class="toc-number">7.</span> <span class="toc-text">Spring中IOC容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Framework功能列举"><span class="toc-number">8.</span> <span class="toc-text">Spring Framework功能列举</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些注解"><span class="toc-number">9.</span> <span class="toc-text">一些注解</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/09/浅谈Spring/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/01/09/浅谈Spring/&text=浅谈Spring"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/01/09/浅谈Spring/&title=浅谈Spring"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/01/09/浅谈Spring/&is_video=false&description=浅谈Spring"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=浅谈Spring&body=Check out this article: http://yoursite.com/2019/01/09/浅谈Spring/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/01/09/浅谈Spring/&title=浅谈Spring"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/01/09/浅谈Spring/&title=浅谈Spring"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/01/09/浅谈Spring/&title=浅谈Spring"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/01/09/浅谈Spring/&title=浅谈Spring"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/01/09/浅谈Spring/&name=浅谈Spring&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

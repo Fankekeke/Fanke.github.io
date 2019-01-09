@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>Java基础部分</title>
+      <link href="/2019/01/09/Java%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/"/>
+      <url>/2019/01/09/Java%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>浅谈Spring</title>
+      <link href="/2019/01/09/%E6%B5%85%E8%B0%88Spring/"/>
+      <url>/2019/01/09/%E6%B5%85%E8%B0%88Spring/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Spring-Framework"><a href="#Spring-Framework" class="headerlink" title="Spring Framework"></a>Spring Framework</h2><p>spring是一个开源应用框架，降低应用程序开发的复杂度，它是轻量级，松耦合，具有分层体系结构，允许用户选择组件，同时还为J2EE应用程序开发提供了一个有凝聚力的框架，它可以集成其他的框架，如 Structs，Hibernate，mybatis等，所以又被称为框架中的框架</p><h2 id="应用程序不同的组件"><a href="#应用程序不同的组件" class="headerlink" title="应用程序不同的组件"></a>应用程序不同的组件</h2><p>接口 - 定义功能<br>Bean类 - 包含属性setter与getter方法<br>AOP - 提供面向切面的功能<br>Bean配置文件 - 包含类的信息以及如何配置它们<br>用户程序 - 使用接口</p><h2 id="IOC容器"><a href="#IOC容器" class="headerlink" title="IOC容器"></a>IOC容器</h2><p>Spring框架的核心就是Spring容器，容器来创建对象，将它们装配在一起，配置它们并管理它们的完整生命周期。</p><p>Spring容器使用依赖注入来管理组成应用程序的组件，容器通过读取配置元数据来接收对象进行实例化，配置和组装的指令。<br>元数据可以通过XML,Java注解或是Java代码来提供</p><h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><p>在依赖注入中，不必创建对象，但是必须描述如何创建它们，不是直接在代码中将组建和服务来连接在一起，而是描述配置文件中哪些组件需要哪些服务，由IOC容器将它们装配在一起</p><h2 id="依赖注入的方式"><a href="#依赖注入的方式" class="headerlink" title="依赖注入的方式"></a>依赖注入的方式</h2><p>构造函数注入<br>setter注入<br>接口注入<br><em>在Spring Framework中仅使用构造函数和setter注入</em></p><h2 id="IOC的一些好处"><a href="#IOC的一些好处" class="headerlink" title="IOC的一些好处"></a>IOC的一些好处</h2><p>它将最小化程序中的代码量，使应用程序更易于测试，因为它不需要单元测试中的任何单例或JNDI查找机制。它以最小的影响和最少的入侵机制促进松耦合。它支持即时的实例化和延迟加载服务</p><h2 id="Spring中IOC容器"><a href="#Spring中IOC容器" class="headerlink" title="Spring中IOC容器"></a>Spring中IOC容器</h2><p>BeanFactory - BeanFactory 就像一个包含 bean 集合的工厂类。它会在客户端要求时实例化 bean。</p><p>ApplicationContext - ApplicationContext 接口扩展了 BeanFactory 接口。它在 BeanFactory 基础上提供了一些额外的功能。</p><h2 id="Spring-Framework功能列举"><a href="#Spring-Framework功能列举" class="headerlink" title="Spring Framework功能列举"></a>Spring Framework功能列举</h2><p>轻量级 - Spring 在代码量和透明度方面都很轻便。<br>IOC - 控制反转AOP - 面向切面编程可以将应用业务逻辑和系统服务分离，以实现高内聚。<br>容器 - Spring 负责创建和管理对象（Bean）的生命周期和配置。<br>MVC - 对 web 应用提供了高度可配置性，其他框架的集成也十分方便。事务管理 - 提供了用于事务管理的通用抽象层。<br>Spring 的事务支持也可用于容器较少的环境。<br>JDBC 异常 - Spring 的 JDBC 抽象层提供了一个异常层次结构，简化了错误处理策略。</p><h2 id="一些注解"><a href="#一些注解" class="headerlink" title="一些注解"></a>一些注解</h2><p>@Component：这将 java 类标记为 bean。它是任何 Spring 管理组件的通用构造型。spring 的组件扫描机制现在可以将其拾取并将其拉入应用程序环境中。</p><p>@Controller：这将一个类标记为 Spring Web MVC 控制器。标有它的 Bean 会自动导入到 IoC 容器中。</p><p>@Service：此注解是组件注解的特化。它不会对 @Component 注解提供任何其他行为。您可以在服务层类中使用 @Service 而不是 @Component，因为它以更好的方式指定了意图。</p><p>@Repository：这个注解是具有类似用途和功能的 @Component 注解的特化。它为 DAO 提供了额外的好处。它将 DAO 导入 IoC 容器，并使未经检查的异常有资格转换为 Spring DataAccessException。</p><p>@RequestMapping 注解用于将特定 HTTP 请求方法映射到将处理相应请求的控制器中的特定类/方法。此注释可应用于两个级别：类级别：映射请求的 URL方法级别：映射 URL 以及 HTTP 请求方法</p><p>@Autowired 可以更准确地控制应该在何处以及如何进行自动装配。此注解用于在 setter 方法，构造函数，具有任意名称或多个参数的属性或方法上自动装配 bean。默认情况下，它是类型驱动的注入。</p><p>@Qualifier 当您创建多个相同类型的 bean 并希望仅使用属性装配其中一个 bean 时，您可以使用@Qualifier 注解和 @Autowired 通过指定应该装配哪个确切的 bean 来消除歧义。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Spring </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>人生的意义</title>
       <link href="/2019/01/08/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%84%8F%E4%B9%89/"/>
       <url>/2019/01/08/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%84%8F%E4%B9%89/</url>
