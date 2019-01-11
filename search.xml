@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Quartz</title>
+      <link href="/2019/01/11/Quartz/"/>
+      <url>/2019/01/11/Quartz/</url>
+      
+        <content type="html"><![CDATA[<h2 id="介绍Quartz"><a href="#介绍Quartz" class="headerlink" title="介绍Quartz"></a>介绍Quartz</h2><p>Quartz是一个任务调度框架。在某一个有规律的时间点干某件事。并且时间的触发的条件可以非常复杂（比如每月最后一个工作日的17:50），复杂到需要一个专门的框架来干这个事。 Quartz就是来干这样的事，你给它一个触发条件的定义，它负责到了时间点，触发相应的Job起来干活。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java工具与中间件 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>人事面试</title>
       <link href="/2019/01/09/%E4%BA%BA%E4%BA%8B%E9%9D%A2%E8%AF%95/"/>
       <url>/2019/01/09/%E4%BA%BA%E4%BA%8B%E9%9D%A2%E8%AF%95/</url>
