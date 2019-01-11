@@ -114,7 +114,7 @@
     </p>
   
 </section>
-<p id="hitokoto">:D 获取中...</p>
+<p id="hitokoto">啦啦啦 我是卖报的小行家....</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--<span id="from"></span>
 <!-- 以下写法，选取一种即可 -->
 
 <!-- 现代写法，推荐 -->
@@ -129,7 +129,9 @@
     })
     .then(function (data) {
       var hitokoto = document.getElementById('hitokoto');
+      var from = document.getElementById('from');
       hitokoto.innerText = data.hitokoto; 
+      from.innerText = data.from;
     })
     .catch(function (err) {
       console.error(err);
