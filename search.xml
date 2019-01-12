@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>nginx</title>
+      <link href="/2019/01/12/nginx/"/>
+      <url>/2019/01/12/nginx/</url>
+      
+        <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Nginx (engine x) 是一个高性能的HTTP和反向代理服务，因它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名，其特点是占有内存少，并发能力强，事实上nginx的并发能力确实在同类型的网页服务器中表现较好</p><p>通常用来和tomcat做负载均衡</p><h2 id="Windows下安装"><a href="#Windows下安装" class="headerlink" title="Windows下安装"></a>Windows下安装</h2><p>本地环境：win10-64位</p><p><a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">nginx官网上下载相应的安装包</a></p><p>解压到英文目录下</p><p><strong>端口号修改</strong><br>打开nginx目录下的conf/nginx.conf文件，然后找到listen 80,进行修改</p><p>进入nginx目录</p><ul><li>start nginx 启动</li><li>nginx -s stop 关闭</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java工具与中间件 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java网络基础</title>
       <link href="/2019/01/12/Java%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/"/>
       <url>/2019/01/12/Java%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</url>
