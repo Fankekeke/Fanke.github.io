@@ -14,10 +14,12 @@
 <meta property="og:site_name" content="悲伤的桔子树">
 <meta property="og:description" content="介绍Nginx (engine x) 是一个高性能的HTTP和反向代理服务，因它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名，其特点是占有内存少，并发能力强，事实上nginx的并发能力确实在同类型的网页服务器中表现较好 通常用来和tomcat做负载均衡 Windows下安装本地环境：win10-64位 nginx官网上下载相应的安装包 解压到英文目录下 端口号修改打开nginx目录">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-01-12T03:50:16.950Z">
+<meta property="og:image" content="http://stepimagewm.how2j.cn/6655.png">
+<meta property="og:updated_time" content="2019-01-14T01:59:42.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx">
 <meta name="twitter:description" content="介绍Nginx (engine x) 是一个高性能的HTTP和反向代理服务，因它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名，其特点是占有内存少，并发能力强，事实上nginx的并发能力确实在同类型的网页服务器中表现较好 通常用来和tomcat做负载均衡 Windows下安装本地环境：win10-64位 nginx官网上下载相应的安装包 解压到英文目录下 端口号修改打开nginx目录">
+<meta name="twitter:image" content="http://stepimagewm.how2j.cn/6655.png">
     
     
         
@@ -109,7 +111,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows下安装"><span class="toc-number">2.</span> <span class="toc-text">Windows下安装</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows下安装"><span class="toc-number">2.</span> <span class="toc-text">Windows下安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么需要额外提供Tomcat"><span class="toc-number">3.</span> <span class="toc-text">为什么需要额外提供Tomcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反向代理"><span class="toc-number">4.</span> <span class="toc-text">反向代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动tomcat"><span class="toc-number">4.1.</span> <span class="toc-text">启动tomcat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改nginx-conf"><span class="toc-number">4.2.</span> <span class="toc-text">修改nginx.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重启nginx并访问"><span class="toc-number">4.3.</span> <span class="toc-text">重启nginx并访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#意义何在"><span class="toc-number">5.</span> <span class="toc-text">意义何在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动静分离"><span class="toc-number">6.</span> <span class="toc-text">动静分离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#负载均衡"><span class="toc-number">7.</span> <span class="toc-text">负载均衡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session共享"><span class="toc-number">8.</span> <span class="toc-text">session共享</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -164,6 +166,87 @@
 <li>start nginx 启动</li>
 <li>nginx -s stop 关闭</li>
 </ul>
+<h2 id="为什么需要额外提供Tomcat"><a href="#为什么需要额外提供Tomcat" class="headerlink" title="为什么需要额外提供Tomcat"></a>为什么需要额外提供Tomcat</h2><p>Nginx是一个web服务器，很快速，但是不能作为Servlet 容器独立运行，所以通常的工作方式是Nginx配合Tomcat来协同工作。 这就是为什么要单独提供Tomcat，以方便配合Nginx进行工作。</p>
+<p><hr></p>
+<h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><blockquote>
+<p>反向代理概念</p>
+</blockquote>
+<p>正向代理，比如要访问youtube,但是不能直接访问，只能先找个翻墙软件，通过翻墙软件才能访问youtube. 翻墙软件就叫做正向代理。<br>所谓的反向代理，指的是用户要访问youtube,但是youtube悄悄地把这个请求交给bilibili来做，那么bilibili就是反向代理了。<br>在当前教程指的就是访问nginx,但是nginx把请求交给tomcat来做。</p>
+<h3 id="启动tomcat"><a href="#启动tomcat" class="headerlink" title="启动tomcat"></a>启动tomcat</h3><p>启动多个Tomcat 中端口号是8111的tomcat</p>
+<h3 id="修改nginx-conf"><a href="#修改nginx-conf" class="headerlink" title="修改nginx.conf"></a>修改nginx.conf</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">        #root   html;</span><br><span class="line">        #index  index.html index.htm;</span><br><span class="line">        proxy_pass  http:<span class="comment">//127.0.0.1:8111;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>location / 表示处理所有请求<br>proxy_pass <a href="http://127.0.0.1:8111" target="_blank" rel="noopener">http://127.0.0.1:8111</a>; 表示把请求都交给<a href="http://127.0.0.1:8111来处理" target="_blank" rel="noopener">http://127.0.0.1:8111来处理</a></p>
+<h3 id="重启nginx并访问"><a href="#重启nginx并访问" class="headerlink" title="重启nginx并访问"></a>重启nginx并访问</h3><p>重新对nginx进行访问，会发现跑到了tomcat的欢迎页面</p>
+<h2 id="意义何在"><a href="#意义何在" class="headerlink" title="意义何在"></a>意义何在</h2><p>既然直接通过127.0.0.1:8111/login.jsp 可以访问，那么干嘛要通过127.0.0.1/login.jsp 去反向代理到tomcat呢？ 为什么不直接使用tomcat呢？</p>
+<p>因为nginx在处理静态文件的吞吐量上面比tomcat好很多，通常他们俩配合，不会把所有的请求都如本例所示的交给tomcat, 而是把静态请求交给nginx，动态请求，如jsp, servlet,ssm， struts等请求交给tomcat. 从而达到动静分离的效果。</p>
+<p><hr></p>
+<h2 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h2><blockquote>
+<p>动静分离概念</p>
+</blockquote>
+<p>所谓的动静分离就是指图片，css, js之类的都交给nginx来处理，nginx处理不了的，比如jsp 就交给tomcat来处理~</p>
+<p>好处是nginx处理静态内容的吞吐量很高，比tomcat高多了，这样无形中提升了性能。</p>
+<blockquote>
+<p>修改nginx.conf</p>
+</blockquote>
+<p>在locaction下面添加一个新的location:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location ~\.(css|js|png)$ &#123;</span><br><span class="line">     root  D:/MyDoc/tomcat_8111/webapps/ROOT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>表示所有的css js png访问都由nginx来做，访问的地址是D:/MyDoc/tomcat_8111/webapps/ROOT</p>
+<blockquote>
+<p>观察tomcat输出日志</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">此时访问的是端口号是<span class="number">8111</span>的tomcat的资源：http:<span class="comment">//127.0.0.1:8111/</span></span><br><span class="line">此时访问的是端口号是<span class="number">8111</span>的tomcat的资源：http:<span class="comment">//127.0.0.1:8111/login.jsp</span></span><br></pre></td></tr></table></figure>
+<p>只访问了jsp, 所有的css,js,png都不会经过 tomcat，而是由nginx自己负责处理了</p>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>负载均衡的概念就是当访问量很大的时候，一个 Tomcat 吃不消了，这时候就准备多个 Tomcat，由Nginx按照权重来对请求进行分配，从而缓解单独一个Tomcat受到的压力<br><img src="http://stepimagewm.how2j.cn/6655.png" alt=""></p>
+<blockquote>
+<p>启动两个tomcat</p>
+</blockquote>
+<p><a href="http://how2j.cn/k/nginx/nginx-tomcats/1566.html" target="_blank" rel="noopener">下载</a><br>到多个Tomcat下载解压8111和8222两个tomcat，并启动</p>
+<blockquote>
+<p>修改nginx.conf</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">先增加一个upstream ，用来指向这两个tomcat</span><br><span class="line"> </span><br><span class="line">    upstream tomcat_8111_8222&#123;</span><br><span class="line">	server	<span class="number">127.0</span>.0.1:<span class="number">8111</span> weight=<span class="number">1</span>;</span><br><span class="line">	server	<span class="number">127.0</span>.0.1:<span class="number">8222</span> weight=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">然后修改location，反向代理到上述配置。</span><br><span class="line"> </span><br><span class="line">        location / &#123;</span><br><span class="line">        	proxy_pass http:<span class="comment">//tomcat_8111_8222;</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>weight表示权重，值越大，被分配到的几率越大。</p>
+<blockquote>
+<p>重启nginx并访问</p>
+</blockquote>
+<p>此时就可以观察到对jsp的访问，被分配到了不同的 Tomcat上</p>
+<h2 id="session共享"><a href="#session共享" class="headerlink" title="session共享"></a>session共享</h2><p>我们可以把请求分发到不同的 Tomcat 来缓解服务器的压力，但是这里存在一个问题： 当同一个用户第一次访问tomcat_8111 并且登录成功， 而第二次访问却被分配到了tomcat_8222， 这里并没有记录他的登陆状态，那么就会呈现未登录状态了，严重伤害了用户体验。</p>
+<blockquote>
+<p>解决办法一: ip_hash</p>
+</blockquote>
+<p>通过ip地址标记用户，如果多次请求都是从同一个ip来的，那么就都分配到同一个tomcat.<br>这样就不会出现负载均衡 session问题了. 处理手段也很简单，如图所示在upstream最后加上ip_hash;就行了。</p>
+<p>不过这种方案并不完美，当如下几种情况发生时就有问题：</p>
+<ol>
+<li>大量请求来之某个局域网，那么相当于就没有负载均衡了</li>
+<li>如果tomcat_8111 挂了，那么此时nginx只能把请求交给tomcat_8222,但是这里却没有记录session,用户体验依然受影响。</li>
+</ol>
+<blockquote>
+<p>解决办法二： redis+tomcat-sessoin-manager</p>
+</blockquote>
+<p>这样当tomcat1需要保存session值的时候，就可以把它放在Redis上，需要取的时候，也从Redis上取。<br>那么考虑这个情景： </p>
+<ol>
+<li>用户提交账号密码的行为被分配在了tomcat8111上，登陆信息被存放在redis里。 </li>
+<li>当用户第二次访问的时候，被分配到了tomcat8222上</li>
+<li>那么此时tomcat8222就会从redis去获取相关信息，一看有对应信息，那么就会呈现登陆状态</li>
+</ol>
+<blockquote>
+<p>具体操作</p>
+</blockquote>
+<ol>
+<li>启动redis</li>
+<li>给两个tomcat使用jar包</li>
+<li>配置两个tomcat</li>
+<li>重启两个tomcat</li>
+<li>测试</li>
+</ol>
+<p>Tomcat需要链接 redis， 一共有3个jar包：<br>jedis-2.5.2.jar，<br>commons-pool2-2.0.jar，<br>tomcat-redis-session-manager1.2.jar。<br>下载解压后，放在tomat8111的lib目录下。注：不要放在webapp里面去了哦<br>下载解压后，放在tomat8222的lib目录下。注：不要放在webapp里面去了哦 </p>
+<blockquote>
+<p>修改context.xml</p>
+</blockquote>
+<p>然后修改tomcat/conf/context.xml<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;Valve className=<span class="string">"com.orangefunction.tomcat.redissessions.RedisSessionHandlerValve"</span> /&gt; </span><br><span class="line">    &lt;Manager className=<span class="string">"com.orangefunction.tomcat.redissessions.RedisSessionManager"</span> </span><br><span class="line">     host=<span class="string">"127.0.0.1"</span> </span><br><span class="line">     port=<span class="string">"6379"</span> </span><br><span class="line">     password=<span class="string">"123456"</span></span><br><span class="line">     database=<span class="string">"0"</span> </span><br><span class="line">     maxInactiveInterval=<span class="string">"60"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>我的radis有密码，没有密码可以直接忽略<br>两个tomcat都要改</p>
+<blockquote>
+<p>最后进行tomcat重启,运行</p>
+</blockquote>
+<p>session存放在redis中，实现session共享</p>
 
   </div>
    <div class="comment"></div>
@@ -205,7 +288,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows下安装"><span class="toc-number">2.</span> <span class="toc-text">Windows下安装</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows下安装"><span class="toc-number">2.</span> <span class="toc-text">Windows下安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么需要额外提供Tomcat"><span class="toc-number">3.</span> <span class="toc-text">为什么需要额外提供Tomcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反向代理"><span class="toc-number">4.</span> <span class="toc-text">反向代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动tomcat"><span class="toc-number">4.1.</span> <span class="toc-text">启动tomcat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改nginx-conf"><span class="toc-number">4.2.</span> <span class="toc-text">修改nginx.conf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重启nginx并访问"><span class="toc-number">4.3.</span> <span class="toc-text">重启nginx并访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#意义何在"><span class="toc-number">5.</span> <span class="toc-text">意义何在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动静分离"><span class="toc-number">6.</span> <span class="toc-text">动静分离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#负载均衡"><span class="toc-number">7.</span> <span class="toc-text">负载均衡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session共享"><span class="toc-number">8.</span> <span class="toc-text">session共享</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
