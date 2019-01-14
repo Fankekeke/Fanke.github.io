@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="##缺点一：项目过于臃肿当大大小小的功能模块都集中在同一项目的时候，整个项目必然会变得臃肿，让开发者难以维护。 缺点二：资源无法隔离就像刚刚小灰的经历一样，整个单体系统的各个功能模块都依赖于同样的数据库、内存等资源，一旦某个功能模块对资源使用不当，整个系统都会被拖垮。 缺点三：无法灵活扩展当系统的访问量越来越大的时候，单体系统固然可以进行水平扩展，部署在多台机器上组成集群： 单体架构单体架构也称">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微服务架构介绍">
+<meta property="og:url" content="http://yoursite.com/2019/01/14/微服务架构介绍/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="##缺点一：项目过于臃肿当大大小小的功能模块都集中在同一项目的时候，整个项目必然会变得臃肿，让开发者难以维护。 缺点二：资源无法隔离就像刚刚小灰的经历一样，整个单体系统的各个功能模块都依赖于同样的数据库、内存等资源，一旦某个功能模块对资源使用不当，整个系统都会被拖垮。 缺点三：无法灵活扩展当系统的访问量越来越大的时候，单体系统固然可以进行水平扩展，部署在多台机器上组成集群： 单体架构单体架构也称">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180207/441baebe61774318806577a41308d6f3.jpg">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180207/bbf2d6caf3f24319840b253441eb259b.jpg">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180207/3d04a27fa5c94aa1b7a4e09dbf79c9fd.jpg">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180207/a3834eea4fac4b81987a39ce5e97c821.jpg">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180207/801aba539bfb4984823edf057d21f2b5.jpg">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180207/c62f12d5b55e42f8b8521d44e9bdb22b.jpg">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180207/27d3175bcdfb4caf903fdebed5839d4e.jpg">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180207/ef1be0ae0d894f409ad7358f922917cf.jpg">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180207/4802146482c347d6b273efecfcc31944.jpg">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180207/6ac8bfc4c0a841d590ab3982ec25510d.jpg">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180207/949f98475f514a2b8ab73b56918449fb.jpg">
+<meta property="og:updated_time" content="2019-01-14T04:13:01.009Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微服务架构介绍">
+<meta name="twitter:description" content="##缺点一：项目过于臃肿当大大小小的功能模块都集中在同一项目的时候，整个项目必然会变得臃肿，让开发者难以维护。 缺点二：资源无法隔离就像刚刚小灰的经历一样，整个单体系统的各个功能模块都依赖于同样的数据库、内存等资源，一旦某个功能模块对资源使用不当，整个系统都会被拖垮。 缺点三：无法灵活扩展当系统的访问量越来越大的时候，单体系统固然可以进行水平扩展，部署在多台机器上组成集群： 单体架构单体架构也称">
+<meta name="twitter:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180207/441baebe61774318806577a41308d6f3.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>微服务架构介绍</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/01/12/nginx/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/14/微服务架构介绍/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/01/14/微服务架构介绍/&text=微服务架构介绍"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/01/14/微服务架构介绍/&title=微服务架构介绍"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/01/14/微服务架构介绍/&is_video=false&description=微服务架构介绍"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=微服务架构介绍&body=Check out this article: http://yoursite.com/2019/01/14/微服务架构介绍/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/01/14/微服务架构介绍/&title=微服务架构介绍"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/01/14/微服务架构介绍/&title=微服务架构介绍"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/01/14/微服务架构介绍/&title=微服务架构介绍"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/01/14/微服务架构介绍/&title=微服务架构介绍"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/01/14/微服务架构介绍/&name=微服务架构介绍&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单体架构"><span class="toc-number">1.</span> <span class="toc-text">单体架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微服务架构"><span class="toc-number">2.</span> <span class="toc-text">微服务架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优点"><span class="toc-number">2.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点"><span class="toc-number">2.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微服务设计原则"><span class="toc-number">3.</span> <span class="toc-text">微服务设计原则</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        微服务架构介绍
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-01-14T02:35:54.000Z" itemprop="datePublished">2019-01-14</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Spring-Cloud/">Spring Cloud</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><img src="http://5b0988e595225.cdn.sohucs.com/images/20180207/441baebe61774318806577a41308d6f3.jpg" alt=""><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180207/bbf2d6caf3f24319840b253441eb259b.jpg" alt=""><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180207/3d04a27fa5c94aa1b7a4e09dbf79c9fd.jpg" alt=""><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180207/a3834eea4fac4b81987a39ce5e97c821.jpg" alt=""><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180207/801aba539bfb4984823edf057d21f2b5.jpg" alt=""><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180207/c62f12d5b55e42f8b8521d44e9bdb22b.jpg" alt=""><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180207/27d3175bcdfb4caf903fdebed5839d4e.jpg" alt=""><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180207/ef1be0ae0d894f409ad7358f922917cf.jpg" alt=""><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180207/4802146482c347d6b273efecfcc31944.jpg" alt=""></p>
+<p>##<br>缺点一：项目过于臃肿当大大小小的功能模块都集中在同一项目的时候，整个项目必然会变得臃肿，让开发者难以维护。</p>
+<p>缺点二：资源无法隔离就像刚刚小灰的经历一样，整个单体系统的各个功能模块都依赖于同样的数据库、内存等资源，一旦某个功能模块对资源使用不当，整个系统都会被拖垮。</p>
+<p>缺点三：无法灵活扩展当系统的访问量越来越大的时候，单体系统固然可以进行水平扩展，部署在多台机器上组成集群：<br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180207/6ac8bfc4c0a841d590ab3982ec25510d.jpg" alt=""><br><img src="http://5b0988e595225.cdn.sohucs.com/images/20180207/949f98475f514a2b8ab73b56918449fb.jpg" alt=""></p>
+<h2 id="单体架构"><a href="#单体架构" class="headerlink" title="单体架构"></a>单体架构</h2><p>单体架构也称之为单体系统或者是单体应用。就是一种把系统中所有的功能、模块耦合<br>在一个应用中的架构方式、</p>
+<blockquote>
+<p>单体架构特点</p>
+</blockquote>
+<p>打包成一个独立的单元(导成一个唯一的 jar<br>会一个进程的方式来运行</p>
+<h2 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h2><p>微服务是一种架构风格。一个大型的复杂软件应用，由一个或多个微服务组成。系统中的各个微服务可被独立部署，各个微服务之间是松耦合的。每个微服务仅关注于完成一件任务并很好的完成该任务。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>测试容易<br>可伸缩性强<br>可靠性强<br>跨语言程度会更加灵活<br>团队协作容易<br>系统迭代容易</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>运维成本过高，部署数量较多<br>接口兼容多版本<br>分布式系统的复杂性<br>分布式事务</p>
+<h2 id="微服务设计原则"><a href="#微服务设计原则" class="headerlink" title="微服务设计原则"></a>微服务设计原则</h2><p>AKF 拆分原则<br>前后端分离原则<br>无状态服务<br>RestFul 的通信风格</p>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单体架构"><span class="toc-number">1.</span> <span class="toc-text">单体架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微服务架构"><span class="toc-number">2.</span> <span class="toc-text">微服务架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优点"><span class="toc-number">2.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点"><span class="toc-number">2.2.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微服务设计原则"><span class="toc-number">3.</span> <span class="toc-text">微服务设计原则</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/14/微服务架构介绍/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/01/14/微服务架构介绍/&text=微服务架构介绍"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/01/14/微服务架构介绍/&title=微服务架构介绍"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/01/14/微服务架构介绍/&is_video=false&description=微服务架构介绍"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=微服务架构介绍&body=Check out this article: http://yoursite.com/2019/01/14/微服务架构介绍/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/01/14/微服务架构介绍/&title=微服务架构介绍"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/01/14/微服务架构介绍/&title=微服务架构介绍"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/01/14/微服务架构介绍/&title=微服务架构介绍"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/01/14/微服务架构介绍/&title=微服务架构介绍"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/01/14/微服务架构介绍/&name=微服务架构介绍&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
