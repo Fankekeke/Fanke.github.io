@@ -4,6 +4,63 @@
   
     
     <entry>
+      <title>J2SE面试题</title>
+      <link href="/2019/01/17/J2SE%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+      <url>/2019/01/17/J2SE%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>面向对象的特征<br>封装<br>最常见的是把属性私有化封装在一个类里面，只能通过方法去访问<br>继承<br>子类继承父类，从而继承了父类的方法和属性<br>抽象<br>比如一个英雄类，抽象出了name,hp这些属性，使得开发过程中更加易于理解<br>多态<br>多态分操作符的多态和类的多态。 类的多态指父类引用指向子类对象，并且有继承，有重写。</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 分享 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>前后端分离</title>
+      <link href="/2019/01/17/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/"/>
+      <url>/2019/01/17/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/</url>
+      
+        <content type="html"><![CDATA[<h2 id="非前后端分离"><a href="#非前后端分离" class="headerlink" title="非前后端分离"></a>非前后端分离</h2><p>传统的做法里，比如servlet, springmvc,struts， tomcat 都会在后台运行 Java 代码，然后在后台生成全部的html 代码，接着通过 http 协议把 html 代码传输到浏览器。<br>这样做的问题是：</p><ol><li>在后台运行的时候，如果要连接很多数据库才能把需要的数据查出来，那么这个准备 html 的过程就会比较缓慢，同时生成的 html 也相对较大， 用户就有可能感受比较慢。 </li><li>前后端开发的联调耦合度也很高，有时候必须互相等待，这样双方的开发效率都降低了。</li></ol><h2 id="前后端分离"><a href="#前后端分离" class="headerlink" title="前后端分离"></a>前后端分离</h2><p>那么前后端分离什么概念呢？ html 页面的内容可以简单看成 包含数据部分和不包含数据部分。 所以先准备一个不包含数据的html， 把它传给浏览器，这个速度本身会非常快，因为没有最占时间的数据库操作部分。 然后再通过 Ajax 技术，仅仅从服务器获取“纯数据”，然后把纯数据显示在html上。<br>这样做的好处：</p><ol><li>即便是后台数据库比较花时间，但是用户体验也比前面的方式好，因为用户会先看到部分页面，过一小会儿再看到数据，比在空白页面打圈圈等待体验好。</li><li>后端只提供数据，所以前后端开发耦合度降低了很多，整体开发效率可以得到较大提高。</li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 分享 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SpringBoot常用注解</title>
+      <link href="/2019/01/15/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/"/>
+      <url>/2019/01/15/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<h2 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="@SpringBootApplication"></a>@SpringBootApplication</h2><p>申明让spring boot自动给程序进行必要的配置，这个配置等同于：@Configuration ，@EnableAutoConfiguration 和 @ComponentScan 三个配置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.myproject; </span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication; </span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span> <span class="comment">// same as @Configuration @EnableAutoConfiguration @ComponentScan </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123; </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; </span><br><span class="line">SpringApplication.run(Application.class, args); </span><br><span class="line">&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a>@Controller</h2><p>用于定义控制器类，在spring 项目中由控制器负责将用户发来的URL请求转发到对应的服务接口（service层）</p><h2 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h2><p>等同于spring的XML配置文件；使用Java代码可以检查类型安全。</p><h2 id="EnableAutoConfiguration"><a href="#EnableAutoConfiguration" class="headerlink" title="@EnableAutoConfiguration"></a>@EnableAutoConfiguration</h2><p>自动配置。</p><h2 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h2><p>组件扫描，可自动发现和装配一些Bean。</p><h2 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h2><p>可配合CommandLineRunner使用，在程序启动后执行一些基础任务。</p><h2 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h2><p>@Controller和@ResponseBody的合集,表示这是个控制器bean,并且是将函数的返回值直 接填入HTTP响应体中,是REST风格的控制器。</p><h2 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h2><p>自动导入。</p><h2 id="PathVariable"><a href="#PathVariable" class="headerlink" title="@PathVariable"></a>@PathVariable</h2><p>获取参数。</p><h2 id="JsonBackReference"><a href="#JsonBackReference" class="headerlink" title="@JsonBackReference"></a>@JsonBackReference</h2><p>解决嵌套外链问题。</p><h2 id="RepositoryRestResourcepublic"><a href="#RepositoryRestResourcepublic" class="headerlink" title="@RepositoryRestResourcepublic"></a>@RepositoryRestResourcepublic</h2><p>配合spring-boot-starter-data-rest使用。</p><h2 id="Import"><a href="#Import" class="headerlink" title="@Import"></a>@Import</h2><p>用来导入其他配置类。</p><h2 id="ImportResource"><a href="#ImportResource" class="headerlink" title="@ImportResource"></a>@ImportResource</h2><p>用来加载xml配置文件。</p><h2 id="Autowired-1"><a href="#Autowired-1" class="headerlink" title="@Autowired"></a>@Autowired</h2><p>自动导入依赖的bean</p><h2 id="Service"><a href="#Service" class="headerlink" title="@Service"></a>@Service</h2><p>一般用于修饰service层的组件</p><h2 id="Repository"><a href="#Repository" class="headerlink" title="@Repository"></a>@Repository</h2><p>使用@Repository注解可以确保DAO或者repositories提供异常转译，这个注解修饰的DAO或者repositories类会被ComponetScan发现并配置，同时也不需要为它们提供XML配置项。</p><h2 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h2><p>用@Bean标注方法等价于XML中配置的bean。</p><h2 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h2><p>注入Spring boot application.properties配置的属性的值。示例代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Value(value = “#&#123;message&#125;”) </span><br><span class="line"><span class="keyword">private</span> String message;</span><br></pre></td></tr></table></figure></p><h2 id="Inject"><a href="#Inject" class="headerlink" title="@Inject"></a>@Inject</h2><p>等价于默认的@Autowired，只是没有required属性；</p><h2 id="Component-1"><a href="#Component-1" class="headerlink" title="@Component"></a>@Component</h2><p>泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。</p><h2 id="Bean-1"><a href="#Bean-1" class="headerlink" title="@Bean"></a>@Bean</h2><p>相当于XML中的,放在方法的上面，而不是类，意思是产生一个bean,并交给spring管理。</p><h2 id="AutoWired"><a href="#AutoWired" class="headerlink" title="@AutoWired"></a>@AutoWired</h2><p>自动导入依赖的bean。byType方式。把配置好的Bean拿来用，完成属性、方法的组装，它可以对类成员变量、方法及构造函数进行标注，完成自动装配的工作。当加上（required=false）时，就算找不到bean也不报错。</p><h2 id="Qualifier"><a href="#Qualifier" class="headerlink" title="@Qualifier"></a>@Qualifier</h2><p>当有多个同一类型的Bean时，可以用@Qualifier(“name”)来指定。与@Autowired配合使用。@Qualifier限定描述符除了能根据名字进行注入，但能进行更细粒度的控制如何选择候选者，具体使用方式如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span> </span><br><span class="line"><span class="meta">@Qualifier</span>(value = “demoInfoService”) </span><br><span class="line"><span class="keyword">private</span> DemoInfoService demoInfoService;</span><br></pre></td></tr></table></figure></p><h2 id="Resource-name-”name”-type-”type”"><a href="#Resource-name-”name”-type-”type”" class="headerlink" title="@Resource(name=”name”,type=”type”)"></a>@Resource(name=”name”,type=”type”)</h2><p>没有括号内内容的话，默认byName。与@Autowired干类似的事。</p><h1 id="JPA注解"><a href="#JPA注解" class="headerlink" title="JPA注解"></a>JPA注解</h1><p>@Entity：@Table(name=”“)：表明这是一个实体类。一般用于jpa这两个注解一般一块使用，但是如果表名和实体类名相同的话，@Table可以省略</p><p>@MappedSuperClass:用在确定是父类的entity上。父类的属性子类可以继承。</p><p>@NoRepositoryBean:一般用作父类的repository，有这个注解，spring不会去实例化该repository。</p><p>@Column：如果字段名与列名相同，则可以省略。</p><p>@Id：表示该属性为主键。</p><p>@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = “repair_seq”)：表示主键生成策略是sequence（可以为Auto、IDENTITY、native等，Auto表示可在多个数据库间切换），指定sequence的名字是repair_seq。</p><p>@SequenceGeneretor(name = “repair_seq”, sequenceName = “seq_repair”, allocationSize = 1)：name为sequence的名称，以便使用，sequenceName为数据库的sequence名称，两个名称可以一致。</p><p>@Transient：表示该属性并非一个到数据库表的字段的映射,ORM框架将忽略该属性。如果一个属性并非数据库表的字段映射,就务必将其标示为@Transient,否则,ORM框架默认其注解为@Basic。@Basic(fetch=FetchType.LAZY)：标记可以指定实体属性的加载方式</p><p>@JsonIgnore：作用是json序列化时将Java bean中的一些属性忽略掉,序列化和反序列化都受影响。</p><p>@JoinColumn（name=”loginId”）:一对一：本表中指向另一个表的外键。一对多：另一个表指向本表的外键。</p><p>@OneToOne、@OneToMany、@ManyToOne：对应hibernate配置文件中的一对一，一对多，多对一。</p><h1 id="全局异常处理"><a href="#全局异常处理" class="headerlink" title="全局异常处理"></a>全局异常处理</h1><p>@ControllerAdvice：包含@Component。可以被扫描到。统一处理异常。</p><p>@ExceptionHandler（Exception.class）：用在方法上面表示遇到这个异常就执行以下方法。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Spring Boot </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>滑动拼图验证</title>
       <link href="/2019/01/15/%E6%BB%91%E5%8A%A8%E6%8B%BC%E5%9B%BE%E9%AA%8C%E8%AF%81/"/>
       <url>/2019/01/15/%E6%BB%91%E5%8A%A8%E6%8B%BC%E5%9B%BE%E9%AA%8C%E8%AF%81/</url>
