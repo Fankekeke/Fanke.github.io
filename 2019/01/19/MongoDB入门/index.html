@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="安装  https://www.mongodb.com/download-center#community 1234d:\mongodb\bin\mongod --dbpath d:\data\dbmongod.exe --dbpath d:\data\db#连接d:\mongodb\bin\mongo.exe 两个cmd窗口不能关闭  添加maven  123456&amp;lt;!--mongodb">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB入门">
+<meta property="og:url" content="http://yoursite.com/2019/01/19/MongoDB入门/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="安装  https://www.mongodb.com/download-center#community 1234d:\mongodb\bin\mongod --dbpath d:\data\dbmongod.exe --dbpath d:\data\db#连接d:\mongodb\bin\mongo.exe 两个cmd窗口不能关闭  添加maven  123456&amp;lt;!--mongodb">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-03-19T01:49:59.190Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB入门">
+<meta name="twitter:description" content="安装  https://www.mongodb.com/download-center#community 1234d:\mongodb\bin\mongod --dbpath d:\data\dbmongod.exe --dbpath d:\data\db#连接d:\mongodb\bin\mongo.exe 两个cmd窗口不能关闭  添加maven  123456&amp;lt;!--mongodb">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>MongoDB入门</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/02/04/BRE-TH-LESS/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/01/19/RabbitMQ/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/19/MongoDB入门/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/01/19/MongoDB入门/&text=MongoDB入门"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/01/19/MongoDB入门/&title=MongoDB入门"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/01/19/MongoDB入门/&is_video=false&description=MongoDB入门"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MongoDB入门&body=Check out this article: http://yoursite.com/2019/01/19/MongoDB入门/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/01/19/MongoDB入门/&title=MongoDB入门"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/01/19/MongoDB入门/&title=MongoDB入门"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/01/19/MongoDB入门/&title=MongoDB入门"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/01/19/MongoDB入门/&title=MongoDB入门"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/01/19/MongoDB入门/&name=MongoDB入门&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#连接数据库"><span class="toc-number">1.</span> <span class="toc-text">连接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如果你的-Mongo-需要验证用户名及密码"><span class="toc-number">2.</span> <span class="toc-text">如果你的 Mongo 需要验证用户名及密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建集合"><span class="toc-number">3.</span> <span class="toc-text">创建集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取集合"><span class="toc-number">4.</span> <span class="toc-text">获取集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入文档"><span class="toc-number">5.</span> <span class="toc-text">插入文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检索所有文档"><span class="toc-number">6.</span> <span class="toc-text">检索所有文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新文档"><span class="toc-number">7.</span> <span class="toc-text">更新文档</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        MongoDB入门
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-01-19T01:39:05.000Z" itemprop="datePublished">2019-01-19</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/MongoDB/">MongoDB</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <blockquote>
+<p>安装</p>
+</blockquote>
+<p><a href="https://www.mongodb.com/download-center#community" target="_blank" rel="noopener">https://www.mongodb.com/download-center#community</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">d:\mongodb\bin\mongod --dbpath d:\data\db</span><br><span class="line">mongod.exe --dbpath d:\data\db</span><br><span class="line"><span class="comment">#连接</span></span><br><span class="line">d:\mongodb\bin\mongo.exe</span><br></pre></td></tr></table></figure>
+<p>两个cmd窗口不能关闭</p>
+<blockquote>
+<p>添加maven</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--mongodb--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mongodb<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mongo-java-driver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><p>连接数据库，你需要指定数据库名称，如果指定的数据库不存在，mongo会自动创建数据库。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.mongodb.MongoClient;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoDatabase;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MongoDBJDBC</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">( String args[] )</span></span>&#123;</span><br><span class="line">      <span class="keyword">try</span>&#123;   </span><br><span class="line">       <span class="comment">// 连接到 mongodb 服务</span></span><br><span class="line">         MongoClient mongoClient = <span class="keyword">new</span> MongoClient( <span class="string">"localhost"</span> , <span class="number">27017</span> );</span><br><span class="line">       </span><br><span class="line">         <span class="comment">// 连接到数据库</span></span><br><span class="line">         MongoDatabase mongoDatabase = mongoClient.getDatabase(<span class="string">"mycol"</span>);  </span><br><span class="line">       System.out.println(<span class="string">"Connect to database successfully"</span>);</span><br><span class="line">        </span><br><span class="line">      &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">        System.err.println( e.getClass().getName() + <span class="string">": "</span> + e.getMessage() );</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="如果你的-Mongo-需要验证用户名及密码"><a href="#如果你的-Mongo-需要验证用户名及密码" class="headerlink" title="如果你的 Mongo 需要验证用户名及密码"></a>如果你的 Mongo 需要验证用户名及密码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;  </span><br><span class="line"><span class="keyword">import</span> java.util.List;  </span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoClient;  </span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoCredential;  </span><br><span class="line"><span class="keyword">import</span> com.mongodb.ServerAddress;  </span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoDatabase;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MongoDBJDBC</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;  </span><br><span class="line">        <span class="keyword">try</span> &#123;  </span><br><span class="line">            <span class="comment">//连接到MongoDB服务 如果是远程连接可以替换“localhost”为服务器所在IP地址  </span></span><br><span class="line">            <span class="comment">//ServerAddress()两个参数分别为 服务器地址 和 端口  </span></span><br><span class="line">            ServerAddress serverAddress = <span class="keyword">new</span> ServerAddress(<span class="string">"localhost"</span>,<span class="number">27017</span>);  </span><br><span class="line">            List&lt;ServerAddress&gt; addrs = <span class="keyword">new</span> ArrayList&lt;ServerAddress&gt;();  </span><br><span class="line">            addrs.add(serverAddress);  </span><br><span class="line">              </span><br><span class="line">            <span class="comment">//MongoCredential.createScramSha1Credential()三个参数分别为 用户名 数据库名称 密码  </span></span><br><span class="line">            MongoCredential credential = MongoCredential.createScramSha1Credential(<span class="string">"username"</span>, <span class="string">"databaseName"</span>, <span class="string">"password"</span>.toCharArray());  </span><br><span class="line">            List&lt;MongoCredential&gt; credentials = <span class="keyword">new</span> ArrayList&lt;MongoCredential&gt;();  </span><br><span class="line">            credentials.add(credential);  </span><br><span class="line">              </span><br><span class="line">            <span class="comment">//通过连接认证获取MongoDB连接  </span></span><br><span class="line">            MongoClient mongoClient = <span class="keyword">new</span> MongoClient(addrs,credentials);  </span><br><span class="line">              </span><br><span class="line">            <span class="comment">//连接到数据库  </span></span><br><span class="line">            MongoDatabase mongoDatabase = mongoClient.getDatabase(<span class="string">"databaseName"</span>);  </span><br><span class="line">            System.out.println(<span class="string">"Connect to database successfully"</span>);  </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;  </span><br><span class="line">            System.err.println( e.getClass().getName() + <span class="string">": "</span> + e.getMessage() );  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a>创建集合</h2><p>使用 com.mongodb.client.MongoDatabase 类中的createCollection()来创建集合<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.mongodb.MongoClient;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoDatabase;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MongoDBJDBC</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">( String args[] )</span></span>&#123;</span><br><span class="line">      <span class="keyword">try</span>&#123;   </span><br><span class="line">      <span class="comment">// 连接到 mongodb 服务</span></span><br><span class="line">      MongoClient mongoClient = <span class="keyword">new</span> MongoClient( <span class="string">"localhost"</span> , <span class="number">27017</span> );</span><br><span class="line">         </span><br><span class="line">       </span><br><span class="line">      <span class="comment">// 连接到数据库</span></span><br><span class="line">      MongoDatabase mongoDatabase = mongoClient.getDatabase(<span class="string">"mycol"</span>);  </span><br><span class="line">      System.out.println(<span class="string">"Connect to database successfully"</span>);</span><br><span class="line">      mongoDatabase.createCollection(<span class="string">"test"</span>);</span><br><span class="line">      System.out.println(<span class="string">"集合创建成功"</span>);</span><br><span class="line">        </span><br><span class="line">      &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">        System.err.println( e.getClass().getName() + <span class="string">": "</span> + e.getMessage() );</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="获取集合"><a href="#获取集合" class="headerlink" title="获取集合"></a>获取集合</h2><p>使用com.mongodb.client.MongoDatabase类的 getCollection() 方法来获取一个集合<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.bson.Document;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoClient;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoCollection;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoDatabase;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MongoDBJDBC</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">( String args[] )</span></span>&#123;</span><br><span class="line">      <span class="keyword">try</span>&#123;   </span><br><span class="line">       <span class="comment">// 连接到 mongodb 服务</span></span><br><span class="line">         MongoClient mongoClient = <span class="keyword">new</span> MongoClient( <span class="string">"localhost"</span> , <span class="number">27017</span> );</span><br><span class="line">       </span><br><span class="line">         <span class="comment">// 连接到数据库</span></span><br><span class="line">         MongoDatabase mongoDatabase = mongoClient.getDatabase(<span class="string">"mycol"</span>);  </span><br><span class="line">       System.out.println(<span class="string">"Connect to database successfully"</span>);</span><br><span class="line">      </span><br><span class="line">       MongoCollection&lt;Document&gt; collection = mongoDatabase.getCollection(<span class="string">"test"</span>);</span><br><span class="line">       System.out.println(<span class="string">"集合 test 选择成功"</span>);</span><br><span class="line">      &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">        System.err.println( e.getClass().getName() + <span class="string">": "</span> + e.getMessage() );</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="插入文档"><a href="#插入文档" class="headerlink" title="插入文档"></a>插入文档</h2><p>com.mongodb.client.MongoCollection类的 insertMany() 方法来插入一个文档<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> org.bson.Document;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoClient;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoCollection;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoDatabase;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MongoDBJDBC</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">( String args[] )</span></span>&#123;</span><br><span class="line">      <span class="keyword">try</span>&#123;   </span><br><span class="line">         <span class="comment">// 连接到 mongodb 服务</span></span><br><span class="line">         MongoClient mongoClient = <span class="keyword">new</span> MongoClient( <span class="string">"localhost"</span> , <span class="number">27017</span> );</span><br><span class="line">         </span><br><span class="line">         <span class="comment">// 连接到数据库</span></span><br><span class="line">         MongoDatabase mongoDatabase = mongoClient.getDatabase(<span class="string">"mycol"</span>);  </span><br><span class="line">         System.out.println(<span class="string">"Connect to database successfully"</span>);</span><br><span class="line">         </span><br><span class="line">         MongoCollection&lt;Document&gt; collection = mongoDatabase.getCollection(<span class="string">"test"</span>);</span><br><span class="line">         System.out.println(<span class="string">"集合 test 选择成功"</span>);</span><br><span class="line">         <span class="comment">//插入文档  </span></span><br><span class="line">         <span class="comment">/** </span></span><br><span class="line"><span class="comment">         * 1. 创建文档 org.bson.Document 参数为key-value的格式 </span></span><br><span class="line"><span class="comment">         * 2. 创建文档集合List&lt;Document&gt; </span></span><br><span class="line"><span class="comment">         * 3. 将文档集合插入数据库集合中 mongoCollection.insertMany(List&lt;Document&gt;) 插入单个文档可以用 mongoCollection.insertOne(Document) </span></span><br><span class="line"><span class="comment">         * */</span></span><br><span class="line">         Document document = <span class="keyword">new</span> Document(<span class="string">"title"</span>, <span class="string">"MongoDB"</span>).  </span><br><span class="line">         append(<span class="string">"description"</span>, <span class="string">"database"</span>).  </span><br><span class="line">         append(<span class="string">"likes"</span>, <span class="number">100</span>).  </span><br><span class="line">         append(<span class="string">"by"</span>, <span class="string">"Fly"</span>);  </span><br><span class="line">         List&lt;Document&gt; documents = <span class="keyword">new</span> ArrayList&lt;Document&gt;();  </span><br><span class="line">         documents.add(document);  </span><br><span class="line">         collection.insertMany(documents);  </span><br><span class="line">         System.out.println(<span class="string">"文档插入成功"</span>);  </span><br><span class="line">      &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">         System.err.println( e.getClass().getName() + <span class="string">": "</span> + e.getMessage() );</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="检索所有文档"><a href="#检索所有文档" class="headerlink" title="检索所有文档"></a>检索所有文档</h2><p>使用 com.mongodb.client.MongoCollection 类中的 find() 方法来获取集合中的所有文档。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.bson.Document;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoClient;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.FindIterable;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoCollection;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoCursor;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoDatabase;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MongoDBJDBC</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">( String args[] )</span></span>&#123;</span><br><span class="line">      <span class="keyword">try</span>&#123;   </span><br><span class="line">         <span class="comment">// 连接到 mongodb 服务</span></span><br><span class="line">         MongoClient mongoClient = <span class="keyword">new</span> MongoClient( <span class="string">"localhost"</span> , <span class="number">27017</span> );</span><br><span class="line">         </span><br><span class="line">         <span class="comment">// 连接到数据库</span></span><br><span class="line">         MongoDatabase mongoDatabase = mongoClient.getDatabase(<span class="string">"mycol"</span>);  </span><br><span class="line">         System.out.println(<span class="string">"Connect to database successfully"</span>);</span><br><span class="line">         </span><br><span class="line">         MongoCollection&lt;Document&gt; collection = mongoDatabase.getCollection(<span class="string">"test"</span>);</span><br><span class="line">         System.out.println(<span class="string">"集合 test 选择成功"</span>);</span><br><span class="line">         </span><br><span class="line">         <span class="comment">//检索所有文档  </span></span><br><span class="line">         <span class="comment">/** </span></span><br><span class="line"><span class="comment">         * 1. 获取迭代器FindIterable&lt;Document&gt; </span></span><br><span class="line"><span class="comment">         * 2. 获取游标MongoCursor&lt;Document&gt; </span></span><br><span class="line"><span class="comment">         * 3. 通过游标遍历检索出的文档集合 </span></span><br><span class="line"><span class="comment">         * */</span>  </span><br><span class="line">         FindIterable&lt;Document&gt; findIterable = collection.find();  </span><br><span class="line">         MongoCursor&lt;Document&gt; mongoCursor = findIterable.iterator();  </span><br><span class="line">         <span class="keyword">while</span>(mongoCursor.hasNext())&#123;  </span><br><span class="line">            System.out.println(mongoCursor.next());  </span><br><span class="line">         &#125;  </span><br><span class="line">      </span><br><span class="line">      &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">         System.err.println( e.getClass().getName() + <span class="string">": "</span> + e.getMessage() );</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h2><p>使用 com.mongodb.client.MongoCollection 类中的 updateMany() 方法来更新集合中的文档。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.bson.Document;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoClient;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.FindIterable;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoCollection;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoCursor;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoDatabase;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.model.Filters;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MongoDBJDBC</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">( String args[] )</span></span>&#123;</span><br><span class="line">      <span class="keyword">try</span>&#123;   </span><br><span class="line">         <span class="comment">// 连接到 mongodb 服务</span></span><br><span class="line">         MongoClient mongoClient = <span class="keyword">new</span> MongoClient( <span class="string">"localhost"</span> , <span class="number">27017</span> );</span><br><span class="line">         </span><br><span class="line">         <span class="comment">// 连接到数据库</span></span><br><span class="line">         MongoDatabase mongoDatabase = mongoClient.getDatabase(<span class="string">"mycol"</span>);  </span><br><span class="line">         System.out.println(<span class="string">"Connect to database successfully"</span>);</span><br><span class="line">         </span><br><span class="line">         MongoCollection&lt;Document&gt; collection = mongoDatabase.getCollection(<span class="string">"test"</span>);</span><br><span class="line">         System.out.println(<span class="string">"集合 test 选择成功"</span>);</span><br><span class="line">         </span><br><span class="line">         <span class="comment">//更新文档   将文档中likes=100的文档修改为likes=200   </span></span><br><span class="line">         collection.updateMany(Filters.eq(<span class="string">"likes"</span>, <span class="number">100</span>), <span class="keyword">new</span> Document(<span class="string">"$set"</span>,<span class="keyword">new</span> Document(<span class="string">"likes"</span>,<span class="number">200</span>)));  </span><br><span class="line">         <span class="comment">//检索查看结果  </span></span><br><span class="line">         FindIterable&lt;Document&gt; findIterable = collection.find();  </span><br><span class="line">         MongoCursor&lt;Document&gt; mongoCursor = findIterable.iterator();  </span><br><span class="line">         <span class="keyword">while</span>(mongoCursor.hasNext())&#123;  </span><br><span class="line">            System.out.println(mongoCursor.next());  </span><br><span class="line">         &#125;  </span><br><span class="line">      </span><br><span class="line">      &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">         System.err.println( e.getClass().getName() + <span class="string">": "</span> + e.getMessage() );</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#连接数据库"><span class="toc-number">1.</span> <span class="toc-text">连接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如果你的-Mongo-需要验证用户名及密码"><span class="toc-number">2.</span> <span class="toc-text">如果你的 Mongo 需要验证用户名及密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建集合"><span class="toc-number">3.</span> <span class="toc-text">创建集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取集合"><span class="toc-number">4.</span> <span class="toc-text">获取集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入文档"><span class="toc-number">5.</span> <span class="toc-text">插入文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检索所有文档"><span class="toc-number">6.</span> <span class="toc-text">检索所有文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新文档"><span class="toc-number">7.</span> <span class="toc-text">更新文档</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/19/MongoDB入门/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/01/19/MongoDB入门/&text=MongoDB入门"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/01/19/MongoDB入门/&title=MongoDB入门"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/01/19/MongoDB入门/&is_video=false&description=MongoDB入门"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MongoDB入门&body=Check out this article: http://yoursite.com/2019/01/19/MongoDB入门/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/01/19/MongoDB入门/&title=MongoDB入门"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/01/19/MongoDB入门/&title=MongoDB入门"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/01/19/MongoDB入门/&title=MongoDB入门"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/01/19/MongoDB入门/&title=MongoDB入门"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/01/19/MongoDB入门/&name=MongoDB入门&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

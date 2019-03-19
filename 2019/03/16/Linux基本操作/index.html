@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Linux的基本命令ls 显示目录下的内容1[root@localhost ~]#ls [选项][文件名或目录名] -a：显示所有文件；–color=when：支持颜色输出，when 的值默认是 always（总显示颜色），也可以是 never（从不显示颜色）和 auto（自动）；-d：显示目录信息，而不是目录下的文件；-h：人性化显示，按照我们习惯的单位显示文件大小；-i：显示文件的 i 节点">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux简单安装">
+<meta property="og:url" content="http://yoursite.com/2019/03/16/Linux基本操作/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="Linux的基本命令ls 显示目录下的内容1[root@localhost ~]#ls [选项][文件名或目录名] -a：显示所有文件；–color=when：支持颜色输出，when 的值默认是 always（总显示颜色），也可以是 never（从不显示颜色）和 auto（自动）；-d：显示目录信息，而不是目录下的文件；-h：人性化显示，按照我们习惯的单位显示文件大小；-i：显示文件的 i 节点">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="http://c.biancheng.net/uploads/allimg/181212/1-1Q2121A919411.jpg">
+<meta property="og:updated_time" content="2019-03-19T01:36:48.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux简单安装">
+<meta name="twitter:description" content="Linux的基本命令ls 显示目录下的内容1[root@localhost ~]#ls [选项][文件名或目录名] -a：显示所有文件；–color=when：支持颜色输出，when 的值默认是 always（总显示颜色），也可以是 never（从不显示颜色）和 auto（自动）；-d：显示目录信息，而不是目录下的文件；-h：人性化显示，按照我们习惯的单位显示文件大小；-i：显示文件的 i 节点">
+<meta name="twitter:image" content="http://c.biancheng.net/uploads/allimg/181212/1-1Q2121A919411.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Linux简单安装</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/02/09/女生徒/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/03/16/Linux基本操作/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/03/16/Linux基本操作/&text=Linux简单安装"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/03/16/Linux基本操作/&title=Linux简单安装"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/03/16/Linux基本操作/&is_video=false&description=Linux简单安装"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux简单安装&body=Check out this article: http://yoursite.com/2019/03/16/Linux基本操作/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/03/16/Linux基本操作/&title=Linux简单安装"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/03/16/Linux基本操作/&title=Linux简单安装"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/03/16/Linux基本操作/&title=Linux简单安装"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/03/16/Linux基本操作/&title=Linux简单安装"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/03/16/Linux基本操作/&name=Linux简单安装&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux的基本命令"><span class="toc-number">1.</span> <span class="toc-text">Linux的基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ls-显示目录下的内容"><span class="toc-number">1.1.</span> <span class="toc-text">ls 显示目录下的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cd-切换所在目录"><span class="toc-number">1.2.</span> <span class="toc-text">cd 切换所在目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mkdir-常见目录-文件夹-文件"><span class="toc-number">1.3.</span> <span class="toc-text">mkdir 常见目录 文件夹 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rmdir-删除空目录"><span class="toc-number">1.4.</span> <span class="toc-text">rmdir 删除空目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#touch-修改文件的时间戳"><span class="toc-number">1.5.</span> <span class="toc-text">touch 修改文件的时间戳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stat-显示文件或文件系统的详细信息"><span class="toc-number">1.6.</span> <span class="toc-text">stat 显示文件或文件系统的详细信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat-连接文件并打印输出到标准输出设备"><span class="toc-number">1.7.</span> <span class="toc-text">cat 连接文件并打印输出到标准输出设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rm-删除文件或目录"><span class="toc-number">1.8.</span> <span class="toc-text">rm 删除文件或目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cp-复制文件和目录"><span class="toc-number">1.9.</span> <span class="toc-text">cp 复制文件和目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mv-移动文件或改名"><span class="toc-number">1.10.</span> <span class="toc-text">mv 移动文件或改名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CentOS7下安装jdk，tomcat，MySQL"><span class="toc-number">1.11.</span> <span class="toc-text">CentOS7下安装jdk，tomcat，MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备环境"><span class="toc-number">1.11.1.</span> <span class="toc-text">准备环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java安装"><span class="toc-number">1.11.2.</span> <span class="toc-text">Java安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tomcat安装"><span class="toc-number">1.11.3.</span> <span class="toc-text">tomcat安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL安装"><span class="toc-number">1.11.4.</span> <span class="toc-text">MySQL安装</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Linux简单安装
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-03-16T06:08:19.000Z" itemprop="datePublished">2019-03-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Linux/">Linux</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><img src="http://c.biancheng.net/uploads/allimg/181212/1-1Q2121A919411.jpg" alt=""><br><br></p>
+<h2 id="Linux的基本命令"><a href="#Linux的基本命令" class="headerlink" title="Linux的基本命令"></a>Linux的基本命令</h2><h3 id="ls-显示目录下的内容"><a href="#ls-显示目录下的内容" class="headerlink" title="ls 显示目录下的内容"></a>ls 显示目录下的内容</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#ls [选项][文件名或目录名]</span></span><br></pre></td></tr></table></figure>
+<p>-a：显示所有文件；<br>–color=when：支持颜色输出，when 的值默认是 always（总显示颜色），也可以是 never（从不显示颜色）和 auto（自动）；<br>-d：显示目录信息，而不是目录下的文件；<br>-h：人性化显示，按照我们习惯的单位显示文件大小；<br>-i：显示文件的 i 节点号；<br>-l：长格式显示；</p>
+<h3 id="cd-切换所在目录"><a href="#cd-切换所在目录" class="headerlink" title="cd 切换所在目录"></a>cd 切换所在目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#cd [目录名]</span></span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># cd /usr/local/src/</span></span><br><span class="line">[root@localhost src]<span class="comment">#</span></span><br><span class="line"><span class="comment">#进入/usr/local/src/ 目录</span></span><br></pre></td></tr></table></figure>
+<h3 id="mkdir-常见目录-文件夹-文件"><a href="#mkdir-常见目录-文件夹-文件" class="headerlink" title="mkdir 常见目录 文件夹 文件"></a>mkdir 常见目录 文件夹 文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost -]<span class="comment"># mkdir [选项]目录名</span></span><br></pre></td></tr></table></figure>
+<h3 id="rmdir-删除空目录"><a href="#rmdir-删除空目录" class="headerlink" title="rmdir 删除空目录"></a>rmdir 删除空目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost -]<span class="comment"># rmdir [选项]目录名</span></span><br></pre></td></tr></table></figure>
+<h3 id="touch-修改文件的时间戳"><a href="#touch-修改文件的时间戳" class="headerlink" title="touch 修改文件的时间戳"></a>touch 修改文件的时间戳</h3><p>千万不要把 touch 命令当成新建文件的命令，牢牢记住这是触摸的意思<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost -]<span class="comment"># touch [选项]文件名或目录名</span></span><br></pre></td></tr></table></figure></p>
+<p>-a：只修改文件的访问时间（Access Time)<br>-c：如果文件不存在，则不建立新文件<br>-d：把文件的时间改为指定的时间<br>-m：只修改文件的数据修改时间（Modify Time）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#touch bols</span></span><br><span class="line"><span class="comment">#建立名为 bols 的空文件</span></span><br></pre></td></tr></table></figure>
+<h3 id="stat-显示文件或文件系统的详细信息"><a href="#stat-显示文件或文件系统的详细信息" class="headerlink" title="stat 显示文件或文件系统的详细信息"></a>stat 显示文件或文件系统的详细信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># stat [选项]文件名或目录名</span></span><br></pre></td></tr></table></figure>
+<h3 id="cat-连接文件并打印输出到标准输出设备"><a href="#cat-连接文件并打印输出到标准输出设备" class="headerlink" title="cat 连接文件并打印输出到标准输出设备"></a>cat 连接文件并打印输出到标准输出设备</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># cat [选项]文件名</span></span><br></pre></td></tr></table></figure>
+<p>-A：相当于 -vET 选项的整合，用于列出所有隐藏符号；<br>-E：列出每行结尾的回车符 $；<br>-n：显示行号；<br>-T：把 Tab 键 ^I 显示出来；<br>-V：列出特殊字符；</p>
+<h3 id="rm-删除文件或目录"><a href="#rm-删除文件或目录" class="headerlink" title="rm 删除文件或目录"></a>rm 删除文件或目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># rm[选项] 文件或目录</span></span><br></pre></td></tr></table></figure>
+<p>-f：强制删除（force）<br>-i：交互删除，在删除之前会询问用户<br>-r：递归删除，可以删除目录（recursive）</p>
+<h3 id="cp-复制文件和目录"><a href="#cp-复制文件和目录" class="headerlink" title="cp 复制文件和目录"></a>cp 复制文件和目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># touch cangls</span></span><br><span class="line"><span class="comment">#建立源文件</span></span><br><span class="line">[root@localhost ~]<span class="comment"># cp cangls /tmp/</span></span><br><span class="line"><span class="comment">#把源文件不改名复制到 /tmp/ 目录下</span></span><br><span class="line">[root@localhost ~]<span class="comment"># cp cangls /tmp/bols</span></span><br><span class="line"><span class="comment">#改名复制</span></span><br></pre></td></tr></table></figure>
+<h3 id="mv-移动文件或改名"><a href="#mv-移动文件或改名" class="headerlink" title="mv 移动文件或改名"></a>mv 移动文件或改名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># mv cangls /tmp/</span></span><br><span class="line"><span class="comment">#移动之后，源文件会被删除，类似剪切</span></span><br><span class="line">[root@localhost ~]<span class="comment"># mkdir movie</span></span><br><span class="line">[root@localhost ~]<span class="comment"># mv movie/ /tmp/</span></span><br><span class="line"><span class="comment">#也可以移动目录。和 rm、cp 不同的是，mv 移动目录不需要加入"-r"选项</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># mv bols lmls</span></span><br><span class="line"><span class="comment">#把 bols 改名为 lmls</span></span><br></pre></td></tr></table></figure>
+<h3 id="CentOS7下安装jdk，tomcat，MySQL"><a href="#CentOS7下安装jdk，tomcat，MySQL" class="headerlink" title="CentOS7下安装jdk，tomcat，MySQL"></a>CentOS7下安装jdk，tomcat，MySQL</h3><h4 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h4><p><a href="http://mirrors.163.com/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1708.iso" target="_blank" rel="noopener">CentOS7 64位 1708版</a></p>
+<p><a href="http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz" target="_blank" rel="noopener">jdk-8u171-linux-x64.tar.gz</a></p>
+<p><a href="https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.22-1.el7.x86_64.rpm-bundle.tar" target="_blank" rel="noopener">mysql-5.7.22-1.el7.x86_64.rpm-bundle.tar</a></p>
+<h4 id="Java安装"><a href="#Java安装" class="headerlink" title="Java安装"></a>Java安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf jdk-8u171-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+<p>出现  jdk1.8.0_171 这个目录才可以</p>
+<h4 id="tomcat安装"><a href="#tomcat安装" class="headerlink" title="tomcat安装"></a>tomcat安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-tomcat-8.5.31.tar.gz</span><br></pre></td></tr></table></figure>
+<p>关闭防火墙<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line"><span class="comment">#关闭防火墙（但是重启后还是会开防火墙）</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld</span><br><span class="line"><span class="comment">#第二条是让防火墙不开机启动</span></span><br></pre></td></tr></table></figure></p>
+<p>运行就完事了</p>
+<h4 id="MySQL安装"><a href="#MySQL安装" class="headerlink" title="MySQL安装"></a>MySQL安装</h4><p>MySQL的安装是最难安装的一个了<br>如果之前安装过MySQL先删除<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep mysql</span><br></pre></td></tr></table></figure></p>
+<p>解决依赖问题删除两个软件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep postfix</span><br><span class="line"></span><br><span class="line">rpm -qa | grep mariadb</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>下载</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm  </span><br><span class="line">rpm -ivh mysql-community-release-el7-5.noarch.rpm</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过yum进行安装</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install mysql mysql-server mysql-devel -y</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>启动</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysql.service</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>验证</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp|grep 3306</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>无密码</p>
+</blockquote>
+<p>通过Yum安装的mysql的管理员账户是没有密码的，这里通过命令设置其密码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root password admin</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>登录成功</p>
+</blockquote>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux的基本命令"><span class="toc-number">1.</span> <span class="toc-text">Linux的基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ls-显示目录下的内容"><span class="toc-number">1.1.</span> <span class="toc-text">ls 显示目录下的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cd-切换所在目录"><span class="toc-number">1.2.</span> <span class="toc-text">cd 切换所在目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mkdir-常见目录-文件夹-文件"><span class="toc-number">1.3.</span> <span class="toc-text">mkdir 常见目录 文件夹 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rmdir-删除空目录"><span class="toc-number">1.4.</span> <span class="toc-text">rmdir 删除空目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#touch-修改文件的时间戳"><span class="toc-number">1.5.</span> <span class="toc-text">touch 修改文件的时间戳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stat-显示文件或文件系统的详细信息"><span class="toc-number">1.6.</span> <span class="toc-text">stat 显示文件或文件系统的详细信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat-连接文件并打印输出到标准输出设备"><span class="toc-number">1.7.</span> <span class="toc-text">cat 连接文件并打印输出到标准输出设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rm-删除文件或目录"><span class="toc-number">1.8.</span> <span class="toc-text">rm 删除文件或目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cp-复制文件和目录"><span class="toc-number">1.9.</span> <span class="toc-text">cp 复制文件和目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mv-移动文件或改名"><span class="toc-number">1.10.</span> <span class="toc-text">mv 移动文件或改名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CentOS7下安装jdk，tomcat，MySQL"><span class="toc-number">1.11.</span> <span class="toc-text">CentOS7下安装jdk，tomcat，MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备环境"><span class="toc-number">1.11.1.</span> <span class="toc-text">准备环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java安装"><span class="toc-number">1.11.2.</span> <span class="toc-text">Java安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tomcat安装"><span class="toc-number">1.11.3.</span> <span class="toc-text">tomcat安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL安装"><span class="toc-number">1.11.4.</span> <span class="toc-text">MySQL安装</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/03/16/Linux基本操作/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/03/16/Linux基本操作/&text=Linux简单安装"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/03/16/Linux基本操作/&title=Linux简单安装"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/03/16/Linux基本操作/&is_video=false&description=Linux简单安装"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux简单安装&body=Check out this article: http://yoursite.com/2019/03/16/Linux基本操作/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/03/16/Linux基本操作/&title=Linux简单安装"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/03/16/Linux基本操作/&title=Linux简单安装"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/03/16/Linux基本操作/&title=Linux简单安装"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/03/16/Linux基本操作/&title=Linux简单安装"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/03/16/Linux基本操作/&name=Linux简单安装&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
