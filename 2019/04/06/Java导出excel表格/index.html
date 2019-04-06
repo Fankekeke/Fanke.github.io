@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="使用POI导出excelPOI的maven123456&amp;lt;!-- https://mvnrepository.com/artifact/org.apache.poi/poi --&amp;gt;&amp;lt;dependency&amp;gt;&amp;lt;groupId&amp;gt;org.apache.poi&amp;lt;/groupId&amp;gt;&amp;lt;artifactId&amp;gt;poi&amp;lt;/artifactId&amp;gt;&amp;l">
+<meta name="keywords" content="分享">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java导出excel表格">
+<meta property="og:url" content="http://yoursite.com/2019/04/06/Java导出excel表格/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="使用POI导出excelPOI的maven123456&amp;lt;!-- https://mvnrepository.com/artifact/org.apache.poi/poi --&amp;gt;&amp;lt;dependency&amp;gt;&amp;lt;groupId&amp;gt;org.apache.poi&amp;lt;/groupId&amp;gt;&amp;lt;artifactId&amp;gt;poi&amp;lt;/artifactId&amp;gt;&amp;l">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-04-06T08:23:28.715Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java导出excel表格">
+<meta name="twitter:description" content="使用POI导出excelPOI的maven123456&amp;lt;!-- https://mvnrepository.com/artifact/org.apache.poi/poi --&amp;gt;&amp;lt;dependency&amp;gt;&amp;lt;groupId&amp;gt;org.apache.poi&amp;lt;/groupId&amp;gt;&amp;lt;artifactId&amp;gt;poi&amp;lt;/artifactId&amp;gt;&amp;l">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Java导出excel表格</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/03/31/Mysql深度优化/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/04/06/Java导出excel表格/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/04/06/Java导出excel表格/&text=Java导出excel表格"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/04/06/Java导出excel表格/&title=Java导出excel表格"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/04/06/Java导出excel表格/&is_video=false&description=Java导出excel表格"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java导出excel表格&body=Check out this article: http://yoursite.com/2019/04/06/Java导出excel表格/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/04/06/Java导出excel表格/&title=Java导出excel表格"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/04/06/Java导出excel表格/&title=Java导出excel表格"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/04/06/Java导出excel表格/&title=Java导出excel表格"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/04/06/Java导出excel表格/&title=Java导出excel表格"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/04/06/Java导出excel表格/&name=Java导出excel表格&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用POI导出excel"><span class="toc-number">1.</span> <span class="toc-text">使用POI导出excel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#POI的maven"><span class="toc-number">2.</span> <span class="toc-text">POI的maven</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进行步骤"><span class="toc-number">3.</span> <span class="toc-text">进行步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#暴露的问题"><span class="toc-number">4.</span> <span class="toc-text">暴露的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">5.</span> <span class="toc-text">解决方案</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Java导出excel表格
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-04-06T07:09:31.000Z" itemprop="datePublished">2019-04-06</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/分享/">分享</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="使用POI导出excel"><a href="#使用POI导出excel" class="headerlink" title="使用POI导出excel"></a>使用POI导出excel</h2><h2 id="POI的maven"><a href="#POI的maven" class="headerlink" title="POI的maven"></a>POI的maven</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.poi/poi --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.poi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>poi<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>3.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="进行步骤"><a href="#进行步骤" class="headerlink" title="进行步骤"></a>进行步骤</h2><p>抓取数据（查数据）<br>写数据到Excel文件</p>
+<p>这两步都比较耗时间，一般我们从数据库查数据，然后组装数据，最后写数据。</p>
+<h2 id="暴露的问题"><a href="#暴露的问题" class="headerlink" title="暴露的问题"></a>暴露的问题</h2><p>当数据量小（比如，几千几万条）的时候可以采用同步的方式，不用考虑别的。</p>
+<p>而当数据量大的时候（比如，几十上百万）的时候问题就暴露出来了。</p>
+<p>首先，慢是肯定的了。少则几十秒，多则几十分钟都是有可能的。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>针对单个工作表（sheet）的行数限制，可以分多个工作表<br>针对单个文件太大不容易打开，可以分多个文件，最终打成压缩包<br>针对内存溢出，可以分批导，每次导一批数据，分多次导</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建表头</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">createTitle</span><span class="params">(HSSFWorkbook workbook,HSSFSheet sheet)</span></span>&#123;</span><br><span class="line">       HSSFRow row = sheet.createRow(<span class="number">0</span>);</span><br><span class="line">       <span class="comment">//设置列宽，setColumnWidth的第二个参数要乘以256，这个参数的单位是1/256个字符宽度</span></span><br><span class="line">       sheet.setColumnWidth(<span class="number">1</span>,<span class="number">12</span>*<span class="number">256</span>);</span><br><span class="line">       sheet.setColumnWidth(<span class="number">3</span>,<span class="number">17</span>*<span class="number">256</span>);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//设置为居中加粗</span></span><br><span class="line">       HSSFCellStyle style = workbook.createCellStyle();</span><br><span class="line">       HSSFFont font = workbook.createFont();</span><br><span class="line">       font.setBold(<span class="keyword">true</span>);</span><br><span class="line">       <span class="comment">//style.setAlignment(HSSFCellStyle.ALIGN_CENTER);</span></span><br><span class="line">       style.setFont(font);</span><br><span class="line"></span><br><span class="line">       HSSFCell cell;</span><br><span class="line">       cell = row.createCell(<span class="number">0</span>);</span><br><span class="line">       cell.setCellValue(<span class="string">"班级"</span>);</span><br><span class="line">       cell.setCellStyle(style);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       cell = row.createCell(<span class="number">1</span>);</span><br><span class="line">       cell.setCellValue(<span class="string">"课程名称"</span>);</span><br><span class="line">       cell.setCellStyle(style);</span><br><span class="line"></span><br><span class="line">       cell = row.createCell(<span class="number">2</span>);</span><br><span class="line">       cell.setCellValue(<span class="string">"教员"</span>);</span><br><span class="line">       cell.setCellStyle(style);</span><br><span class="line"></span><br><span class="line">       cell = row.createCell(<span class="number">3</span>);</span><br><span class="line">       cell.setCellValue(<span class="string">"地点"</span>);</span><br><span class="line">       cell.setCellStyle(style);</span><br><span class="line"></span><br><span class="line">       cell = row.createCell(<span class="number">4</span>);</span><br><span class="line">       cell.setCellValue(<span class="string">"时间"</span>);</span><br><span class="line">       cell.setCellStyle(style);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//生成user表excel</span></span><br><span class="line">   <span class="meta">@RequestMapping</span>(<span class="string">"/getUser.html"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getUser</span><span class="params">(HttpServletResponse response)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">       HSSFWorkbook workbook = <span class="keyword">new</span> HSSFWorkbook();</span><br><span class="line">       HSSFSheet sheet = workbook.createSheet(<span class="string">"统计表"</span>);</span><br><span class="line">       createTitle(workbook,sheet);</span><br><span class="line">       List&lt;TimeTable&gt; rows=timeTableService.selectTable(<span class="number">0</span>,<span class="number">50</span>,<span class="keyword">null</span>,<span class="keyword">null</span>,<span class="keyword">null</span>, DateTools.getWeekDate().get(<span class="string">"mondayDate"</span>), DateTools.getWeekDate().get(<span class="string">"sundayDate"</span>));</span><br><span class="line"></span><br><span class="line">       <span class="comment">//设置日期格式</span></span><br><span class="line">       HSSFCellStyle style = workbook.createCellStyle();</span><br><span class="line">       style.setDataFormat(HSSFDataFormat.getBuiltinFormat(<span class="string">"m/d/yy h:mm"</span>));</span><br><span class="line"></span><br><span class="line">       <span class="comment">//新增数据行，并且设置单元格数据</span></span><br><span class="line">       <span class="keyword">int</span> rowNum=<span class="number">1</span>;</span><br><span class="line">       SimpleDateFormat simpleDateFormat=<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">       <span class="keyword">for</span>(TimeTable timeTable:rows)&#123;</span><br><span class="line">           HSSFRow row = sheet.createRow(rowNum);</span><br><span class="line">           row.createCell(<span class="number">0</span>).setCellValue(timeTable.getClasses().getClasName());</span><br><span class="line">           row.createCell(<span class="number">1</span>).setCellValue(timeTable.getCurriculum().getCurName()+<span class="string">"("</span>+timeTable.getMorning()+<span class="string">")"</span>);</span><br><span class="line">           row.createCell(<span class="number">2</span>).setCellValue(timeTable.getTeacher().getTeaName());</span><br><span class="line">           row.createCell(<span class="number">3</span>).setCellValue(timeTable.getClassroom().getRoomName());</span><br><span class="line">           row.createCell(<span class="number">4</span>).setCellValue(simpleDateFormat.format(timeTable.getTabTime())+<span class="string">"  "</span>+DateTools.dateToWeek(simpleDateFormat.format(timeTable.getTabTime())));</span><br><span class="line">           <span class="comment">//HSSFCell cell = row.createCell(3);</span></span><br><span class="line">           <span class="comment">//cell.setCellValue(DateTools.dateToWeek(timeTable.getTabTime().toString()));</span></span><br><span class="line">           <span class="comment">//cell.setCellStyle(style);</span></span><br><span class="line">           rowNum++;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       String fileName = <span class="string">"导出excel例子.xls"</span>;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//生成excel文件</span></span><br><span class="line">       buildExcelFile(fileName, workbook);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//浏览器下载excel</span></span><br><span class="line">       buildExcelDocument(fileName,workbook,response);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> <span class="string">"download excel"</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//生成excel文件</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">buildExcelFile</span><span class="params">(String filename,HSSFWorkbook workbook)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">       FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(filename);</span><br><span class="line">       workbook.write(fos);</span><br><span class="line">       fos.flush();</span><br><span class="line">       fos.close();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//浏览器下载excel</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">buildExcelDocument</span><span class="params">(String filename,HSSFWorkbook workbook,HttpServletResponse response)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">       response.setContentType(<span class="string">"application/vnd.ms-excel"</span>);</span><br><span class="line">       response.setHeader(<span class="string">"Content-Disposition"</span>, <span class="string">"attachment;filename="</span>+ URLEncoder.encode(filename, <span class="string">"utf-8"</span>));</span><br><span class="line">       OutputStream outputStream = response.getOutputStream();</span><br><span class="line">       workbook.write(outputStream);</span><br><span class="line">       outputStream.flush();</span><br><span class="line">       outputStream.close();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用POI导出excel"><span class="toc-number">1.</span> <span class="toc-text">使用POI导出excel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#POI的maven"><span class="toc-number">2.</span> <span class="toc-text">POI的maven</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进行步骤"><span class="toc-number">3.</span> <span class="toc-text">进行步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#暴露的问题"><span class="toc-number">4.</span> <span class="toc-text">暴露的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">5.</span> <span class="toc-text">解决方案</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/04/06/Java导出excel表格/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/04/06/Java导出excel表格/&text=Java导出excel表格"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/04/06/Java导出excel表格/&title=Java导出excel表格"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/04/06/Java导出excel表格/&is_video=false&description=Java导出excel表格"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java导出excel表格&body=Check out this article: http://yoursite.com/2019/04/06/Java导出excel表格/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/04/06/Java导出excel表格/&title=Java导出excel表格"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/04/06/Java导出excel表格/&title=Java导出excel表格"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/04/06/Java导出excel表格/&title=Java导出excel表格"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/04/06/Java导出excel表格/&title=Java导出excel表格"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/04/06/Java导出excel表格/&name=Java导出excel表格&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

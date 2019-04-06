@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="悲伤的桔子树">
 <meta property="og:description" content="面向对象的特征封装最常见的是把属性私有化封装在一个类里面，只能通过方法去访问继承子类继承父类，从而继承了父类的方法和属性抽象比如一个英雄类，抽象出了name,hp这些属性，使得开发过程中更加易于理解多态多态分操作符的多态和类的多态。 类的多态指父类引用指向子类对象，并且有继承，有重写。 int和intger又什么区别int 是基本类型32位长度的整数Integer 是类类型，是int的封装类int">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-04-03T03:41:42.785Z">
+<meta property="og:updated_time" content="2019-04-04T03:06:00.372Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="J2SE面试题">
 <meta name="twitter:description" content="面向对象的特征封装最常见的是把属性私有化封装在一个类里面，只能通过方法去访问继承子类继承父类，从而继承了父类的方法和属性抽象比如一个英雄类，抽象出了name,hp这些属性，使得开发过程中更加易于理解多态多态分操作符的多态和类的多态。 类的多态指父类引用指向子类对象，并且有继承，有重写。 int和intger又什么区别int 是基本类型32位长度的整数Integer 是类类型，是int的封装类int">
@@ -307,7 +307,64 @@
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length-<span class="number">1</span>;i++)&#123;<span class="comment">//外层循环控制排序趟数</span></span><br><span class="line">　　　　　　<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;arr.length-<span class="number">1</span>-i;j++)&#123;<span class="comment">//内层循环控制每一趟排序多少次</span></span><br><span class="line">　　　　　　　　<span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])&#123;</span><br><span class="line">　　　　　　　　　　<span class="keyword">int</span> temp=arr[j];</span><br><span class="line">　　　　　　　　　　arr[j]=arr[j+<span class="number">1</span>];</span><br><span class="line">　　　　　　　　　　arr[j+<span class="number">1</span>]=temp;</span><br><span class="line">　　　　　　　　&#125;</span><br><span class="line">　　　　　　&#125;</span><br><span class="line">　　　　&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
+<p>SpringBoot 两种格式的配置文件</p>
 </blockquote>
+<p>.properties<br>.yml</p>
+<p>区别<br>1。在properties文件里面的 “ .”  连接在yml文件里面全部换成 “：” 进行连接，并且每一级之间必须换行，在第二级开始应该进行一个Tab键的缩进，当然如果是同级的就不需要进行缩进</p>
+<p>2.在yml文件里面如果是需要进行赋值那么必须是要在 “：” 后面进行一个空格键的缩进</p>
+<p>3.在yml文件里面所有的配置，相同级别只能出现一次，比如我们使用了spring这个级别，那么我们在后边进行spring级别的配置的时候就必须在这个地方进行，不能在写一个spring级别</p>
+<blockquote>
+<p>springboot自定义端口号</p>
+</blockquote>
+<p>配置文件形式<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="comment">#端口号</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8888</span></span><br><span class="line">  <span class="comment">#项目名，如果不设定，默认是 /</span></span><br><span class="line"><span class="attr">  context-path:</span> <span class="string">/demo</span></span><br></pre></td></tr></table></figure></p>
+<p>硬编码形式<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConfigMain</span> <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span> <span class="keyword">implements</span> <span class="title">EmbeddedServletContainerCustomizer</span> </span>&#123;  </span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> SpringApplicationBuilder <span class="title">configure</span><span class="params">(SpringApplicationBuilder builder)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> builder.sources(ConfigMain.class);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">        SpringApplication.run(ConfigMain.class, args);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">customize</span><span class="params">(ConfigurableEmbeddedServletContainer container)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//指定项目名称</span></span><br><span class="line">        container.setContextPath(<span class="string">"/demo"</span>);</span><br><span class="line">        <span class="comment">//指定端口地址</span></span><br><span class="line">        container.setPort(<span class="number">8090</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>MySQL数据库类型的锁有多少种，怎么编写枷锁的sql语句</p>
+</blockquote>
+<p>表级锁：开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高，并发度最低；</p>
+<p>行级锁：开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最低，并发度也最高；   </p>
+<p>页面锁：开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界于表锁和行锁之间，并发度一般。</p>
+<p>适用：从锁的角度来说，表级锁更适合于以查询为主，只有少量按索引条件更新数据的应用，如Web应用；而行级锁则更适合于有大量按索引条件并发更新少量不同数据，同时又有并发查询的应用，如一些在线事务处理（OLTP）系统。</p>
+<blockquote>
+<p>springmvc 单例模式出现的问题</p>
+</blockquote>
+<p>在controller层添加成员变量会导致线程不安全<br>1.不要在controller中定义成员变量。<br>2、万一必须要定义一个非静态成员变量时候，则通过注解@Scope(“prototype”)，将其设置为多例模式</p>
+<blockquote>
+<p>分布式锁应具备哪些条件</p>
+</blockquote>
+<p>具有在分布式系统的环境下，一个方法在同一时间只能被一个机器下的一个线程执行<br>具有高可用的获取锁与释放锁<br>具有高性能的获取锁与释放锁<br>具备可重入特性，也就是可以重新进入，导致多一个任务而并发使用，不用担心数据的错误<br>具有失效的机制，防止死锁<br>具有非阻塞锁的特性，取不到锁就返回一个锁找不到，类似于熔断机制</p>
+<blockquote>
+<p>JVM加载class文件的原理机构</p>
+</blockquote>
+<p>由于Java的跨平台性，经过编译的Java源程序并不是一个可执行程序，而是一个或多个类文件。当Java程序需要使用某个类时，JVM会确保这个类已经被加载、连接（验证、准备和解析）和初始化。类的加载是指把类的.class文件中的数据读入到内存中，通常是创建一个字节数组读入.class文件，然后产生与所加载类对应的Class对象。加载完成后，Class对象还不完整，所以此时的类还不可用。当类被加载后就进入连接阶段，这一阶段包括验证、准备（为静态变量分配内存并设置默认的初始值）和解析（将符号引用替换为直接引用）三个步骤。最后JVM对类进行初始化，包括：1)如果类存在直接的父类并且这个类还没有被初始化，那么就先初始化父类；2)如果类中存在初始化语句，就依次执行这些初始化语句</p>
+<blockquote>
+<p>springcloud 与 doubbo的区别</p>
+</blockquote>
+<p>dubbo由于是二进制的传输，占用带宽会更少</p>
+<p>springCloud是http协议传输，带宽会比较多，同时使用http协议一般会使用JSON报文，消耗会更大</p>
+<p>dubbo的开发难度较大，原因是dubbo的jar包依赖问题很多大型工程无法解决</p>
+<p>springcloud的接口协议约定比较自由且松散，需要有强有力的行政措施来限制接口无序升级</p>
+<p>dubbo的注册中心可以选择zk,redis等多种，springcloud的注册中心只能用eureka或者自研</p>
+<blockquote>
+<p>hashmap的原理</p>
+</blockquote>
+<p>HashMap由数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的，如果定位到的数组位置不含链表（当前entry的next指向null）,那么对于查找，添加等操作很快，仅需一次寻址即可；如果定位到的数组包含链表，对于添加操作，其时间复杂度为O(n)，首先遍历链表，存在即覆盖，否则新增；对于查找操作来讲，仍需遍历链表，然后通过key对象的equals方法逐一比对查找。所以，性能考虑，HashMap中的链表出现越少，性能才会越好。</p>
+<blockquote>
+<p>Struts2和springmvc的本质区别</p>
+</blockquote>
+<p>1.springmvc入口是一个servlet前端控制器(DispatcherServlet),struts2入口是一filter过滤器(StrutsPrepareAndExecuteFilter).<br>        2.struts2通过在action类中定义成员变量接收参数,(属性驱动和模型驱动),它只能使用多例模式管理action.<br> springmvc通过在coontroller方法中定义形参接收参数,springmvc可以使用单例模式管理controller.<br>        3.springmvc是基于方法开发的,注解开发中使用requestMapping将url和方法进行 映射,如果根据url找到controller类的方法生成一个handler处理器对象(只包括一个method).<br>struts2是基于类开发的,每个请求过来创建一个action实例,实例对象中有若干个方法.<br>开发中建议使用springmvc,springmvc方法更类似service业务方法.<br>        4.struts2采用值栈存储请求和相应的数据,通过OGNL存取数据,springmvc通过参数绑定期将request请求内容解析,并给方法形参赋值.<br>        5.struts2和springmvc的速度是相当的,由于struts2的漏洞较多,跟多企业使用springmvc</p>
+<blockquote>
+<p>jdbc,mybatis,hibernate各自优缺点及区别</p>
+</blockquote>
+<p>JDBC：<br>   我们平时使用jdbc进行编程，大致需要下面几个步骤：<br>   1，使用jdbc编程需要连接数据库，注册驱动和数据库信息<br>   2，操作Connection，打开Statement对象<br>   3，通过Statement对象执行SQL，返回结果到ResultSet对象<br>   4，使用ResultSet读取数据，然后通过代码转化为具体的POJO对象<br>   5，关闭数据库相关的资源<br>  jdbc的缺点：<br>  一：工作量比较大，需要连接，然后处理jdbc底层事务，处理数据类型，还需要操作Connection，Statement对象和ResultSet对象去拿数据并关闭他们。<br>   二：我们对jdbc编程可能产生的异常进行捕捉处理并正确关闭资源</p>
+<p>   由于JDBC存在的缺陷，在实际工作中我们很少直接使用jdbc进行编程，用的更多的是ORM对象关系模型来操作数据库，Hibernate就是一个ORM模型<br>     Hibernate：<br>    Hibernate是建立在若干POJO通过xml映射文件（或注解）提供的规则映射到数据库表上的。我们可以通过POJO直接操作数据库的数据，他提供的是一种全表映射的模型。相对而言，Hibernate对JDBC的封装程度还是比较高的，我们已经不需要写SQL，只要使用HQL语言就可以了。<br>    使用Hibernate进行编程有以下好处：<br>    1，消除了代码的映射规则，它全部分离到了xml或者注解里面去配置。<br>    2，无需在管理数据库连接，它也配置到xml里面了。<br>    3，一个会话中不需要操作多个对象，只需要操作Session对象。<br>    4，关闭资源只需要关闭一个Session便可。<br>    这就是Hibernate的优势，在配置了映射文件和数据库连接文件后，Hibernate就可以通过Session操作，非常容易，消除了jdbc带来的大量代码，大大提高了编程的简易性和可读性。Hibernate还提供了级联，缓存，映射，一对多等功能。Hibernate是全表映射，通过HQL去操作pojo进而操作数据库的数据。</p>
+<p>Hibernate的缺点：<br>    1，全表映射带来的不便，比如更新时需要发送所有的字段。<br>    2，无法根据不同的条件组装不同的SQL。<br>    3，对多表关联和复杂的sql查询支持较差，需要自己写sql，返回后，需要自己将数据封装为pojo。<br>    4，不能有效的支持存储过程。<br>    5，虽然有HQL，但是性能较差，大型互联网系统往往需要优化sql，而hibernate做不到。</p>
+<p>Mybatis：<br>    为了解决Hibernate的不足，Mybatis出现了，Mybatis是半自动的框架。之所以称它为半自动，是因为它需要手工匹配提供POJO，sql和映射关系，而全表映射的Hibernate只需要提供pojo和映射关系即可。<br>   Mybatis需要提供的映射文件包含了一下三个部分：sql，映射规则，pojo。在Mybatis里面你需要自己编写sql，虽然比Hibernate配置多，但是Mybatis可以配置动态sql，解决了hibernate表名根据时间变化，不同条件下列不一样的问题，同时你也可以对sql进行优化，通过配置决定你的sql映射规则，也能支持存储过程，所以对于一些复杂和需要优化性能的sql查询它就更加方便。Mybatis几乎可以做到jdbc所有能做到的事情。</p>
+<p>1）从层次上看，JDBC是较底层的持久层操作方式，而Hibernate和MyBatis都是在JDBC的基础上进行了封装使其更加方便程序员对持久层的操作。<br>2）从功能上看，JDBC就是简单的建立数据库连接，然后创建statement，将sql语句传给statement去执行，如果是有返回结果的查询语句，会将查询结果放到ResultSet对象中，通过对ResultSet对象的遍历操作来获取数据；Hibernate是将数据库中的数据表映射为持久层的Java对象，对sql语句进行修改和优化比较困难；MyBatis是将sql语句中的输入参数和输出参数映射为java对象，sql修改和优化比较方便.<br>3）从使用上看，如果进行底层编程，而且对性能要求极高的话，应该采用JDBC的方式；如果要对数据库进行完整性控制的话建议使用Hibernate；如果要灵活使用sql语句的话建议采用MyBatis框架。</p>
+<blockquote>
+<p>自定义一个运行时异常</p>
+</blockquote>
+<p>继承RuntimeException</p>
 
   </div>
    <div class="comment"></div>
