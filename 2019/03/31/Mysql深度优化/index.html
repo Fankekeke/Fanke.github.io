@@ -7,18 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="あなたは弱すぎて、どうしてこんなに弱くて、あなたの憎しみが足りないから">
+    <meta name="description" content="事务 事务并发问题  1、脏读：事务A读取了事务B更新的数据，然后B回滚操作，那么A读取到的数据是脏数据 2、不可重复读：事务 A 多次读取同一数据，事务 B 在事务A多次读取的过程中，对数据作了更新并提交，导致事务A多次读取同一数据时，结果 不一致。 3、幻读：系统管理员A将数据库中所有学生的成绩从具体分数改为ABCDE等级，但是系统管理员B就在这个时候插入了一条具体分数的记录，当系统管理员A改">
 <meta name="keywords" content="悲しいミカンの木">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql深度优化">
 <meta property="og:url" content="http://yoursite.com/2019/03/31/Mysql深度优化/index.html">
 <meta property="og:site_name" content="悲伤的桔子树">
-<meta property="og:description" content="あなたは弱すぎて、どうしてこんなに弱くて、あなたの憎しみが足りないから">
+<meta property="og:description" content="事务 事务并发问题  1、脏读：事务A读取了事务B更新的数据，然后B回滚操作，那么A读取到的数据是脏数据 2、不可重复读：事务 A 多次读取同一数据，事务 B 在事务A多次读取的过程中，对数据作了更新并提交，导致事务A多次读取同一数据时，结果 不一致。 3、幻读：系统管理员A将数据库中所有学生的成绩从具体分数改为ABCDE等级，但是系统管理员B就在这个时候插入了一条具体分数的记录，当系统管理员A改">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-03-31T13:45:46.718Z">
+<meta property="og:updated_time" content="2019-04-07T03:09:04.676Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql深度优化">
-<meta name="twitter:description" content="あなたは弱すぎて、どうしてこんなに弱くて、あなたの憎しみが足りないから">
+<meta name="twitter:description" content="事务 事务并发问题  1、脏读：事务A读取了事务B更新的数据，然后B回滚操作，那么A读取到的数据是脏数据 2、不可重复读：事务 A 多次读取同一数据，事务 B 在事务A多次读取的过程中，对数据作了更新并提交，导致事务A多次读取同一数据时，结果 不一致。 3、幻读：系统管理员A将数据库中所有学生的成绩从具体分数改为ABCDE等级，但是系统管理员B就在这个时候插入了一条具体分数的记录，当系统管理员A改">
     
     
         
@@ -112,7 +112,7 @@
 
     </div>
     <div id="toc">
-      
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#事务"><span class="toc-number">1.</span> <span class="toc-text">事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#索引"><span class="toc-number">2.</span> <span class="toc-text">索引</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -156,7 +156,56 @@
   
 
   <div class="content" itemprop="articleBody">
-    
+    <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><blockquote>
+<p>事务并发问题</p>
+</blockquote>
+<p>1、脏读：事务A读取了事务B更新的数据，然后B回滚操作，那么A读取到的数据是脏数据</p>
+<p>2、不可重复读：事务 A 多次读取同一数据，事务 B 在事务A多次读取的过程中，对数据作了更新并提交，导致事务A多次读取同一数据时，结果 不一致。</p>
+<p>3、幻读：系统管理员A将数据库中所有学生的成绩从具体分数改为ABCDE等级，但是系统管理员B就在这个时候插入了一条具体分数的记录，当系统管理员A改结束后发现还有一条记录没有改过来，就好像发生了幻觉一样，这就叫幻读。</p>
+<p>小结：不可重复读的和幻读很容易混淆，不可重复读侧重于修改，幻读侧重于新增或删除。解决不可重复读的问题只需锁住满足条件的行，解决幻读需要锁表</p>
+<blockquote>
+<p>Mysql的事务隔离级别</p>
+</blockquote>
+<p> |  |  |<br>    |是    |是    |是<br>    否    是    是<br>    否    否    是<br>    否    否    否</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">事务隔离级别</th>
+<th style="text-align:center">脏读</th>
+<th style="text-align:center">不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">读未提交（read-uncommitted）</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+<td>是</td>
+</tr>
+<tr>
+<td style="text-align:center">不可重复读（read-committed）</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+<td>是</td>
+</tr>
+<tr>
+<td style="text-align:center">可重复读（repeatable-read）</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">否</td>
+<td>是</td>
+</tr>
+<tr>
+<td style="text-align:center">串行化（serializable）</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">否</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>创建索引可以大大提高索引的查询性能<br>1.创建唯一性索引，可以保证数据库表中每一行数据的唯一性<br>2.可以大大加快 数据的检索速度，，这也是创建的最主要的原因<br>3.可以加速表与表之间的连接<br>4.在使用分组和排序子句进行数据检索时，同样可以显著减少查询中分组和排序的时间</p>
+<p>缺点<br>1.创建和维护索引要耗费时间，这种时间随着数据量的增加而增加<br>2.索引需要占物理内存，需要的空间会更大<br>3.对表中的数据进行增加，删除修改的时候，索引也要动态的维护，降低了数据的维护速度</p>
+
   </div>
    <div class="comment"></div>
     <script>
@@ -197,7 +246,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#事务"><span class="toc-number">1.</span> <span class="toc-text">事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#索引"><span class="toc-number">2.</span> <span class="toc-text">索引</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

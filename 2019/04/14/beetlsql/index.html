@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="BeetSql是一个全功能DAO工具， 同时具有Hibernate 优点 &amp;amp; Mybatis优点功能，适用于承认以SQL为中心，同时又需求工具能自动能生成大量常用的SQL的应用。 开发效率无需注解，自动使用大量内置SQL，轻易完成增删改查功能，节省50%的开发工作量数据模型支持Pojo，也支持Map/List这种快速模型，也支持混合模型SQL 模板基于Beetl实现，更容易写和调试，以及扩">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="beetlsql">
+<meta property="og:url" content="http://yoursite.com/2019/04/14/beetlsql/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="BeetSql是一个全功能DAO工具， 同时具有Hibernate 优点 &amp;amp; Mybatis优点功能，适用于承认以SQL为中心，同时又需求工具能自动能生成大量常用的SQL的应用。 开发效率无需注解，自动使用大量内置SQL，轻易完成增删改查功能，节省50%的开发工作量数据模型支持Pojo，也支持Map/List这种快速模型，也支持混合模型SQL 模板基于Beetl实现，更容易写和调试，以及扩">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-04-18T13:56:50.531Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="beetlsql">
+<meta name="twitter:description" content="BeetSql是一个全功能DAO工具， 同时具有Hibernate 优点 &amp;amp; Mybatis优点功能，适用于承认以SQL为中心，同时又需求工具能自动能生成大量常用的SQL的应用。 开发效率无需注解，自动使用大量内置SQL，轻易完成增删改查功能，节省50%的开发工作量数据模型支持Pojo，也支持Map/List这种快速模型，也支持混合模型SQL 模板基于Beetl实现，更容易写和调试，以及扩">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>beetlsql</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/04/17/电信南向设备传入IOT平台/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/04/06/Java导出excel表格/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/04/14/beetlsql/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/04/14/beetlsql/&text=beetlsql"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/04/14/beetlsql/&title=beetlsql"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/04/14/beetlsql/&is_video=false&description=beetlsql"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=beetlsql&body=Check out this article: http://yoursite.com/2019/04/14/beetlsql/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/04/14/beetlsql/&title=beetlsql"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/04/14/beetlsql/&title=beetlsql"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/04/14/beetlsql/&title=beetlsql"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/04/14/beetlsql/&title=beetlsql"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/04/14/beetlsql/&name=beetlsql&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">1.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BeetlSQL-说明"><span class="toc-number">2.</span> <span class="toc-text">BeetlSQL 说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询api"><span class="toc-number">3.</span> <span class="toc-text">查询api</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        beetlsql
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-04-14T03:08:00.000Z" itemprop="datePublished">2019-04-14</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/BeetlSql/">BeetlSql</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>BeetSql是一个全功能DAO工具， 同时具有Hibernate 优点 &amp; Mybatis优点功能，适用于承认以SQL为中心，同时又需求工具能自动能生成大量常用的SQL的应用。</p>
+<p>开发效率<br>无需注解，自动使用大量内置SQL，轻易完成增删改查功能，节省50%的开发工作量<br>数据模型支持Pojo，也支持Map/List这种快速模型，也支持混合模型<br>SQL 模板基于Beetl实现，更容易写和调试，以及扩展<br>可以针对单个表(或者视图）代码生成pojo类和sql模版，甚至是整个数据库。能减少代码编写工作量<br>维护性<br>SQL 以更简洁的方式，Markdown方式集中管理，同时方便程序开发和数据库SQL调试。<br>可以自动将sql文件映射为dao接口类<br>灵活直观的支持支持一对一，一对多，多对多关系映射而不引入复杂的OR Mapping概念和技术。<br>具备Interceptor功能，可以调试，性能诊断SQL，以及扩展其他功能<br>其他<br>内置支持主从数据库支持的开源工具<br>性能数倍于JPA，MyBatis<br>支持跨数据库平台，开发者所需工作减少到最小，目前跨数据库支持mysql,postgres,oracle,sqlserver,h2,sqllite,DB2.</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.ibeetl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>beetlsql<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.11.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.ibeetl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>beetl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;最新版本&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>简单示例</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">ConnectionSource source = ConnectionSourceHelper.getSimple(driver, url, userName, password);</span><br><span class="line">DBStyle mysql = <span class="keyword">new</span> MySqlStyle();</span><br><span class="line"><span class="comment">// sql语句放在classpagth的/sql 目录下</span></span><br><span class="line">SQLLoader loader = <span class="keyword">new</span> ClasspathLoader(<span class="string">"/sql"</span>);</span><br><span class="line"><span class="comment">// 数据库命名跟java命名一样，所以采用DefaultNameConversion，还有一个是UnderlinedNameConversion，下划线风格的，</span></span><br><span class="line">UnderlinedNameConversion nc = <span class="keyword">new</span>  UnderlinedNameConversion();</span><br><span class="line"><span class="comment">// 最后，创建一个SQLManager,DebugInterceptor 不是必须的，但可以通过它查看sql执行情况</span></span><br><span class="line">SQLManager sqlManager = <span class="keyword">new</span> SQLManager(mysql,loader,source,nc,<span class="keyword">new</span> Interceptor[]&#123;<span class="keyword">new</span> DebugInterceptor()&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//使用内置的生成的sql 新增用户，如果需要获取主键，可以传入KeyHolder</span></span><br><span class="line">User user = <span class="keyword">new</span> User();</span><br><span class="line">user.setAge(<span class="number">19</span>);</span><br><span class="line">user.setName(<span class="string">"xiandafu"</span>);</span><br><span class="line">sqlManager.insert(user);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用内置sql查询用户</span></span><br><span class="line"><span class="keyword">int</span> id = <span class="number">1</span>;</span><br><span class="line">user = sqlManager.unique(User.class,id);</span><br><span class="line"></span><br><span class="line"><span class="comment">//模板更新,仅仅根据id更新值不为null的列</span></span><br><span class="line">User newUser = <span class="keyword">new</span> User();</span><br><span class="line">newUser.setId(<span class="number">1</span>);</span><br><span class="line">newUser.setAge(<span class="number">20</span>);</span><br><span class="line">sqlManager.updateTemplateById(newUser);</span><br><span class="line"></span><br><span class="line"><span class="comment">//模板查询</span></span><br><span class="line">User query = <span class="keyword">new</span> User();</span><br><span class="line">query.setName(<span class="string">"xiandafu"</span>);</span><br><span class="line">List&lt;User&gt; list = sqlManager.template(query);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Query查询</span></span><br><span class="line">Query userQuery = sqlManager.getQuery(User.class);</span><br><span class="line">List&lt;User&gt; users = userQuery.lambda().andEq(User::getName,<span class="string">"xiandafy"</span>).select();</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用user.md 文件里的select语句，参考下一节。</span></span><br><span class="line">User query2 = <span class="keyword">new</span> User();</span><br><span class="line">query.setName(<span class="string">"xiandafu"</span>);</span><br><span class="line">List&lt;User&gt; list2 = sqlManager.select(<span class="string">"user.select"</span>,User.class,query2);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这一部分需要参考mapper一章</span></span><br><span class="line">UserDao dao = sqlManager.getMapper(UserDao.class);</span><br><span class="line">List&lt;User&gt; list3 = dao.select(query2);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>sql 文件示例</p>
+</blockquote>
+<p>通常一个项目还是有少量复杂sql，可能只有5，6行，也可能有上百行，放在单独的sql文件里更容易编写和维护，为了能执行上例的user.select,需要在classpath里建立一个sql目录（在src目录下建立一个sql目录，或者maven工程的resources目录<br><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">===</span><br><span class="line">select * from user where 1=1</span><br><span class="line">@if(!isEmpty(age))&#123;</span><br><span class="line">and age = #age#</span><br><span class="line">@&#125;</span><br><span class="line">@if(!isEmpty(name))&#123;</span><br><span class="line">and name = #name#</span><br><span class="line">@&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>采用md格式，===上面是sql语句在本文件里的唯一标示，下面则是sql语句。</li>
+<li>@ 和回车符号是定界符号，可以在里面写beetl语句。</li>
+<li>“#” 是占位符号，生成sql语句得时候，将输出？，如果你想输出表达式值，需要用text函数，或者任何以db开头的函数，引擎则认为是直接输出文本。</li>
+<li>isEmpty是beetl的一个函数，用来判断变量是否为空或者是否不存在.</li>
+<li>文件名约定为类名，首字母小写。</li>
+</ul>
+<blockquote>
+<p>代码 and sql生成</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    ConnectionSource source = ConnectionSourceHelper.getSimple(driver, url, userName, password);</span><br><span class="line">    DBStyle mysql = <span class="keyword">new</span> MySqlStyle();</span><br><span class="line">    <span class="comment">// sql语句放在classpagth的/sql 目录下</span></span><br><span class="line">    SQLLoader loader = <span class="keyword">new</span> ClasspathLoader(<span class="string">"/sql"</span>);</span><br><span class="line">    <span class="comment">// 数据库命名跟java命名一样，所以采用DefaultNameConversion，还有一个是UnderlinedNameConversion，下划线风格的，</span></span><br><span class="line">    UnderlinedNameConversion nc = <span class="keyword">new</span>  UnderlinedNameConversion();</span><br><span class="line">    <span class="comment">// 最后，创建一个SQLManager,DebugInterceptor 不是必须的，但可以通过它查看sql执行情况</span></span><br><span class="line">    SQLManager sqlManager = <span class="keyword">new</span> SQLManager(mysql,loader,source,nc,<span class="keyword">new</span> Interceptor[]&#123;<span class="keyword">new</span> DebugInterceptor()&#125;);</span><br><span class="line">    sqlManager.genPojoCodeToConsole(<span class="string">"user"</span>);</span><br><span class="line">    sqlManager.genSQLTemplateToConsole(<span class="string">"user"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="BeetlSQL-说明"><a href="#BeetlSQL-说明" class="headerlink" title="BeetlSQL 说明"></a>BeetlSQL 说明</h2><blockquote>
+<p>获得SQLManager</p>
+</blockquote>
+<p>SQLManager 是系统的核心，他提供了所有的dao方法。获得SQLManager，可以直接构造SQLManager.并通过单例获取<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ConnectionSource source = ConnectionSourceHelper.getSimple(driver, url, <span class="string">""</span>, userName, password);</span><br><span class="line">DBStyle mysql = <span class="keyword">new</span> MySqlStyle();</span><br><span class="line"><span class="comment">// sql语句放在classpagth的/sql 目录下</span></span><br><span class="line">SQLLoader loader = <span class="keyword">new</span> ClasspathLoader(<span class="string">"/sql"</span>);</span><br><span class="line"><span class="comment">// 数据库命名跟java命名一样，所以采用DefaultNameConversion，还有一个是UnderlinedNameConversion，下划线风格的</span></span><br><span class="line">UnderlinedNameConversion nc = <span class="keyword">new</span>  UnderlinedNameConversion();</span><br><span class="line"><span class="comment">// 最后，创建一个SQLManager,DebugInterceptor 不是必须的，但可以通过它查看sql执行情况</span></span><br><span class="line">SQLManager sqlManager = <span class="keyword">new</span> SQLManager(mysql,loader,source,nc,<span class="keyword">new</span> Interceptor[]&#123;<span class="keyword">new</span> DebugInterceptor()&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>如果已经拥有datasource<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConnectionSource source = ConnectionSourceHelper.getSingle(datasource);</span><br></pre></td></tr></table></figure></p>
+<h2 id="查询api"><a href="#查询api" class="headerlink" title="查询api"></a>查询api</h2><blockquote>
+<p>简单查询（自动生成sql）</p>
+</blockquote>
+<p>1.public T unique(Class clazz,Object pk) 根据主键查询，如果未找到，抛出异常.<br>2.public T single(Class clazz,Object pk) 根据主键查询，如果未找到，返回null.<br>3.public List all(Class clazz) 查询出所有结果集<br>4.public List all(Class clazz, int start, int size) 翻页<br>5.public int allCount(Class&lt;?&gt; clazz) 总数</p>
+<blockquote>
+<p>template查询</p>
+</blockquote>
+<p>1.public List template(T t) 根据模板查询，返回所有符合这个模板的数据库 同上，mapper可以提供额外的映射，如处理一对多，一对一<br>2.public T templateOne(T t) 根据模板查询，返回一条结果，如果没有找到，返回null<br>public List template(T t,int start,int size) 同上，可以翻页<br>3.public long templateCount(T t) 获取符合条件的个数<br>4.public List template(Class target,Object paras,long start, long size) 模板查询，参数是paras，可以是Map或者普通对象<br>5.public long templateCount(Class target, Object paras) 获取符合条件个数</p>
+<p>模板查询一般时间较为简单的查询，如用户登录验证<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">User template = <span class="keyword">new</span> User();</span><br><span class="line">template.setName(...);</span><br><span class="line">template.setPassword(...);</span><br><span class="line">template.setStatus(<span class="number">1</span>);</span><br><span class="line">User user = sqlManager.templateOne(template);</span><br></pre></td></tr></table></figure></p>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">1.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BeetlSQL-说明"><span class="toc-number">2.</span> <span class="toc-text">BeetlSQL 说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询api"><span class="toc-number">3.</span> <span class="toc-text">查询api</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/04/14/beetlsql/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/04/14/beetlsql/&text=beetlsql"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/04/14/beetlsql/&title=beetlsql"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/04/14/beetlsql/&is_video=false&description=beetlsql"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=beetlsql&body=Check out this article: http://yoursite.com/2019/04/14/beetlsql/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/04/14/beetlsql/&title=beetlsql"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/04/14/beetlsql/&title=beetlsql"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/04/14/beetlsql/&title=beetlsql"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/04/14/beetlsql/&title=beetlsql"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/04/14/beetlsql/&name=beetlsql&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
