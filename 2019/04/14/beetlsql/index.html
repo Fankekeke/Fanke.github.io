@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="悲伤的桔子树">
 <meta property="og:description" content="BeetSql是一个全功能DAO工具， 同时具有Hibernate 优点 &amp;amp; Mybatis优点功能，适用于承认以SQL为中心，同时又需求工具能自动能生成大量常用的SQL的应用。 开发效率无需注解，自动使用大量内置SQL，轻易完成增删改查功能，节省50%的开发工作量数据模型支持Pojo，也支持Map/List这种快速模型，也支持混合模型SQL 模板基于Beetl实现，更容易写和调试，以及扩">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2019-04-18T13:56:50.531Z">
+<meta property="og:updated_time" content="2019-04-22T15:01:15.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="beetlsql">
 <meta name="twitter:description" content="BeetSql是一个全功能DAO工具， 同时具有Hibernate 优点 &amp;amp; Mybatis优点功能，适用于承认以SQL为中心，同时又需求工具能自动能生成大量常用的SQL的应用。 开发效率无需注解，自动使用大量内置SQL，轻易完成增删改查功能，节省50%的开发工作量数据模型支持Pojo，也支持Map/List这种快速模型，也支持混合模型SQL 模板基于Beetl实现，更容易写和调试，以及扩">
@@ -166,7 +166,7 @@
 <blockquote>
 <p>sql 文件示例</p>
 </blockquote>
-<p>通常一个项目还是有少量复杂sql，可能只有5，6行，也可能有上百行，放在单独的sql文件里更容易编写和维护，为了能执行上例的user.select,需要在classpath里建立一个sql目录（在src目录下建立一个sql目录，或者maven工程的resources目录<br><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">===</span><br><span class="line">select * from user where 1=1</span><br><span class="line">@if(!isEmpty(age))&#123;</span><br><span class="line">and age = #age#</span><br><span class="line">@&#125;</span><br><span class="line">@if(!isEmpty(name))&#123;</span><br><span class="line">and name = #name#</span><br><span class="line">@&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通常一个项目还是有少量复杂sql，可能只有5，6行，也可能有上百行，放在单独的sql文件里更容易编写和维护，为了能执行上例的user.select,需要在classpath里建立一个sql目录（在src目录下建立一个sql目录，或者maven工程的resources目录<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">===</span><br><span class="line">select * from user where 1=1</span><br><span class="line">@if(!isEmpty(age))&#123;</span><br><span class="line">and age = #age#</span><br><span class="line">@&#125;</span><br><span class="line">@if(!isEmpty(name))&#123;</span><br><span class="line">and name = #name#</span><br><span class="line">@&#125;</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>采用md格式，===上面是sql语句在本文件里的唯一标示，下面则是sql语句。</li>
 <li>@ 和回车符号是定界符号，可以在里面写beetl语句。</li>
@@ -192,6 +192,33 @@
 </blockquote>
 <p>1.public List template(T t) 根据模板查询，返回所有符合这个模板的数据库 同上，mapper可以提供额外的映射，如处理一对多，一对一<br>2.public T templateOne(T t) 根据模板查询，返回一条结果，如果没有找到，返回null<br>public List template(T t,int start,int size) 同上，可以翻页<br>3.public long templateCount(T t) 获取符合条件的个数<br>4.public List template(Class target,Object paras,long start, long size) 模板查询，参数是paras，可以是Map或者普通对象<br>5.public long templateCount(Class target, Object paras) 获取符合条件个数</p>
 <p>模板查询一般时间较为简单的查询，如用户登录验证<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">User template = <span class="keyword">new</span> User();</span><br><span class="line">template.setName(...);</span><br><span class="line">template.setPassword(...);</span><br><span class="line">template.setStatus(<span class="number">1</span>);</span><br><span class="line">User user = sqlManager.templateOne(template);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>通过sqlid查询</p>
+</blockquote>
+<p>sql语句在md文件里</p>
+<p>public List select(String sqlId, Class clazz, Map&lt;String, Object&gt; paras) 根据sqlid来查询，参数是个map</p>
+<p>public List select(String sqlId, Class clazz, Object paras) 根据sqlid来查询，参数是个pojo</p>
+<p>public List select(String sqlId, Class clazz) 根据sqlid来查询，无参数</p>
+<p>public T selectSingle(String id,Object paras, Class target) 根据sqlid查询，输入是Pojo，将对应的唯一值映射成指定的target对象，如果未找到，则返回空。需要注意的时候，有时候结果集本身是空，这时候建议使用unique</p>
+<p>public T selectSingle(String id,Map&lt;String, Object&gt; paras, Class target) 根据sqlid查询，输入是Map，将对应的唯一值映射成指定的target对象，如果未找到，则返回空。需要注意的时候，有时候结果集本身是空，这时候建议使用unique</p>
+<p>public T selectUnique(String id,Object paras, Class target) 根据sqlid查询，输入是Pojo或者Map，将对应的唯一值映射成指定的target对象,如果未找到，则抛出异常</p>
+<p>public T selectUnique(String id,Map&lt;String, Object&gt; paras, Class target) 根据sqlid查询，输入是Pojo或者Map，将对应的唯一值映射成指定的target对象,如果未找到，则抛出异常</p>
+<p>public Integer intValue(String id,Object paras) 查询结果映射成Integer，如果找不到，返回null，输入是object</p>
+<p>public Integer intValue(String id,Map paras) 查询结果映射成Integer，如果找不到，返回null，输入是map，其他还有 longValue，bigDecimalValue</p>
+<blockquote>
+<p>翻页查询API</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//从第一页开始查询,无参数</span></span><br><span class="line">PageQuery query = <span class="keyword">new</span> PageQuery();</span><br><span class="line">sql.pageQuery(<span class="string">"user.queryNewUser"</span>, User.class,query);</span><br><span class="line">System.out.println(query.getTotalPage());</span><br><span class="line">System.out.println(query.getTotalRow());</span><br><span class="line">System.out.println(query.getPageNumber());</span><br><span class="line">List&lt;User&gt; list = query.getList();</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">pageQuery</span><span class="params">(String sqlId,Class&lt;T&gt; clazz,PageQuery query)</span></span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>更新API</p>
+</blockquote>
+<p>public void insert(Object paras) 插入paras到paras关联的表<br>public void insert(Object paras,boolean autoAssignKey) 插入paras到paras对象关联的表,并且指定是否自动将数据库主键赋值到paras里,适用于对于自增或者序列类数据库产生的主健<br>public void insertTemplate(Object paras) 插入paras到paras关联的表,忽略为null值或者为空值的属性<br>public void insertTemplate(Object paras,boolean autoAssignKey) 插入paras到paras对象关联的表,并且指定是否自动将数据库主键赋值到paras里,忽略为null值或者为空值的属性，调用此方法，对应的数据库必须主键自增。<br>public void insert(Class&lt;?&gt; clazz,Object paras) 插入paras到clazz关联的表<br>public void insert(Class&lt;?&gt; clazz,Object paras,KeyHolder holder)，插入paras到clazz关联的表，如果需要主键，可以通过holder的getKey来获取，调用此方法，对应的数据库必须主键自增<br>public int insert(Class clazz,Object paras,boolean autoAssignKey) 插入paras到clazz关联的表，并且指定是否自动将数据库主键赋值到paras里，调用此方法，对应的数据库必须主键自增。<br>public int updateById(Object obj) 根据主键更新，所有值参与更新<br>public int updateTemplateById(Object obj) 根据主键更新，属性为null的不会更新<br>public int updateBatchTemplateById(Class clazz,List&lt;?&gt; list) 批量根据主键更新,属性为null的不会更新<br>public int updateTemplateById(Class&lt;?&gt; clazz，Map paras) 根据主键更新，组件通过clazz的annotation表示，如果没有，则认为属性id是主键,属性为null的不会更新。<br>public int[] updateByIdBatch(List&lt;?&gt; list) 批量更新<br>public void insertBatch(Class clazz,List&lt;?&gt; list) 批量插入数据<br>public void insertBatch(Class clazz,List&lt;?&gt; list,boolean autoAssignKey) 批量插入数据,如果数据库自增主键，获取。<br>public int upsert(Object obj), 更新或者插入一条。先判断是否主键为空，如果为空，则插入，如果不为空，则从数据库 按照此主健取出一条，如果未取到，则插入一条，其他情况按照主键更新。插入后的自增或者序列主健<br>int upsertByTemplate(Object obj) 同上，按照模板插入或者更新。</p>
+<blockquote>
+<p>使用Mapper</p>
+</blockquote>
+<p>SQLManager 提供了所有需要知道的API，但通过sqlid来访问sql有时候还是很麻烦，因为需要手敲字符串，另外参数不是map就是para，对代码理解没有好处，BeetlSql支持Mapper，将sql文件映射到一个interface接口,接口必须实现BaseMapper接口（后面可以自定义一个Base接口），它提供内置的CRUID方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> <span class="keyword">extends</span> <span class="title">BaseMapper</span>&lt;<span class="title">User</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">select</span><span class="params">(@Param(<span class="string">"name"</span>)</span> String name)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上select将会对应如下md文件<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">===</span><br><span class="line">    select * from user where name = #name#</span><br></pre></td></tr></table></figure></p>
 
   </div>
    <div class="comment"></div>
