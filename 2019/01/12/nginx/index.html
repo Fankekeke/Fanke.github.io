@@ -122,7 +122,7 @@
     
     <div class="content index py4">
         
-        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
@@ -132,7 +132,7 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">悲伤的桔子树</span>
       </span>
       
@@ -197,7 +197,7 @@
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">此时访问的是端口号是<span class="number">8111</span>的tomcat的资源：http:<span class="comment">//127.0.0.1:8111/</span></span><br><span class="line">此时访问的是端口号是<span class="number">8111</span>的tomcat的资源：http:<span class="comment">//127.0.0.1:8111/login.jsp</span></span><br></pre></td></tr></table></figure>
 <p>只访问了jsp, 所有的css,js,png都不会经过 tomcat，而是由nginx自己负责处理了</p>
-<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>负载均衡的概念就是当访问量很大的时候，一个 Tomcat 吃不消了，这时候就准备多个 Tomcat，由Nginx按照权重来对请求进行分配，从而缓解单独一个Tomcat受到的压力<br><img src="http://stepimagewm.how2j.cn/6655.png" alt=""></p>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>负载均衡的概念就是当访问量很大的时候，一个 Tomcat 吃不消了，这时候就准备多个 Tomcat，由Nginx按照权重来对请求进行分配，从而缓解单独一个Tomcat受到的压力<br><img src="http://stepimagewm.how2j.cn/6655.png" alt></p>
 <blockquote>
 <p>启动两个tomcat</p>
 </blockquote>
