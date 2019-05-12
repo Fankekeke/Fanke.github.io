@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>企业Project线上问题</title>
+      <link href="/2019/05/12/%E4%BC%81%E4%B8%9AProject%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98/"/>
+      <url>/2019/05/12/%E4%BC%81%E4%B8%9AProject%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>MQ技术（RabbitMQ、RocketMQ、Kafka） 怎么保证mq消息不丢失<br>如果数据会丢失的话，项目生产部署的时候，是通过什么手段保证基于MQ传输的数据100%不会丢失的？</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 线上问题与性能优化 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/2019/05/12/MySQL%E5%AE%9A%E6%97%B6%E5%99%A8/"/>
       <url>/2019/05/12/MySQL%E5%AE%9A%E6%97%B6%E5%99%A8/</url>
