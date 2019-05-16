@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="WebSocket介绍WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在 WebSocket API 中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。 在WebSocket概念出来之前，如果页面要不停地显示最新的价格，那么必须不停地刷新页面，或者用一段js代码每隔几秒钟发消息询问服务器数据。  而使用W">
+<meta name="keywords" content="WebSocket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始的WebSocket">
+<meta property="og:url" content="http://yoursite.com/2019/01/02/WebSocket/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="WebSocket介绍WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在 WebSocket API 中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。 在WebSocket概念出来之前，如果页面要不停地显示最新的价格，那么必须不停地刷新页面，或者用一段js代码每隔几秒钟发消息询问服务器数据。  而使用W">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-05-16T14:19:05.938Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始的WebSocket">
+<meta name="twitter:description" content="WebSocket介绍WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在 WebSocket API 中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。 在WebSocket概念出来之前，如果页面要不停地显示最新的价格，那么必须不停地刷新页面，或者用一段js代码每隔几秒钟发消息询问服务器数据。  而使用W">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>从零开始的WebSocket</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/01/05/hello-world/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/02/WebSocket/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/01/02/WebSocket/&text=从零开始的WebSocket"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/01/02/WebSocket/&title=从零开始的WebSocket"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/01/02/WebSocket/&is_video=false&description=从零开始的WebSocket"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=从零开始的WebSocket&body=Check out this article: http://yoursite.com/2019/01/02/WebSocket/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/01/02/WebSocket/&title=从零开始的WebSocket"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/01/02/WebSocket/&title=从零开始的WebSocket"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/01/02/WebSocket/&title=从零开始的WebSocket"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/01/02/WebSocket/&title=从零开始的WebSocket"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/01/02/WebSocket/&name=从零开始的WebSocket&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#WebSocket介绍"><span class="toc-number">1.</span> <span class="toc-text">WebSocket介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优点"><span class="toc-number">1.1.</span> <span class="toc-text">优点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建websocket项目"><span class="toc-number">2.</span> <span class="toc-text">创建websocket项目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tomcat版本"><span class="toc-number">2.1.</span> <span class="toc-text">tomcat版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加jar包7"><span class="toc-number">2.2.</span> <span class="toc-text">添加jar包7</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BitCoinServer"><span class="toc-number">2.3.</span> <span class="toc-text">BitCoinServer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ServerManager"><span class="toc-number">2.4.</span> <span class="toc-text">ServerManager</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BitCoinDataCenter"><span class="toc-number">2.5.</span> <span class="toc-text">BitCoinDataCenter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JSP页面"><span class="toc-number">2.6.</span> <span class="toc-text">JSP页面</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        从零开始的WebSocket
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-01-02T08:40:52.000Z" itemprop="datePublished">2019-01-02</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/WebSocket/">WebSocket</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="WebSocket介绍"><a href="#WebSocket介绍" class="headerlink" title="WebSocket介绍"></a>WebSocket介绍</h3><p>WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在 WebSocket API 中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。</p>
+<p>在WebSocket概念出来之前，如果页面要不停地显示最新的价格，那么必须不停地刷新页面，或者用一段js代码每隔几秒钟发消息询问服务器数据。 </p>
+<p>而使用WebSocket技术之后，当服务器有了新的数据，会主动通知浏览器。 如效果所示，当服务端有新的比特币价格之后，浏览器立马接收到消息。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
+<li>节约带宽。 不停地轮询服务端数据这种方式，使用的是http协议，head信息很大，有效数据占比低， 而使用WebSocket方式，头信息很小，有效数据占比高。</li>
+<li>无浪费。 轮询方式有可能轮询10次，才碰到服务端数据更新，那么前9次都白轮询了，因为没有拿到变化的数据。 而WebSocket是由服务器主动回发，来的都是新数据。</li>
+<li>实时性，考虑到服务器压力，使用轮询方式不可能很短的时间间隔，否则服务器压力太多，所以轮询时间间隔都比较长，好几秒，设置十几秒。 而WebSocket是由服务器主动推送过来，实时性是最高的</li>
+</ol>
+<h3 id="创建websocket项目"><a href="#创建websocket项目" class="headerlink" title="创建websocket项目"></a>创建websocket项目</h3><h4 id="tomcat版本"><a href="#tomcat版本" class="headerlink" title="tomcat版本"></a>tomcat版本</h4><p>旧版本的Tomcat 不能支持WebSocket, 至少需要 7.0.47 以上才可以</p>
+<h4 id="添加jar包7"><a href="#添加jar包7" class="headerlink" title="添加jar包7"></a>添加jar包7</h4><p>为了支持WebSocket，需要引入javaee.jar<br><strong>javaee-api-7.0.jar</strong></p>
+<h4 id="BitCoinServer"><a href="#BitCoinServer" class="headerlink" title="BitCoinServer"></a>BitCoinServer</h4><p>创建BitCoinServer类，用注解@ServerEndpoint(“/ws/bitcoinServer”)把它标记为一个WebSocket Server<br>ws/bitcoinServer 表示有通过这个地址访问该服务</p>
+<p>OnOpen 表示有浏览器链接过来的时候被调用<br>OnClose 表示浏览器发出关闭请求的时候被调用<br>OnMessage 表示浏览器发消息的时候被调用<br>OnError 表示有错误发生，比如网络断开了等等</p>
+<p>sendMessage 用于向浏览器回发消息</p>
+<p>其中OnOpen发生的时候，即有链接过来的时候，会把当前WebSocket Server丢在ServerManager里管理起来，这样Tomcat才知道总共有哪些Server, 方便以后进行群发<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ServerEndpoint</span> 注解是一个类层次的注解，它的功能主要是将目前的类定义成一个websocket服务器端,</span></span><br><span class="line"><span class="comment"> * 注解的值将被用于监听用户连接的终端访问URL地址,客户端可以通过这个URL来连接到WebSocket服务器端</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@ServerEndpoint</span>(<span class="string">"/ws/bitcoinServer"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BitCoinServer</span> </span>&#123;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//与某个客户端的连接会话，需要通过它来给客户端发送数据</span></span><br><span class="line">    <span class="keyword">private</span> Session session;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@OnOpen</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onOpen</span><span class="params">(Session session)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.session = session;</span><br><span class="line">        ServerManager.add(<span class="keyword">this</span>);    </span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">(String message)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.session.getBasicRemote().sendText(message);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@OnClose</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClose</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ServerManager.remove(<span class="keyword">this</span>); </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@OnMessage</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(String message, Session session)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"来自客户端的消息:"</span> + message);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@OnError</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Session session, Throwable error)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"发生错误"</span>);</span><br><span class="line">        error.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="ServerManager"><a href="#ServerManager" class="headerlink" title="ServerManager"></a>ServerManager</h4><p>ServerManager 中维护了一个线程安全的集合servers, 用于因为浏览器发起连接请求而创建的BitCoinServer. </p>
+<p>broadCast 方法遍历这个集合，让每个Server向浏览器发消息<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServerManager</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Collection&lt;BitCoinServer&gt; servers = Collections.synchronizedCollection(<span class="keyword">new</span> ArrayList&lt;BitCoinServer&gt;());</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">broadCast</span><span class="params">(String msg)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (BitCoinServer bitCoinServer : servers) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                bitCoinServer.sendMessage(msg);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getTotal</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> servers.size();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(BitCoinServer server)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"有新连接加入！ 当前总连接数是："</span>+ servers.size());</span><br><span class="line">        servers.add(server);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(BitCoinServer server)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"有连接退出！ 当前总连接数是："</span>+ servers.size());</span><br><span class="line">        servers.remove(server);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="BitCoinDataCenter"><a href="#BitCoinDataCenter" class="headerlink" title="BitCoinDataCenter"></a>BitCoinDataCenter</h4><p>创建BitCoinDataCenter，使其继承HttpServlet.<br>标记为Servlet不是为了其被访问，而是为了便于伴随Tomcat一起启动，因为可以通过loadOnStartup一起就启动了<br>这个类实现了Runnable，可以在初始化方法里创建一个线程并调用之。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(name=<span class="string">"BitCoinDataCenter"</span>,urlPatterns = <span class="string">"/BitCoinDataCenter"</span>,loadOnStartup=<span class="number">1</span>) <span class="comment">//标记为Servlet不是为了其被访问，而是为了便于伴随Tomcat一起启动</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BitCoinDataCenter</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig config)</span></span>&#123;</span><br><span class="line">        startup();</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">startup</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">this</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> bitPrice = <span class="number">100000</span>;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">             </span><br><span class="line">            <span class="comment">//每隔1-3秒就产生一个新价格</span></span><br><span class="line">            <span class="keyword">int</span> duration = <span class="number">1000</span>+<span class="keyword">new</span> Random().nextInt(<span class="number">2000</span>);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(duration);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//新价格围绕100000左右50%波动</span></span><br><span class="line">            <span class="keyword">float</span> random = <span class="number">1</span>+(<span class="keyword">float</span>) (Math.random()-<span class="number">0.5</span>);</span><br><span class="line">            <span class="keyword">int</span> newPrice = (<span class="keyword">int</span>) (bitPrice*random);</span><br><span class="line">             </span><br><span class="line">            <span class="comment">//查看的人越多，价格越高</span></span><br><span class="line">            <span class="keyword">int</span> total = ServerManager.getTotal();</span><br><span class="line">            newPrice = newPrice*total;</span><br><span class="line">             </span><br><span class="line">            String messageFormat = <span class="string">"&#123;\"price\":\"%d\",\"total\":%d&#125;"</span>;</span><br><span class="line">            String message = String.format(messageFormat, newPrice,total);</span><br><span class="line">            <span class="comment">//广播出去</span></span><br><span class="line">            ServerManager.broadCast(message);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="JSP页面"><a href="#JSP页面" class="headerlink" title="JSP页面"></a>JSP页面</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">&lt;%--</span><br><span class="line">  Created by IntelliJ IDEA.</span><br><span class="line">  User: F117</span><br><span class="line">  Date: <span class="number">2019</span>/<span class="number">1</span>/<span class="number">11</span></span><br><span class="line">  Time: <span class="number">14</span>:<span class="number">49</span></span><br><span class="line">  To change <span class="keyword">this</span> template use File | Settings | File Templates.</span><br><span class="line">--%&gt;</span><br><span class="line">&lt;%@ page language=<span class="string">"java"</span> pageEncoding=<span class="string">"UTF-8"</span> %&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;用WebSocket实时获知比特币价格&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;div style=<span class="string">"width:400px;margin:20px auto;border:1px solid lightgray;padding:20px;text-align:center;"</span>&gt;</span><br><span class="line">  当前比特币价格：￥&lt;span style="color:#FF7519" id="price"&gt;10000&lt;/span&gt;</span><br><span class="line">  &lt;div style="font-size:0.9em;margin-top:20px"&gt;查看的人数越多，价格越高, 当前总共 &lt;span id="total"&gt;1&lt;/span&gt; 个人在线&lt;/div&gt;</span><br><span class="line">  &lt;div style="color:silver;font-size:0.8em;margin-top:20px"&gt;以上价格纯属虚构，如有雷同，so what？&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="keyword">var</span> websocket = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">//判断当前浏览器是否支持WebSocket</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="string">'WebSocket'</span> in window) &#123;</span><br><span class="line">        websocket = <span class="keyword">new</span> WebSocket(<span class="string">"ws://localhost:8080/ws/bitcoinServer"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//连接成功建立的回调方法</span></span><br><span class="line">        websocket.onopen = function () &#123;</span><br><span class="line">            websocket.send(<span class="string">"客户端链接成功"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//接收到消息的回调方法</span></span><br><span class="line">        websocket.onmessage = function (event) &#123;</span><br><span class="line">            setMessageInnerHTML(event.data);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//连接发生错误的回调方法</span></span><br><span class="line">        websocket.onerror = function () &#123;</span><br><span class="line">            alert(<span class="string">"WebSocket连接发生错误"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//连接关闭的回调方法</span></span><br><span class="line">        websocket.onclose = function () &#123;</span><br><span class="line">            alert(<span class="string">"WebSocket连接关闭"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。</span></span><br><span class="line">        window.onbeforeunload = function () &#123;</span><br><span class="line">            closeWebSocket();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        alert(<span class="string">'当前浏览器 Not support websocket'</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将消息显示在网页上</span></span><br><span class="line">    <span class="function">function <span class="title">setMessageInnerHTML</span><span class="params">(innerHTML)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> bitcoin = eval(<span class="string">"("</span>+innerHTML+<span class="string">")"</span>);</span><br><span class="line">        document.getElementById(<span class="string">'price'</span>).innerHTML = bitcoin.price;</span><br><span class="line">        document.getElementById(<span class="string">'total'</span>).innerHTML = bitcoin.total;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//关闭WebSocket连接</span></span><br><span class="line">    <span class="function">function <span class="title">closeWebSocket</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        websocket.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#WebSocket介绍"><span class="toc-number">1.</span> <span class="toc-text">WebSocket介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#优点"><span class="toc-number">1.1.</span> <span class="toc-text">优点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建websocket项目"><span class="toc-number">2.</span> <span class="toc-text">创建websocket项目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#tomcat版本"><span class="toc-number">2.1.</span> <span class="toc-text">tomcat版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加jar包7"><span class="toc-number">2.2.</span> <span class="toc-text">添加jar包7</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BitCoinServer"><span class="toc-number">2.3.</span> <span class="toc-text">BitCoinServer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ServerManager"><span class="toc-number">2.4.</span> <span class="toc-text">ServerManager</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BitCoinDataCenter"><span class="toc-number">2.5.</span> <span class="toc-text">BitCoinDataCenter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JSP页面"><span class="toc-number">2.6.</span> <span class="toc-text">JSP页面</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/02/WebSocket/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/01/02/WebSocket/&text=从零开始的WebSocket"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/01/02/WebSocket/&title=从零开始的WebSocket"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/01/02/WebSocket/&is_video=false&description=从零开始的WebSocket"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=从零开始的WebSocket&body=Check out this article: http://yoursite.com/2019/01/02/WebSocket/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/01/02/WebSocket/&title=从零开始的WebSocket"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/01/02/WebSocket/&title=从零开始的WebSocket"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/01/02/WebSocket/&title=从零开始的WebSocket"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/01/02/WebSocket/&title=从零开始的WebSocket"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/01/02/WebSocket/&name=从零开始的WebSocket&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
