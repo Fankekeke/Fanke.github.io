@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Highcharts 能够很简单便捷的在web网站或是web应用程序添加有交互性的图表  HighCharts 特性 兼容性 - 支持所有主流浏览器和移动平台（android、iOS等）。 多设备 - 支持多种设备，如手持设备 iPhone/iPad、平板等。 免费使用 - 开源免费。 轻量 - highcharts.js 内核库大小只有 35KB 左右。 配置简单 - 使用 json 格式配置">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Highcharts入门">
+<meta property="og:url" content="http://yoursite.com/2019/06/12/Highcharts入门/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="Highcharts 能够很简单便捷的在web网站或是web应用程序添加有交互性的图表  HighCharts 特性 兼容性 - 支持所有主流浏览器和移动平台（android、iOS等）。 多设备 - 支持多种设备，如手持设备 iPhone/iPad、平板等。 免费使用 - 开源免费。 轻量 - highcharts.js 内核库大小只有 35KB 左右。 配置简单 - 使用 json 格式配置">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-06-30T13:02:50.880Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Highcharts入门">
+<meta name="twitter:description" content="Highcharts 能够很简单便捷的在web网站或是web应用程序添加有交互性的图表  HighCharts 特性 兼容性 - 支持所有主流浏览器和移动平台（android、iOS等）。 多设备 - 支持多种设备，如手持设备 iPhone/iPad、平板等。 免费使用 - 开源免费。 轻量 - highcharts.js 内核库大小只有 35KB 左右。 配置简单 - 使用 json 格式配置">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Highcharts入门</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/06/30/GoogleMap/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/06/06/从零开始的Redis/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/06/12/Highcharts入门/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/06/12/Highcharts入门/&text=Highcharts入门"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/06/12/Highcharts入门/&title=Highcharts入门"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/06/12/Highcharts入门/&is_video=false&description=Highcharts入门"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Highcharts入门&body=Check out this article: http://yoursite.com/2019/06/12/Highcharts入门/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/06/12/Highcharts入门/&title=Highcharts入门"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/06/12/Highcharts入门/&title=Highcharts入门"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/06/12/Highcharts入门/&title=Highcharts入门"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/06/12/Highcharts入门/&title=Highcharts入门"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/06/12/Highcharts入门/&name=Highcharts入门&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HighCharts-特性"><span class="toc-number">1.</span> <span class="toc-text">HighCharts 特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Highcharts-环境配置"><span class="toc-number">2.</span> <span class="toc-text">Highcharts 环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Highcharts-配置语法"><span class="toc-number">3.</span> <span class="toc-text">Highcharts 配置语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简直不要太爽"><span class="toc-number">4.</span> <span class="toc-text">简直不要太爽</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Highcharts入门
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-06-12T12:27:24.000Z" itemprop="datePublished">2019-06-12</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Highcharts/">Highcharts</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <blockquote>
+<p>Highcharts 能够很简单便捷的在web网站或是web应用程序添加有交互性的图表</p>
+</blockquote>
+<h2 id="HighCharts-特性"><a href="#HighCharts-特性" class="headerlink" title="HighCharts 特性"></a>HighCharts 特性</h2><ul>
+<li>兼容性 - 支持所有主流浏览器和移动平台（android、iOS等）。</li>
+<li>多设备 - 支持多种设备，如手持设备 iPhone/iPad、平板等。</li>
+<li>免费使用 - 开源免费。</li>
+<li>轻量 - highcharts.js 内核库大小只有 35KB 左右。</li>
+<li>配置简单 - 使用 json 格式配置</li>
+<li>动态 - 可以在图表生成后修改。</li>
+<li>多维 - 支持多维图表</li>
+<li>配置提示工具 - 鼠标移动到图表的某一点上有提示信息。</li>
+<li>时间轴 - 可以精确到毫秒。</li>
+<li>导出 - 表格可导出为 PDF/ PNG/ JPG / SVG 格式</li>
+<li>输出 - 网页输出图表。</li>
+<li>可变焦 - 选中图表部分放大，近距离观察图表；</li>
+<li>外部数据 - 从服务器载入动态数据。</li>
+<li>文字旋转 - 支持在任意方向的标签旋转。</li>
+</ul>
+<h2 id="Highcharts-环境配置"><a href="#Highcharts-环境配置" class="headerlink" title="Highcharts 环境配置"></a>Highcharts 环境配置</h2><ul>
+<li>访问 highcharts.com 下载 Highcharts 包。</li>
+<li>使用官方提供的 CDN 地址：<a href="http://code.highcharts.com/highcharts.js" target="_blank" rel="noopener">http://code.highcharts.com/highcharts.js</a></li>
+</ul>
+<h2 id="Highcharts-配置语法"><a href="#Highcharts-配置语法" class="headerlink" title="Highcharts 配置语法"></a>Highcharts 配置语法</h2><blockquote>
+<p>创建配置文件</p>
+</blockquote>
+<p>Highcharts 库使用 json 格式来配置<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#container'</span>).highcharts(json);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>标题<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> title = &#123;</span><br><span class="line">  text: <span class="string">'月平均气温'</span>   </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>副标题<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> subtitle = &#123;</span><br><span class="line">  text: <span class="string">'Source: runoob.com'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>X轴<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xAxis = &#123;</span><br><span class="line">   categories: [<span class="string">'一月'</span>, <span class="string">'二月'</span>, <span class="string">'三月'</span>, <span class="string">'四月'</span>, <span class="string">'五月'</span>, <span class="string">'六月'</span></span><br><span class="line">      ,<span class="string">'七月'</span>, <span class="string">'八月'</span>, <span class="string">'九月'</span>, <span class="string">'十月'</span>, <span class="string">'十一月'</span>, <span class="string">'十二月'</span>]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>Y轴</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> yAxis = &#123;</span><br><span class="line">   title: &#123;</span><br><span class="line">      text: <span class="string">'Temperature (\xB0C)'</span></span><br><span class="line">   &#125;,</span><br><span class="line">   plotLines: [&#123;</span><br><span class="line">      value: <span class="number">0</span>,</span><br><span class="line">      width: <span class="number">1</span>,</span><br><span class="line">      color: <span class="string">'#808080'</span></span><br><span class="line">   &#125;]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>提示信息</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tooltip = &#123;</span><br><span class="line">   valueSuffix: <span class="string">'\xB0C'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>展示方式</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> legend = &#123;</span><br><span class="line">   layout: <span class="string">'vertical'</span>,</span><br><span class="line">   align: <span class="string">'right'</span>,</span><br><span class="line">   verticalAlign: <span class="string">'middle'</span>,</span><br><span class="line">   borderWidth: <span class="number">0</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>数据</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> series =  [</span><br><span class="line">   &#123;</span><br><span class="line">      name: <span class="string">'Tokyo'</span>,</span><br><span class="line">      data: [<span class="number">7.0</span>, <span class="number">6.9</span>, <span class="number">9.5</span>, <span class="number">14.5</span>, <span class="number">18.2</span>, <span class="number">21.5</span>, <span class="number">25.2</span>, </span><br><span class="line">         <span class="number">26.5</span>, <span class="number">23.3</span>, <span class="number">18.3</span>, <span class="number">13.9</span>, <span class="number">9.6</span>]</span><br><span class="line">   &#125;, </span><br><span class="line">   &#123;</span><br><span class="line">      name: <span class="string">'New York'</span>,</span><br><span class="line">      data: [<span class="number">-0.2</span>, <span class="number">0.8</span>, <span class="number">5.7</span>, <span class="number">11.3</span>, <span class="number">17.0</span>, <span class="number">22.0</span>, <span class="number">24.8</span>, </span><br><span class="line">         <span class="number">24.1</span>, <span class="number">20.1</span>, <span class="number">14.1</span>, <span class="number">8.6</span>, <span class="number">2.5</span>]</span><br><span class="line">   &#125;, </span><br><span class="line">   &#123;</span><br><span class="line">      name: <span class="string">'Berlin'</span>,</span><br><span class="line">      data: [<span class="number">-0.9</span>, <span class="number">0.6</span>, <span class="number">3.5</span>, <span class="number">8.4</span>, <span class="number">13.5</span>, <span class="number">17.0</span>, <span class="number">18.6</span>, </span><br><span class="line">         <span class="number">17.9</span>, <span class="number">14.3</span>, <span class="number">9.0</span>, <span class="number">3.9</span>, <span class="number">1.0</span>]</span><br><span class="line">   &#125;, </span><br><span class="line">   &#123;</span><br><span class="line">      name: <span class="string">'London'</span>,</span><br><span class="line">      data: [<span class="number">3.9</span>, <span class="number">4.2</span>, <span class="number">5.7</span>, <span class="number">8.5</span>, <span class="number">11.9</span>, <span class="number">15.2</span>, <span class="number">17.0</span>, </span><br><span class="line">         <span class="number">16.6</span>, <span class="number">14.2</span>, <span class="number">10.3</span>, <span class="number">6.6</span>, <span class="number">4.8</span>]</span><br><span class="line">   &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>组合配置信息</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> json = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">json.title = title;</span><br><span class="line">json.subtitle = subtitle;</span><br><span class="line">json.xAxis = xAxis;</span><br><span class="line">json.yAxis = yAxis;</span><br><span class="line">json.tooltip = tooltip;</span><br><span class="line">json.legend = legend;</span><br><span class="line">json.series = series;</span><br><span class="line">Step <span class="number">4</span>: Draw the chart</span><br><span class="line">$(<span class="string">'#container'</span>).highcharts(json);</span><br></pre></td></tr></table></figure>
+<h2 id="简直不要太爽"><a href="#简直不要太爽" class="headerlink" title="简直不要太爽"></a>简直不要太爽</h2><blockquote>
+<p>更多用法<br><a href="https://www.runoob.com/highcharts/highcharts-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/highcharts/highcharts-tutorial.html</a></p>
+</blockquote>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HighCharts-特性"><span class="toc-number">1.</span> <span class="toc-text">HighCharts 特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Highcharts-环境配置"><span class="toc-number">2.</span> <span class="toc-text">Highcharts 环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Highcharts-配置语法"><span class="toc-number">3.</span> <span class="toc-text">Highcharts 配置语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简直不要太爽"><span class="toc-number">4.</span> <span class="toc-text">简直不要太爽</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/06/12/Highcharts入门/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/06/12/Highcharts入门/&text=Highcharts入门"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/06/12/Highcharts入门/&title=Highcharts入门"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/06/12/Highcharts入门/&is_video=false&description=Highcharts入门"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Highcharts入门&body=Check out this article: http://yoursite.com/2019/06/12/Highcharts入门/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/06/12/Highcharts入门/&title=Highcharts入门"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/06/12/Highcharts入门/&title=Highcharts入门"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/06/12/Highcharts入门/&title=Highcharts入门"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/06/12/Highcharts入门/&title=Highcharts入门"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/06/12/Highcharts入门/&name=Highcharts入门&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

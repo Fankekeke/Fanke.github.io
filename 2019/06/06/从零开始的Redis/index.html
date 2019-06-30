@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="NoSQL数据库的四大分类 键值(Key-Value)存储数据库  这一类数据库主要会使用到一个哈希表，这个表中有一个特定的键和一个指针指向特定的数据。Key/value模型对于IT系统来说的优势在于简单、易部署。但是如果DBA只对部分值进行查询或更新的时候，Key/value就显得效率低下了。举例如：Tokyo Cabinet/Tyrant, Redis, Voldemort, Oracle B">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始的Redis">
+<meta property="og:url" content="http://yoursite.com/2019/06/06/从零开始的Redis/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="NoSQL数据库的四大分类 键值(Key-Value)存储数据库  这一类数据库主要会使用到一个哈希表，这个表中有一个特定的键和一个指针指向特定的数据。Key/value模型对于IT系统来说的优势在于简单、易部署。但是如果DBA只对部分值进行查询或更新的时候，Key/value就显得效率低下了。举例如：Tokyo Cabinet/Tyrant, Redis, Voldemort, Oracle B">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-06-13T13:14:37.516Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始的Redis">
+<meta name="twitter:description" content="NoSQL数据库的四大分类 键值(Key-Value)存储数据库  这一类数据库主要会使用到一个哈希表，这个表中有一个特定的键和一个指针指向特定的数据。Key/value模型对于IT系统来说的优势在于简单、易部署。但是如果DBA只对部分值进行查询或更新的时候，Key/value就显得效率低下了。举例如：Tokyo Cabinet/Tyrant, Redis, Voldemort, Oracle B">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>从零开始的Redis</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/06/12/Highcharts入门/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/05/17/redis/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/06/06/从零开始的Redis/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/06/06/从零开始的Redis/&text=从零开始的Redis"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/06/06/从零开始的Redis/&title=从零开始的Redis"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/06/06/从零开始的Redis/&is_video=false&description=从零开始的Redis"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=从零开始的Redis&body=Check out this article: http://yoursite.com/2019/06/06/从零开始的Redis/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/06/06/从零开始的Redis/&title=从零开始的Redis"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/06/06/从零开始的Redis/&title=从零开始的Redis"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/06/06/从零开始的Redis/&title=从零开始的Redis"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/06/06/从零开始的Redis/&title=从零开始的Redis"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/06/06/从零开始的Redis/&name=从零开始的Redis&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NoSQL数据库的四大分类"><span class="toc-number">1.</span> <span class="toc-text">NoSQL数据库的四大分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP的三进二"><span class="toc-number">2.</span> <span class="toc-text">CAP的三进二</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点"><span class="toc-number"></span> <span class="toc-text">只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis入门"><span class="toc-number">1.</span> <span class="toc-text">redis入门</span></a></li></ol>
+    </li></div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        从零开始的Redis
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-06-06T14:50:27.000Z" itemprop="datePublished">2019-06-06</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/redis/">redis</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="NoSQL数据库的四大分类"><a href="#NoSQL数据库的四大分类" class="headerlink" title="NoSQL数据库的四大分类"></a>NoSQL数据库的四大分类</h2><blockquote>
+<p>键值(Key-Value)存储数据库</p>
+</blockquote>
+<p>这一类数据库主要会使用到一个哈希表，这个表中有一个特定的键和一个指针指向特定的数据。Key/value模型对于IT系统来说的优势在于简单、易部署。但是如果DBA只对部分值进行查询或更新的时候，Key/value就显得效率低下了。举例如：Tokyo Cabinet/Tyrant, Redis, Voldemort, Oracle BDB.</p>
+<blockquote>
+<p>列存储数据库</p>
+</blockquote>
+<p>这部分数据库通常是用来应对分布式存储的海量数据。键仍然存在，但是它们的特点是指向了多个列。这些列是由列家族来安排的。如：Cassandra, HBase, Riak.</p>
+<blockquote>
+<p>文档型数据库</p>
+</blockquote>
+<p>文档型数据库的灵感是来自于Lotus Notes办公软件的，而且它同第一种键值存储相类似。该类型的数据模型是版本化的文档，半结构化的文档以特定的格式存储，比如JSON。文档型数据库可 以看作是键值数据库的升级版，允许之间嵌套键值。而且文档型数据库比键值数据库的查询效率更高。如：CouchDB, MongoDb. 国内也有文档型数据库SequoiaDB，目前已经开源。</p>
+<blockquote>
+<p>图形数据库</p>
+</blockquote>
+<p>图形结构的数据库同其他行列以及刚性结构的SQL数据库不同，它是使用灵活的图形模型，并且能够扩展到多个服务器上。NoSQL数据库没有标准的查询语言(SQL)，因此进行数据库查询需要制定数据模型。许多NoSQL数据库都有REST式的数据接口或者查询API。 如：Neo4J, InfoGrid, Infinite Graph.<br>因此，我们总结NoSQL数据库在以下的这几种情况下比较适用：1、数据模型比较简单；2、需要灵活性更强的IT系统；3、对数据库性能要求较高；4、不需要高度的数据一致性；5、对于给定key，比较容易映射复杂值的环境。</p>
+<h2 id="CAP的三进二"><a href="#CAP的三进二" class="headerlink" title="CAP的三进二"></a>CAP的三进二</h2><p>CAP理论就是说在分布式存储系统中，最多只能实现两点。而由于当前的网络硬件肯定会出现延迟丢包等问题，所以分区容忍性是必须要实现的。</p>
+<h1 id="只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点"><a href="#只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点" class="headerlink" title="只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点"></a>只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点</h1><p>C:强一致性<br>A:高可用性<br>P:分布式容忍性</p>
+<p>CA 传统数据库<br>AP 大多数网站的架构<br>CP Redis Mongodb</p>
+<h2 id="redis入门"><a href="#redis入门" class="headerlink" title="redis入门"></a>redis入门</h2><blockquote>
+<p>概述</p>
+</blockquote>
+<p>REmote DIctionary Server 远程字典服务器<br>是个完全开源 遵守BSD协议，是一个高性能的（key/value）分布式内存数据库，基于内存运行，并支持持久化的NoSQL数据库</p>
+<blockquote>
+<p>redis的特点</p>
+</blockquote>
+<p>1.Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候还可以再次加载进行使用<br>2.Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据的存储方式<br>3.Redis支持数据的备份，即master-slave模式的数据备份</p>
+<blockquote>
+<p>功能介绍</p>
+</blockquote>
+<p>1.内存存储和持久化:redis支持一部将内存中的数据写到硬盘上，同时不影响继续服务<br>2.取最新N个数据的操作<br>3.模拟类似于HttpSession这种需要设置定时过期的功能<br>4.发布 订阅消息系统<br>5.定时器 计数器</p>
+<blockquote>
+<p>Linux下载步骤</p>
+</blockquote>
+<p>1.下载获得Redis-3.0.4.tar.gz放入opt目录<br>2.opt目录下，解压命令tar-zxvfredis-3.0.4.tar-gz<br>3.解压完成后出现文件夹 redis-3.0.4<br>4.进入redis-3.0.4目录下执行make命令<br>5.make完成后继续执行make install</p>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NoSQL数据库的四大分类"><span class="toc-number">1.</span> <span class="toc-text">NoSQL数据库的四大分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP的三进二"><span class="toc-number">2.</span> <span class="toc-text">CAP的三进二</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点"><span class="toc-number"></span> <span class="toc-text">只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis入门"><span class="toc-number">1.</span> <span class="toc-text">redis入门</span></a></li></ol>
+    </li></div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/06/06/从零开始的Redis/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/06/06/从零开始的Redis/&text=从零开始的Redis"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/06/06/从零开始的Redis/&title=从零开始的Redis"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/06/06/从零开始的Redis/&is_video=false&description=从零开始的Redis"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=从零开始的Redis&body=Check out this article: http://yoursite.com/2019/06/06/从零开始的Redis/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/06/06/从零开始的Redis/&title=从零开始的Redis"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/06/06/从零开始的Redis/&title=从零开始的Redis"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/06/06/从零开始的Redis/&title=从零开始的Redis"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/06/06/从零开始的Redis/&title=从零开始的Redis"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/06/06/从零开始的Redis/&name=从零开始的Redis&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
