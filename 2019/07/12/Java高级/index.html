@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Java高级Web应用，最常见的研发语言是Java和PHP。后端服务，最常见的研发语言是Java和C/C++。大数据，最常见的研发语言是Java和Python。 常见模式与工具学习Java技术体系，设计模式，流行的框架与组件是必不可少的：常见的设计模式，编码必备Spring，做应用必不可少的最新框架MyBatis，play数据库必不可少的组件 工程化与工具工欲善其事必先利其器，不管是小白，还是资深">
+<meta name="keywords" content="Java 高级">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java高级">
+<meta property="og:url" content="http://yoursite.com/2019/07/12/Java高级/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="Java高级Web应用，最常见的研发语言是Java和PHP。后端服务，最常见的研发语言是Java和C/C++。大数据，最常见的研发语言是Java和Python。 常见模式与工具学习Java技术体系，设计模式，流行的框架与组件是必不可少的：常见的设计模式，编码必备Spring，做应用必不可少的最新框架MyBatis，play数据库必不可少的组件 工程化与工具工欲善其事必先利其器，不管是小白，还是资深">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-07-12T13:55:11.188Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java高级">
+<meta name="twitter:description" content="Java高级Web应用，最常见的研发语言是Java和PHP。后端服务，最常见的研发语言是Java和C/C++。大数据，最常见的研发语言是Java和Python。 常见模式与工具学习Java技术体系，设计模式，流行的框架与组件是必不可少的：常见的设计模式，编码必备Spring，做应用必不可少的最新框架MyBatis，play数据库必不可少的组件 工程化与工具工欲善其事必先利其器，不管是小白，还是资深">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Java高级</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/07/12/从零开始的ActiveMQ/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/07/12/Java高级/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/07/12/Java高级/&text=Java高级"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/07/12/Java高级/&title=Java高级"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/07/12/Java高级/&is_video=false&description=Java高级"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java高级&body=Check out this article: http://yoursite.com/2019/07/12/Java高级/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/07/12/Java高级/&title=Java高级"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/07/12/Java高级/&title=Java高级"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/07/12/Java高级/&title=Java高级"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/07/12/Java高级/&title=Java高级"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/12/Java高级/&name=Java高级&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java高级"><span class="toc-number">1.</span> <span class="toc-text">Java高级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见模式与工具"><span class="toc-number">2.</span> <span class="toc-text">常见模式与工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工程化与工具"><span class="toc-number">3.</span> <span class="toc-text">工程化与工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式架构高并发，高可用，海量数据，没有分布式的架构知识肯定是玩不转的："><span class="toc-number">4.</span> <span class="toc-text">分布式架构高并发，高可用，海量数据，没有分布式的架构知识肯定是玩不转的：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微服务架构"><span class="toc-number">5.</span> <span class="toc-text">微服务架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#性能调优"><span class="toc-number">6.</span> <span class="toc-text">性能调优</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#底层知识"><span class="toc-number">7.</span> <span class="toc-text">底层知识</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Java高级
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-07-12T13:54:28.000Z" itemprop="datePublished">2019-07-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Java-高级/">Java 高级</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Java高级"><a href="#Java高级" class="headerlink" title="Java高级"></a>Java高级</h2><p>Web应用，最常见的研发语言是Java和PHP。<br>后端服务，最常见的研发语言是Java和C/C++。<br>大数据，最常见的研发语言是Java和Python。</p>
+<h2 id="常见模式与工具"><a href="#常见模式与工具" class="headerlink" title="常见模式与工具"></a>常见模式与工具</h2><p>学习Java技术体系，设计模式，流行的框架与组件是必不可少的：<br>常见的设计模式，编码必备<br>Spring，做应用必不可少的最新框架<br>MyBatis，play数据库必不可少的组件</p>
+<h2 id="工程化与工具"><a href="#工程化与工具" class="headerlink" title="工程化与工具"></a>工程化与工具</h2><p>工欲善其事必先利其器，不管是小白，还是资深开发，玩Java技术体系，选择好的工具，提升开发效率和团队协作效率，是必不可少的：</p>
+<p>Maven，项目管理<br>Jenkins，持续集成<br>Sonar，代码质量管理<br>Git，版本管理</p>
+<h2 id="分布式架构高并发，高可用，海量数据，没有分布式的架构知识肯定是玩不转的："><a href="#分布式架构高并发，高可用，海量数据，没有分布式的架构知识肯定是玩不转的：" class="headerlink" title="分布式架构高并发，高可用，海量数据，没有分布式的架构知识肯定是玩不转的："></a>分布式架构高并发，高可用，海量数据，没有分布式的架构知识肯定是玩不转的：</h2><p>分布式架构原理<br>分布式架构策略<br>分布式中间件<br>分布式架构实战</p>
+<h2 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h2><p>业务越来越复杂，服务分层，微服务架构是架构升级的必由之路，Java技术体系，和微服务相关的技术有哪些呢？<br>微服务框架<br>Spring Cloud<br>Docker与虚拟化<br>微服务架构</p>
+<h2 id="性能调优"><a href="#性能调优" class="headerlink" title="性能调优"></a>性能调优</h2><p>任何脱离细节的ppt架构师都是耍流氓，向上能运筹帷幄，向下能解决一线性能问题，Java技术体系，需要了解：<br>性能指标体系<br>JVM调优<br>Web调优<br>DB调优</p>
+<h2 id="底层知识"><a href="#底层知识" class="headerlink" title="底层知识"></a>底层知识</h2><p>从架构设计，到应用层调优，再深入了解底层原理，扎实的Java基本功才能让自己变为扫地神僧：<br>内存模型<br>并发模式<br>线程模型<br>锁细节</p>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java高级"><span class="toc-number">1.</span> <span class="toc-text">Java高级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见模式与工具"><span class="toc-number">2.</span> <span class="toc-text">常见模式与工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工程化与工具"><span class="toc-number">3.</span> <span class="toc-text">工程化与工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式架构高并发，高可用，海量数据，没有分布式的架构知识肯定是玩不转的："><span class="toc-number">4.</span> <span class="toc-text">分布式架构高并发，高可用，海量数据，没有分布式的架构知识肯定是玩不转的：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微服务架构"><span class="toc-number">5.</span> <span class="toc-text">微服务架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#性能调优"><span class="toc-number">6.</span> <span class="toc-text">性能调优</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#底层知识"><span class="toc-number">7.</span> <span class="toc-text">底层知识</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/07/12/Java高级/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/07/12/Java高级/&text=Java高级"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/07/12/Java高级/&title=Java高级"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/07/12/Java高级/&is_video=false&description=Java高级"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java高级&body=Check out this article: http://yoursite.com/2019/07/12/Java高级/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/07/12/Java高级/&title=Java高级"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/07/12/Java高级/&title=Java高级"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/07/12/Java高级/&title=Java高级"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/07/12/Java高级/&title=Java高级"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/12/Java高级/&name=Java高级&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
