@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="SpringBoot对于异常处理提供了五种处理方式自定义错误界面SpringBoot 默认的处理异常的机制：SpringBoot 默认的已经提供了一套处理异常的机制。一旦程序中出现了异常 SpringBoot 会像/error 的 url 发送请求。在 springBoot 中提供了一个叫 BasicExceptionController 来处理/error 请求，然后跳转到默认显示异常的页面来展">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异常处理与单元测试">
+<meta property="og:url" content="http://yoursite.com/2018/12/22/异常处理与单元测试/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="SpringBoot对于异常处理提供了五种处理方式自定义错误界面SpringBoot 默认的处理异常的机制：SpringBoot 默认的已经提供了一套处理异常的机制。一旦程序中出现了异常 SpringBoot 会像/error 的 url 发送请求。在 springBoot 中提供了一个叫 BasicExceptionController 来处理/error 请求，然后跳转到默认显示异常的页面来展">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2018-12-22T13:02:27.106Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="异常处理与单元测试">
+<meta name="twitter:description" content="SpringBoot对于异常处理提供了五种处理方式自定义错误界面SpringBoot 默认的处理异常的机制：SpringBoot 默认的已经提供了一套处理异常的机制。一旦程序中出现了异常 SpringBoot 会像/error 的 url 发送请求。在 springBoot 中提供了一个叫 BasicExceptionController 来处理/error 请求，然后跳转到默认显示异常的页面来展">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>异常处理与单元测试</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/12/22/QRcode/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/12/21/SpringBoot整合持久层技术/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/12/22/异常处理与单元测试/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&text=异常处理与单元测试"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&title=异常处理与单元测试"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&is_video=false&description=异常处理与单元测试"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=异常处理与单元测试&body=Check out this article: http://yoursite.com/2018/12/22/异常处理与单元测试/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&title=异常处理与单元测试"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&title=异常处理与单元测试"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&title=异常处理与单元测试"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&title=异常处理与单元测试"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&name=异常处理与单元测试&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot对于异常处理提供了五种处理方式"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot对于异常处理提供了五种处理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义错误界面"><span class="toc-number">1.1.</span> <span class="toc-text">自定义错误界面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ExceptionHandle注解处理异常"><span class="toc-number">1.2.</span> <span class="toc-text">@ExceptionHandle注解处理异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ControllerAdvice-ExceptionHandler注解处理异常"><span class="toc-number">1.3.</span> <span class="toc-text">@ControllerAdvice+@ExceptionHandler注解处理异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置SimpleMapperExceptionResolver处理异常"><span class="toc-number">1.4.</span> <span class="toc-text">配置SimpleMapperExceptionResolver处理异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义HandlerExceptionResolver"><span class="toc-number">1.5.</span> <span class="toc-text">自定义HandlerExceptionResolver</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        异常处理与单元测试
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-12-22T10:36:20.000Z" itemprop="datePublished">2018-12-22</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="SpringBoot对于异常处理提供了五种处理方式"><a href="#SpringBoot对于异常处理提供了五种处理方式" class="headerlink" title="SpringBoot对于异常处理提供了五种处理方式"></a>SpringBoot对于异常处理提供了五种处理方式</h3><h4 id="自定义错误界面"><a href="#自定义错误界面" class="headerlink" title="自定义错误界面"></a>自定义错误界面</h4><p>SpringBoot 默认的处理异常的机制：SpringBoot 默认的已经提供了一套处理异常的机制。<br>一旦程序中出现了异常 SpringBoot 会像/error 的 url 发送请求。在 springBoot 中提供了一个<br>叫 BasicExceptionController 来处理/error 请求，然后跳转到默认显示异常的页面来展示异常<br>信息。</p>
+<p>SpringBoot 默认的处理异常的机制：SpringBoot 默认的已经提供了一套处理异常的机制。<br>一旦程序中出现了异常 SpringBoot 会像/error 的 url 发送请求。在 springBoot 中提供了一个<br>叫 BasicExceptionController 来处理/error 请求，然后跳转到默认显示异常的页面来展示异常<br>信息。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>错误提示页面<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">出错了，请与管理员联系。。。</span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;exception&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="ExceptionHandle注解处理异常"><a href="#ExceptionHandle注解处理异常" class="headerlink" title="@ExceptionHandle注解处理异常"></a>@ExceptionHandle注解处理异常</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* java.lang.ArithmeticException</span></span><br><span class="line"><span class="comment">* 该方法需要返回一个 ModelAndView：目的是可以让我们封装异常信息以及视</span></span><br><span class="line"><span class="comment">图的指定</span></span><br><span class="line"><span class="comment">* 参数 Exception e:会将产生异常对象注入到方法中</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@ExceptionHandler</span>(value=&#123;java.lang.ArithmeticException.class&#125;)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">arithmeticExceptionHandler</span><span class="params">(Exception e)</span></span>&#123;</span><br><span class="line">ModelAndView mv = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">mv.addObject(<span class="string">"error"</span>, e.toString());</span><br><span class="line">mv.setViewName(<span class="string">"error1"</span>);</span><br><span class="line"><span class="keyword">return</span> mv;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* java.lang.NullPointerException</span></span><br><span class="line"><span class="comment">* 该方法需要返回一个 ModelAndView：目的是可以让我们封装异常信息以及视</span></span><br><span class="line"><span class="comment">图的指定</span></span><br><span class="line"><span class="comment">* 参数 Exception e:会将产生异常对象注入到方法中</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@ExceptionHandler</span>(value=&#123;java.lang.NullPointerException.class&#125;)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">nullPointerExceptionHandler</span><span class="params">(Exception e)</span></span>&#123;</span><br><span class="line">ModelAndView mv = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">mv.addObject(<span class="string">"error"</span>, e.toString());</span><br><span class="line">mv.setViewName(<span class="string">"error2"</span>);</span><br><span class="line"><span class="keyword">return</span> mv;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>错误提示页面-ArithmeticException<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">出错了，请与管理员联系。。。</span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;error&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line">-----------------------</span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>错误提示页面-NullPointerException<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">出错了，请与管理员联系。。。</span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;error&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="ControllerAdvice-ExceptionHandler注解处理异常"><a href="#ControllerAdvice-ExceptionHandler注解处理异常" class="headerlink" title="@ControllerAdvice+@ExceptionHandler注解处理异常"></a>@ControllerAdvice+@ExceptionHandler注解处理异常</h4><p>需要创建一个能够处理异常的全局异常类。在该类上需<br>要添加@ControllerAdvice 注解<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">* 全局异常处理类</span><br><span class="line">*</span><br><span class="line">*</span><br><span class="line">*/</span><br><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalException</span> </span>&#123;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* java.lang.ArithmeticException</span></span><br><span class="line"><span class="comment">* 该方法需要返回一个 ModelAndView：目的是可以让我们封装异常信息以及视</span></span><br><span class="line"><span class="comment">图的指定</span></span><br><span class="line"><span class="comment">* 参数 Exception e:会将产生异常对象注入到方法中</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@ExceptionHandler</span>(value=&#123;java.lang.ArithmeticException.class&#125;)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">arithmeticExceptionHandler</span><span class="params">(Exception e)</span></span>&#123;</span><br><span class="line">ModelAndView mv = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">mv.addObject(<span class="string">"error"</span>, e.toString());</span><br><span class="line">mv.setViewName(<span class="string">"error1"</span>);</span><br><span class="line"><span class="keyword">return</span> mv;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* java.lang.NullPointerException</span></span><br><span class="line"><span class="comment">* 该方法需要返回一个 ModelAndView：目的是可以让我们封装异常信息以及视</span></span><br><span class="line"><span class="comment">图的指定</span></span><br><span class="line"><span class="comment">* 参数 Exception e:会将产生异常对象注入到方法中</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@ExceptionHandler</span>(value=&#123;java.lang.NullPointerException.class&#125;)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">nullPointerExceptionHandler</span><span class="params">(Exception e)</span></span>&#123;</span><br><span class="line">ModelAndView mv = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">mv.addObject(<span class="string">"error"</span>, e.toString());</span><br><span class="line">mv.setViewName(<span class="string">"error2"</span>);</span><br><span class="line"><span class="keyword">return</span> mv;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="配置SimpleMapperExceptionResolver处理异常"><a href="#配置SimpleMapperExceptionResolver处理异常" class="headerlink" title="配置SimpleMapperExceptionResolver处理异常"></a>配置SimpleMapperExceptionResolver处理异常</h4><p>在全局异常类中添加一个方法完成异常的同一处理<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 通过 SimpleMappingExceptionResolver 做全局异常处理</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalException</span> </span>&#123;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 该方法必须要有返回值。返回值类型必须是：</span></span><br><span class="line"><span class="comment">SimpleMappingExceptionResolver</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> SimpleMappingExceptionResolver</span><br><span class="line">getSimpleMappingExceptionResolver()&#123;</span><br><span class="line">SimpleMappingExceptionResolver resolver = <span class="keyword">new</span></span><br><span class="line">SimpleMappingExceptionResolver();</span><br><span class="line">Properties mappings = <span class="keyword">new</span> Properties();</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 参数一：异常的类型，注意必须是异常类型的全名</span></span><br><span class="line"><span class="comment">* 参数二：视图名称</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">mappings.put(<span class="string">"java.lang.ArithmeticException"</span>, <span class="string">"error1"</span>);</span><br><span class="line">mappings.put(<span class="string">"java.lang.NullPointerException"</span>,<span class="string">"error2"</span>);</span><br><span class="line"><span class="comment">//设置异常与视图映射信息的</span></span><br><span class="line">resolver.setExceptionMappings(mappings);</span><br><span class="line"><span class="keyword">return</span> resolver;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="自定义HandlerExceptionResolver"><a href="#自定义HandlerExceptionResolver" class="headerlink" title="自定义HandlerExceptionResolver"></a>自定义HandlerExceptionResolver</h4><p>需 要 再 全 局 异 常 处 理 类 中 实 现<br>HandlerExceptionResolver 接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 通过实现 HandlerExceptionResolver 接口做全局异常处理</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalException</span> <span class="keyword">implements</span> <span class="title">HandlerExceptionResolver</span> </span>&#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">resolveException</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">HttpServletResponse response, Object handler,</span></span></span><br><span class="line"><span class="function"><span class="params">Exception ex)</span> </span>&#123;</span><br><span class="line">ModelAndView mv = <span class="keyword">new</span> ModelAndView();</span><br><span class="line"><span class="comment">//判断不同异常类型，做不同视图跳转</span></span><br><span class="line"><span class="keyword">if</span>(ex <span class="keyword">instanceof</span> ArithmeticException)&#123;</span><br><span class="line">mv.setViewName(<span class="string">"error1"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(ex <span class="keyword">instanceof</span> NullPointerException)&#123;</span><br><span class="line">mv.setViewName(<span class="string">"error2"</span>);</span><br><span class="line">&#125;</span><br><span class="line">mv.addObject(<span class="string">"error"</span>, ex.toString());</span><br><span class="line"><span class="keyword">return</span> mv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot对于异常处理提供了五种处理方式"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot对于异常处理提供了五种处理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义错误界面"><span class="toc-number">1.1.</span> <span class="toc-text">自定义错误界面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ExceptionHandle注解处理异常"><span class="toc-number">1.2.</span> <span class="toc-text">@ExceptionHandle注解处理异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ControllerAdvice-ExceptionHandler注解处理异常"><span class="toc-number">1.3.</span> <span class="toc-text">@ControllerAdvice+@ExceptionHandler注解处理异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置SimpleMapperExceptionResolver处理异常"><span class="toc-number">1.4.</span> <span class="toc-text">配置SimpleMapperExceptionResolver处理异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义HandlerExceptionResolver"><span class="toc-number">1.5.</span> <span class="toc-text">自定义HandlerExceptionResolver</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/12/22/异常处理与单元测试/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&text=异常处理与单元测试"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&title=异常处理与单元测试"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&is_video=false&description=异常处理与单元测试"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=异常处理与单元测试&body=Check out this article: http://yoursite.com/2018/12/22/异常处理与单元测试/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&title=异常处理与单元测试"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&title=异常处理与单元测试"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&title=异常处理与单元测试"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&title=异常处理与单元测试"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/12/22/异常处理与单元测试/&name=异常处理与单元测试&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

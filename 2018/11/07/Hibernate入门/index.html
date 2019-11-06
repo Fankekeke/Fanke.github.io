@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="hello，大家好，今天晚上来学习Hibernate 什么是Hibernate框架？Hibernate是一种ORM框架，全称为 Object_Relative DateBase-Mapping，在Java对象与关系数据库之间建立某种映射，以实现直接存取Java对象！比SSM的orm要强 Hibernate优缺点1.Hibernate优点：　　（1）对象/关系数据库映射(Basic O/R Mapp">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hibernate入门">
+<meta property="og:url" content="http://yoursite.com/2018/11/07/Hibernate入门/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="hello，大家好，今天晚上来学习Hibernate 什么是Hibernate框架？Hibernate是一种ORM框架，全称为 Object_Relative DateBase-Mapping，在Java对象与关系数据库之间建立某种映射，以实现直接存取Java对象！比SSM的orm要强 Hibernate优缺点1.Hibernate优点：　　（1）对象/关系数据库映射(Basic O/R Mapp">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2018-11-08T00:06:23.874Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hibernate入门">
+<meta name="twitter:description" content="hello，大家好，今天晚上来学习Hibernate 什么是Hibernate框架？Hibernate是一种ORM框架，全称为 Object_Relative DateBase-Mapping，在Java对象与关系数据库之间建立某种映射，以实现直接存取Java对象！比SSM的orm要强 Hibernate优缺点1.Hibernate优点：　　（1）对象/关系数据库映射(Basic O/R Mapp">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Hibernate入门</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/11/08/面试26问/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/11/07/PL-SQL编程/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/07/Hibernate入门/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/07/Hibernate入门/&text=Hibernate入门"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/07/Hibernate入门/&title=Hibernate入门"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/07/Hibernate入门/&is_video=false&description=Hibernate入门"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hibernate入门&body=Check out this article: http://yoursite.com/2018/11/07/Hibernate入门/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/07/Hibernate入门/&title=Hibernate入门"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/07/Hibernate入门/&title=Hibernate入门"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/07/Hibernate入门/&title=Hibernate入门"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/07/Hibernate入门/&title=Hibernate入门"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/07/Hibernate入门/&name=Hibernate入门&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是Hibernate框架？"><span class="toc-number">1.</span> <span class="toc-text">什么是Hibernate框架？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hibernate优缺点"><span class="toc-number">1.1.</span> <span class="toc-text">Hibernate优缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hibernate环境搭建"><span class="toc-number">2.</span> <span class="toc-text">Hibernate环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#引入相关jar包"><span class="toc-number">2.1.</span> <span class="toc-text">引入相关jar包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建Hibernate核心配置文件（hibernate-cfg-xml）"><span class="toc-number">2.2.</span> <span class="toc-text">创建Hibernate核心配置文件（hibernate.cfg.xml）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建持久化类和映射文件"><span class="toc-number">2.3.</span> <span class="toc-text">创建持久化类和映射文件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#映射文件（为持久化类名-hbm-xml）"><span class="toc-number">2.3.1.</span> <span class="toc-text">映射文件（为持久化类名+hbm.xml）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进行持久化操作"><span class="toc-number">2.4.</span> <span class="toc-text">进行持久化操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按主键查询"><span class="toc-number">3.</span> <span class="toc-text">按主键查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#增加操作"><span class="toc-number">4.</span> <span class="toc-text">增加操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改操作"><span class="toc-number">5.</span> <span class="toc-text">修改操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除操作"><span class="toc-number">6.</span> <span class="toc-text">删除操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hbm-xml文件（-dynamic-update-”true”）"><span class="toc-number">7.</span> <span class="toc-text">.hbm.xml文件（ dynamic-update=”true”）</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Hibernate入门
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-11-07T14:28:37.000Z" itemprop="datePublished">2018-11-07</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/SSH/">SSH</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>hello，大家好，今天晚上来学习Hibernate</p>
+<h3 id="什么是Hibernate框架？"><a href="#什么是Hibernate框架？" class="headerlink" title="什么是Hibernate框架？"></a>什么是Hibernate框架？</h3><p>Hibernate是一种ORM框架，全称为 Object_Relative DateBase-Mapping，在Java对象与关系数据库之间建立某种映射，以实现直接存取Java对象！比SSM的orm要强</p>
+<h4 id="Hibernate优缺点"><a href="#Hibernate优缺点" class="headerlink" title="Hibernate优缺点"></a>Hibernate优缺点</h4><p>1.Hibernate优点：<br>　　（1）对象/关系数据库映射(Basic O/R Mapping)</p>
+<p>　　它使用时只需要操纵对象，使开发更对象化，抛弃了数据库中心的思想，完全的面向对象思想。</p>
+<p>　　（2）透明持久化(Persistent)</p>
+<p>　　带有持久化状态的、具有业务功能的单线程对象，此对象生存期很短。这些对象可能是普通的JavaBeans/POJO，这个对象没有实现第三方框架或者接口，唯一特殊的是他们正与（仅仅一个）Session相关联。一旦这个Session被关闭，这些对象就会脱离持久化状态，这样就可被应用程序的任何层自由使用。（例如，用作跟表示层打交道的数据传输对象。）</p>
+<p>　　（3）事务Transaction (org.Hibernate.Transaction)</p>
+<p>　　应用程序用来指定原子操作单元范围的对象，它是单线程的，生命周期很短。它通过抽象将应用从底层具体的JDBC、JTA以及CORBA事务隔离开。某些情况下，一个Session之内可能包含多个Transaction对象。尽管是否使用该对象是可选的，但无论是使用底层的API还是使用Transaction对象，事务边界的开启与关闭是必不可少的。</p>
+<p>　　（4）它没有侵入性，即所谓的轻量级框架。</p>
+<p>　　（5）移植性会很好。</p>
+<p>　　（6）缓存机制。提供一级缓存和二级缓存。</p>
+<p>　　（7）简洁的HQL编程。</p>
+<p>2.Hibernate缺点：<br>　　（1）Hibernate在批量数据处理的时候是有弱势。</p>
+<p>　　（2）针对某一对象(单个对象)简单的查\改\删\增，不是批量修改、删除，适合用Hibernate；而对于批量修改、删除，不适合用Hibernate，这也是OR框架的弱点;要使用数据库的特定优化机制的时候，不适合用Hibernate。</p>
+<h3 id="Hibernate环境搭建"><a href="#Hibernate环境搭建" class="headerlink" title="Hibernate环境搭建"></a>Hibernate环境搭建</h3><h4 id="引入相关jar包"><a href="#引入相关jar包" class="headerlink" title="引入相关jar包"></a>引入相关jar包</h4><p>antlr-2.7.6.jar<br>commons-collections-3.1.jar<br>dom4j-1.6.1.jar<br>hibernate-jpa-2.0-api-1.0.1.Final.jar<br>hibernate3.jar<br>javassist-3.12.0.GA.jar<br>jta-1.1.jar<br>log4j-1.2.17.jar<br>ojdbc6.jar<br>slf4j-api-1.6.1.jar<br>slf4j-log4j12-1.6.1.jar</p>
+<h4 id="创建Hibernate核心配置文件（hibernate-cfg-xml）"><a href="#创建Hibernate核心配置文件（hibernate-cfg-xml）" class="headerlink" title="创建Hibernate核心配置文件（hibernate.cfg.xml）"></a>创建Hibernate核心配置文件（hibernate.cfg.xml）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE hibernate-configuration PUBLIC</span><br><span class="line">	<span class="string">"-//Hibernate/Hibernate Configuration DTD 3.0//EN"</span></span><br><span class="line">	<span class="string">"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;hibernate-configuration&gt;</span><br><span class="line">&lt;session-factory&gt;</span><br><span class="line">	&lt;!-- 数据库连接 --&gt;</span><br><span class="line">	&lt;property name=<span class="string">"connection.driver_class"</span>&gt;</span><br><span class="line">		oracle.jdbc.OracleDriver</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	&lt;property name=<span class="string">"connection.url"</span>&gt;</span><br><span class="line">		jdbc:oracle:thin:@localhost:1521:orcl</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	&lt;property name=<span class="string">"connection.username"</span>&gt;martin&lt;/property&gt;</span><br><span class="line">	&lt;property name=<span class="string">"connection.password"</span>&gt;mpwd&lt;/property&gt;</span><br><span class="line">	&lt;!-- 辅助参数 --&gt;</span><br><span class="line">	&lt;!-- &lt;property name=<span class="string">"show_sql"</span>&gt;<span class="literal">true</span>&lt;/property&gt; --&gt;</span><br><span class="line">	&lt;property name=<span class="string">"format_sql"</span>&gt;<span class="literal">true</span>&lt;/property&gt;</span><br><span class="line">	&lt;property name=<span class="string">"dialect"</span>&gt;</span><br><span class="line">		org.hibernate.dialect.Oracle10gDialect</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	&lt;property name=<span class="string">"current_session_context_class"</span>&gt;thread&lt;/property&gt;</span><br><span class="line">	&lt;!-- 映射信息 --&gt;</span><br><span class="line">	&lt;mapping resource=<span class="string">"cn/house/pojo/Depts.hbm.xml"</span> /&gt;</span><br><span class="line">	&lt;mapping resource=<span class="string">"cn/house/pojo/Emps.hbm.xml"</span> /&gt;</span><br><span class="line">	&lt;mapping resource=<span class="string">"cn/house/pojo/Employee.hbm.xml"</span> /&gt;</span><br><span class="line">	&lt;mapping resource=<span class="string">"cn/house/pojo/Project.hbm.xml"</span> /&gt;</span><br><span class="line">&lt;/session-factory&gt;</span><br><span class="line">&lt;/hibernate-configuration&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="创建持久化类和映射文件"><a href="#创建持久化类和映射文件" class="headerlink" title="创建持久化类和映射文件"></a>创建持久化类和映射文件</h4><p>持久化类需要implement Serializable接口<br>必须就有一个无参数的构造方法</p>
+<h5 id="映射文件（为持久化类名-hbm-xml）"><a href="#映射文件（为持久化类名-hbm-xml）" class="headerlink" title="映射文件（为持久化类名+hbm.xml）"></a>映射文件（为持久化类名+hbm.xml）</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span>?&gt;</span><br><span class="line">&lt;!DOCTYPE hibernate-mapping PUBLIC </span><br><span class="line">    <span class="string">"-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span></span><br><span class="line">    <span class="string">"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"</span>&gt;</span><br><span class="line">&lt;hibernate-mapping&gt;</span><br><span class="line">    &lt;class name=<span class="string">"cn.hibernatedemo.entity.Emp"</span> table=<span class="string">"`EMP`"</span>&gt;</span><br><span class="line">        &lt;id name=<span class="string">"empNo"</span> column=<span class="string">"`EMPNO`"</span> <span class="built_in">type</span>=<span class="string">"java.lang.Integer"</span>&gt;</span><br><span class="line">            &lt;generator class=<span class="string">"increment"</span>/&gt;</span><br><span class="line">        &lt;/id&gt;</span><br><span class="line">        &lt;property name=<span class="string">"empName"</span> <span class="built_in">type</span>=<span class="string">"java.lang.String"</span> column=<span class="string">"`ENAME`"</span>/&gt;</span><br><span class="line">        &lt;property name=<span class="string">"job"</span> <span class="built_in">type</span>=<span class="string">"java.lang.String"</span> column=<span class="string">"`JOB`"</span>/&gt;</span><br><span class="line">        &lt;property name=<span class="string">"salary"</span> <span class="built_in">type</span>=<span class="string">"java.lang.Double"</span> column=<span class="string">"`SAL`"</span>/&gt;</span><br><span class="line">        &lt;property name=<span class="string">"hireDate"</span> <span class="built_in">type</span>=<span class="string">"java.util.Date"</span>/&gt;</span><br><span class="line">    &lt;/class&gt;</span><br><span class="line">&lt;/hibernate-mapping&gt;</span><br></pre></td></tr></table></figure>
+<p>property属性中可以设置length 以及 not-null</p>
+<h4 id="进行持久化操作"><a href="#进行持久化操作" class="headerlink" title="进行持久化操作"></a>进行持久化操作</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">public void <span class="function"><span class="title">firstShow</span></span>() &#123;</span><br><span class="line">		Configuration conf = null; // 加载hibernate配置文件</span><br><span class="line">		SessionFactory sf = null; // 创建session 会话接口</span><br><span class="line">		Session session = null; //session实施持久化操作关键api</span><br><span class="line">		Transaction tx = null; //事务控制</span><br><span class="line">		</span><br><span class="line">		try &#123;</span><br><span class="line">			conf = new Configuration().configure();</span><br><span class="line">			sf = conf.buildSessionFactory();</span><br><span class="line">			</span><br><span class="line">			session = sf.getCurrentSession(); //推荐使用</span><br><span class="line">			/*session = sf.openSession(); *///比较垃圾</span><br><span class="line">			</span><br><span class="line">			tx = session.beginTransaction(); //开启事务</span><br><span class="line">			</span><br><span class="line">			User user=new User();</span><br><span class="line">			user.setId((byte)2);</span><br><span class="line">			user.setIsadmin(<span class="string">"yes"</span>);</span><br><span class="line">			user.setName(<span class="string">"樊可"</span>);</span><br><span class="line">			user.setPassword(<span class="string">"123456"</span>);</span><br><span class="line">			user.setTelephone(<span class="string">"15035042771"</span>);</span><br><span class="line">			user.setUsername(<span class="string">"悲伤的橙子子树"</span>);</span><br><span class="line">			</span><br><span class="line">			/*Dept dept=new Dept();</span><br><span class="line">			dept.setDeptName(<span class="string">"狙击部"</span>);</span><br><span class="line">			dept.setDeptNo((byte)50);</span><br><span class="line">			dept.setLocation(<span class="string">"永济市"</span>);*/</span><br><span class="line">			</span><br><span class="line">			session.save(user);</span><br><span class="line">			</span><br><span class="line">			tx.commit();</span><br><span class="line">		&#125; catch (HibernateException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">			<span class="keyword">if</span>(tx!=null)&#123;</span><br><span class="line">				tx.rollback();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;/*finally &#123;</span><br><span class="line">			session.close();</span><br><span class="line">		&#125;*/</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>注意 ：不管是查询还是更新都要开启事务，session会自动关闭</p>
+<p>简化一下<br>util创建HibernateUtil.java文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">package cn;</span><br><span class="line"></span><br><span class="line">import org.hibernate.HibernateException;</span><br><span class="line">import org.hibernate.Session;</span><br><span class="line">import org.hibernate.SessionFactory;</span><br><span class="line">import org.hibernate.cfg.Configuration;</span><br><span class="line"></span><br><span class="line">public class HibernateUtil &#123;</span><br><span class="line"></span><br><span class="line">	private static Configuration conf;</span><br><span class="line">	private final static SessionFactory sf;</span><br><span class="line"></span><br><span class="line">	static &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			conf = new Configuration().configure();</span><br><span class="line">			sf = conf.buildSessionFactory();</span><br><span class="line">		&#125; catch (HibernateException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">			throw new ExceptionInInitializerError(e);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private <span class="function"><span class="title">HibernateUtil</span></span>()&#123;&#125;</span><br><span class="line">	</span><br><span class="line">	public static Session <span class="function"><span class="title">currentSession</span></span>()&#123;</span><br><span class="line">		<span class="built_in">return</span> sf.getCurrentSession();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>dao层创建BaseDao.java<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">package cn.dao;</span><br><span class="line">import org.hibernate.Session;</span><br><span class="line">import cn.HibernateUtil;</span><br><span class="line"></span><br><span class="line">public class BaseDao &#123;</span><br><span class="line">	public Session <span class="function"><span class="title">currentSession</span></span>()&#123;</span><br><span class="line">		<span class="built_in">return</span> HibernateUtil.currentSession();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用的时候直接继承BaseDao既可</p>
+<h3 id="按主键查询"><a href="#按主键查询" class="headerlink" title="按主键查询"></a>按主键查询</h3><p>GET方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public User getUser(Serializable id)&#123;</span><br><span class="line">    <span class="built_in">return</span> (User)currentSession().get(User.class, id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>LOAD方法(需要在会话关闭之前测试查询)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public User loadUser(Serializable id)&#123;</span><br><span class="line">   <span class="built_in">return</span> (User)currentSession().load(User.class, id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="增加操作"><a href="#增加操作" class="headerlink" title="增加操作"></a>增加操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public void save(User user)&#123;</span><br><span class="line">   currentSession().save(user);</span><br><span class="line">&#125;</span><br><span class="line">--还有个save-update(他会找主键，如果主键存在，那就修改，如果不存在，就添加)</span><br></pre></td></tr></table></figure>
+<h3 id="修改操作"><a href="#修改操作" class="headerlink" title="修改操作"></a>修改操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public void update(User user)&#123;</span><br><span class="line">   currentSession().update(user);</span><br><span class="line">&#125;</span><br><span class="line">--还有个save-update(他会找主键，如果主键存在，那就修改，如果不存在，就添加)</span><br></pre></td></tr></table></figure>
+<h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void delete(User user)&#123;</span><br><span class="line">   currentSession().delete(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="hbm-xml文件（-dynamic-update-”true”）"><a href="#hbm-xml文件（-dynamic-update-”true”）" class="headerlink" title=".hbm.xml文件（ dynamic-update=”true”）"></a>.hbm.xml文件（ dynamic-update=”true”）</h3><p>表示动态更新，只更新变化的字段</p>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是Hibernate框架？"><span class="toc-number">1.</span> <span class="toc-text">什么是Hibernate框架？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hibernate优缺点"><span class="toc-number">1.1.</span> <span class="toc-text">Hibernate优缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hibernate环境搭建"><span class="toc-number">2.</span> <span class="toc-text">Hibernate环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#引入相关jar包"><span class="toc-number">2.1.</span> <span class="toc-text">引入相关jar包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建Hibernate核心配置文件（hibernate-cfg-xml）"><span class="toc-number">2.2.</span> <span class="toc-text">创建Hibernate核心配置文件（hibernate.cfg.xml）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建持久化类和映射文件"><span class="toc-number">2.3.</span> <span class="toc-text">创建持久化类和映射文件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#映射文件（为持久化类名-hbm-xml）"><span class="toc-number">2.3.1.</span> <span class="toc-text">映射文件（为持久化类名+hbm.xml）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进行持久化操作"><span class="toc-number">2.4.</span> <span class="toc-text">进行持久化操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按主键查询"><span class="toc-number">3.</span> <span class="toc-text">按主键查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#增加操作"><span class="toc-number">4.</span> <span class="toc-text">增加操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改操作"><span class="toc-number">5.</span> <span class="toc-text">修改操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除操作"><span class="toc-number">6.</span> <span class="toc-text">删除操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hbm-xml文件（-dynamic-update-”true”）"><span class="toc-number">7.</span> <span class="toc-text">.hbm.xml文件（ dynamic-update=”true”）</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/07/Hibernate入门/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/07/Hibernate入门/&text=Hibernate入门"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/07/Hibernate入门/&title=Hibernate入门"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/07/Hibernate入门/&is_video=false&description=Hibernate入门"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hibernate入门&body=Check out this article: http://yoursite.com/2018/11/07/Hibernate入门/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/07/Hibernate入门/&title=Hibernate入门"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/07/Hibernate入门/&title=Hibernate入门"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/07/Hibernate入门/&title=Hibernate入门"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/07/Hibernate入门/&title=Hibernate入门"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/07/Hibernate入门/&name=Hibernate入门&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

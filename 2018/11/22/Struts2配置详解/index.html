@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="回忆用户登录过程 JSP页面请求👇核心控制器👇Action👇Result👇JSP页面显示  核心控制器 在web.xml中配置，对框架进行初始化，以及处理所有的请求  Action 业务控制器 创建Action,实现Action接口，继承ActionSupport类name属性不能重名，class属性为Action的路径  12345&amp;lt;action name=&quot;Login&quot; clas">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Struts2配置详解">
+<meta property="og:url" content="http://yoursite.com/2018/11/22/Struts2配置详解/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="回忆用户登录过程 JSP页面请求👇核心控制器👇Action👇Result👇JSP页面显示  核心控制器 在web.xml中配置，对框架进行初始化，以及处理所有的请求  Action 业务控制器 创建Action,实现Action接口，继承ActionSupport类name属性不能重名，class属性为Action的路径  12345&amp;lt;action name=&quot;Login&quot; clas">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2018-11-22T16:02:30.038Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Struts2配置详解">
+<meta name="twitter:description" content="回忆用户登录过程 JSP页面请求👇核心控制器👇Action👇Result👇JSP页面显示  核心控制器 在web.xml中配置，对框架进行初始化，以及处理所有的请求  Action 业务控制器 创建Action,实现Action接口，继承ActionSupport类name属性不能重名，class属性为Action的路径  12345&amp;lt;action name=&quot;Login&quot; clas">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Struts2配置详解</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/11/24/SSH框架搭建/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/11/21/Struts2入门/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/22/Struts2配置详解/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/22/Struts2配置详解/&text=Struts2配置详解"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/22/Struts2配置详解/&title=Struts2配置详解"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/22/Struts2配置详解/&is_video=false&description=Struts2配置详解"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Struts2配置详解&body=Check out this article: http://yoursite.com/2018/11/22/Struts2配置详解/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/22/Struts2配置详解/&title=Struts2配置详解"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/22/Struts2配置详解/&title=Struts2配置详解"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/22/Struts2配置详解/&title=Struts2配置详解"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/22/Struts2配置详解/&title=Struts2配置详解"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/22/Struts2配置详解/&name=Struts2配置详解&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#回忆用户登录过程"><span class="toc-number">1.</span> <span class="toc-text">回忆用户登录过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#核心控制器"><span class="toc-number">1.1.</span> <span class="toc-text">核心控制器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Action-业务控制器"><span class="toc-number">1.2.</span> <span class="toc-text">Action 业务控制器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Result-实现对结果的处理"><span class="toc-number">1.3.</span> <span class="toc-text">Result 实现对结果的处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Struts-xml"><span class="toc-number">1.4.</span> <span class="toc-text">Struts.xml</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置Action"><span class="toc-number">2.</span> <span class="toc-text">配置Action</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#method属性"><span class="toc-number">2.1.</span> <span class="toc-text">method属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置默认action"><span class="toc-number">2.2.</span> <span class="toc-text">配置默认action</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简化Action的配置，调用方式"><span class="toc-number">3.</span> <span class="toc-text">简化Action的配置，调用方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#动态方法调用"><span class="toc-number">3.1.</span> <span class="toc-text">动态方法调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用通配符"><span class="toc-number">3.2.</span> <span class="toc-text">使用通配符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Result常用结果类型"><span class="toc-number">4.</span> <span class="toc-text">Result常用结果类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态结果"><span class="toc-number">5.</span> <span class="toc-text">动态结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全局结果"><span class="toc-number">6.</span> <span class="toc-text">全局结果</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Struts2配置详解
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-11-22T14:59:05.000Z" itemprop="datePublished">2018-11-22</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/SSH/">SSH</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="回忆用户登录过程"><a href="#回忆用户登录过程" class="headerlink" title="回忆用户登录过程"></a>回忆用户登录过程</h3><blockquote>
+<p>JSP页面请求👇<br>核心控制器👇<br>Action👇<br>Result👇<br>JSP页面显示</p>
+</blockquote>
+<h4 id="核心控制器"><a href="#核心控制器" class="headerlink" title="核心控制器"></a>核心控制器</h4><blockquote>
+<p>在web.xml中配置，对框架进行初始化，以及处理所有的请求</p>
+</blockquote>
+<h4 id="Action-业务控制器"><a href="#Action-业务控制器" class="headerlink" title="Action 业务控制器"></a>Action 业务控制器</h4><blockquote>
+<p>创建Action,实现Action接口，继承ActionSupport类<br>name属性不能重名，class属性为Action的路径</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;action name=<span class="string">"Login"</span> class=<span class="string">"cn.ssh.LoginAction"</span>&gt;</span><br><span class="line">           &lt;result name=<span class="string">"success"</span>&gt;/success.jsp&lt;/result&gt;</span><br><span class="line">           &lt;result name=<span class="string">"fail"</span>&gt;/fail.jsp&lt;/result&gt;</span><br><span class="line">           &lt;result name=<span class="string">"input"</span>&gt;/login.jsp&lt;/result&gt;</span><br><span class="line">&lt;/action&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="Result-实现对结果的处理"><a href="#Result-实现对结果的处理" class="headerlink" title="Result 实现对结果的处理"></a>Result 实现对结果的处理</h4><blockquote>
+<p>实现对结果的调用<br>result元素的值指定对应的实际资源位置<br>name属性表示result的逻辑名，Action返回的字符串</p>
+</blockquote>
+<h4 id="Struts-xml"><a href="#Struts-xml" class="headerlink" title="Struts.xml"></a>Struts.xml</h4><blockquote>
+<p>constant元素，可以改变struts2框架的一些行为<br>name表示常量名称，value表示常量值</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 处理中文乱码 --&gt;</span><br><span class="line">&lt;constant name=<span class="string">"struts.i18n.encoding"</span> value=<span class="string">"UTF-8"</span>&gt;&lt;/constant&gt;</span><br><span class="line">	</span><br><span class="line">&lt;!-- 设置action动态方法调用 --&gt;</span><br><span class="line">&lt;constant name=<span class="string">"struts.enable.DynamicMethodInvocation"</span> value=<span class="string">"true"</span>&gt;&lt;/constant&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>package元素 –简化维护工作，提高重用性<br>包可以继承已定义的包<br>name属性必须且唯一，用于指定包的名称<br>extends属性指定要扩展的包，总是扩展struts-default包<br>namespace属性定义该包action的命名空间，可选</p>
+</blockquote>
+<h3 id="配置Action"><a href="#配置Action" class="headerlink" title="配置Action"></a>配置Action</h3><blockquote>
+<p>Action,封装工作单元，数据转移的场所，返回结果字符串</p>
+</blockquote>
+<h4 id="method属性"><a href="#method属性" class="headerlink" title="method属性"></a>method属性</h4><blockquote>
+<p>属于action属性，默认值：execute，可以更改属性值实现Action中不同方法的调用</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> //登录</span><br><span class="line">	public String <span class="function"><span class="title">login</span></span>()&#123;</span><br><span class="line">		</span><br><span class="line">		//<span class="built_in">return</span> <span class="string">"success"</span>;</span><br><span class="line">		<span class="built_in">return</span> <span class="string">"dologin"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//注册</span><br><span class="line">	public String <span class="function"><span class="title">register</span></span>()&#123;</span><br><span class="line">		</span><br><span class="line">		//<span class="built_in">return</span> <span class="string">"success"</span>;</span><br><span class="line">		<span class="built_in">return</span> <span class="string">"doregister"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"> &lt;action name=<span class="string">"login"</span> class=<span class="string">"cn.ssh.UserAction"</span> method=<span class="string">"login"</span>&gt;</span><br><span class="line">    		&lt;result&gt;/login.jsp&lt;/result&gt;</span><br><span class="line">    	&lt;/action&gt;</span><br><span class="line">&lt;action name=<span class="string">"register"</span> class=<span class="string">"cn.ssh.UserAction"</span> method=<span class="string">"register"</span>&gt;</span><br><span class="line">    		&lt;result&gt;/register.jsp&lt;/result&gt;</span><br><span class="line">        &lt;/action</span><br></pre></td></tr></table></figure>
+<h4 id="配置默认action"><a href="#配置默认action" class="headerlink" title="配置默认action"></a>配置默认action</h4><blockquote>
+<p>没有Action匹配请求时，默认Action将被执行</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 指定默认的action ，/user/a.action会跳转error --&gt;</span><br><span class="line">&lt;default-action-ref name=<span class="string">"defaultAction"</span>&gt;&lt;/default-action-ref&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 全局结果 --&gt;</span><br><span class="line">&lt;global-results&gt;</span><br><span class="line">	&lt;result name=<span class="string">"error"</span>&gt;/error.jsp&lt;/result&gt;</span><br><span class="line">&lt;/global-results&gt;</span><br><span class="line">&lt;!-- 省略class，直接使用ActionSupport类 --&gt;</span><br><span class="line">&lt;action name=<span class="string">"defaultAction"</span>&gt;</span><br><span class="line">	&lt;result&gt;/error.jsp&lt;/result&gt;</span><br><span class="line">&lt;/action&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="简化Action的配置，调用方式"><a href="#简化Action的配置，调用方式" class="headerlink" title="简化Action的配置，调用方式"></a>简化Action的配置，调用方式</h3><blockquote>
+<p>对于用一个action类的每一个方法都陪着了一次，造成action元素数量太多</p>
+</blockquote>
+<h4 id="动态方法调用"><a href="#动态方法调用" class="headerlink" title="动态方法调用"></a>动态方法调用</h4><blockquote>
+<p>使用：actionName!methodName.action<br>禁用：将属性Struts.enable.DynmicMethodInvocation设置为false</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 设置action动态方法调用 --&gt;</span><br><span class="line">&lt;constant name=<span class="string">"struts.enable.DynamicMethodInvocation"</span> value=<span class="string">"true"</span>&gt;&lt;/constant&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 简化action 动态方法调用  struts2-core-2.3.16.3.jar的default.properties设置 struts.enable.DynamicMethodInvocation = <span class="literal">true</span> --&gt;</span><br><span class="line">    	&lt;action name=<span class="string">"user"</span> class=<span class="string">"cn.ssh.UserAction"</span>&gt;</span><br><span class="line">    		&lt;result name=<span class="string">"dologin"</span>&gt;/login.jsp&lt;/result&gt;</span><br><span class="line">    		&lt;result name=<span class="string">"doregister"</span>&gt;/register.jsp&lt;/result&gt;</span><br><span class="line">    		&lt;!-- 调用 action name ! action方法name.action --&gt;</span><br><span class="line">    	&lt;/action&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="使用通配符"><a href="#使用通配符" class="headerlink" title="使用通配符"></a>使用通配符</h4><blockquote>
+<p>简化相同方法</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//添加用户</span><br><span class="line">	public String <span class="function"><span class="title">add</span></span>()&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">return</span> <span class="string">"input"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//删除用户</span><br><span class="line">	public String <span class="function"><span class="title">delete</span></span>()&#123;</span><br><span class="line">		<span class="keyword">if</span>(id.length()==0)&#123;</span><br><span class="line">			this.message=<span class="string">"删除失败"</span>;</span><br><span class="line">			<span class="built_in">return</span> <span class="string">"input"</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			this.message=<span class="string">"删除成功"</span>;</span><br><span class="line">			System.out.println(<span class="string">"删除-----"</span>);</span><br><span class="line">			<span class="built_in">return</span> <span class="string">"success"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;action name=<span class="string">"*User"</span> class=<span class="string">"cn.ssh.UserAction"</span> method=<span class="string">"&#123;1&#125;"</span>&gt;</span><br><span class="line">    		&lt;result name=<span class="string">"input"</span>&gt;/page/&#123;1&#125;.jsp&lt;/result&gt;</span><br><span class="line">    		&lt;result name=<span class="string">"success"</span> <span class="built_in">type</span>=<span class="string">"redirect"</span>&gt;/page/&#123;1&#125;_success.jsp&lt;/result&gt;</span><br><span class="line">    	&lt;/action&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>调用：[你要输入的字符]User.action</p>
+</blockquote>
+<h3 id="Result常用结果类型"><a href="#Result常用结果类型" class="headerlink" title="Result常用结果类型"></a>Result常用结果类型</h3><blockquote>
+<p>dispatcher：默认结果类型，后台使用RequestDispatcher转发请求<br>redirect：后台使用sendRedirect()将请求重定向至指定的url<br>redirectAction：主要用于重定向到action</p>
+</blockquote>
+<h3 id="动态结果"><a href="#动态结果" class="headerlink" title="动态结果"></a>动态结果</h3><blockquote>
+<p>配置时不知道执行后结果是哪一个，运行时才知道哪个结果作为视图显示给用户</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">private String nextDispose=<span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">public String <span class="function"><span class="title">doLogin</span></span>()&#123;</span><br><span class="line">		System.out.println(<span class="string">"判断-----"</span>);</span><br><span class="line">		<span class="keyword">if</span>(isManager())&#123;</span><br><span class="line">			nextDispose=<span class="string">"manager"</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			nextDispose=<span class="string">"common"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">return</span> <span class="string">"success"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"> &lt;action name=<span class="string">"doLogins"</span> class=<span class="string">"cn.ssh.UserAction"</span> method=<span class="string">"doLogin"</span>&gt;</span><br><span class="line">    		&lt;result <span class="built_in">type</span>=<span class="string">"redirectAction"</span>&gt;<span class="variable">$&#123;nextDispose&#125;</span>&lt;/result&gt;</span><br><span class="line">    		&lt;result name=<span class="string">"error"</span>&gt;.page/error.jsp&lt;/result&gt;</span><br><span class="line">    	&lt;/action&gt;</span><br><span class="line">    	&lt;action name=<span class="string">"manager"</span>&gt;</span><br><span class="line">    		&lt;result&gt;/page/manager.jsp&lt;/result&gt;</span><br><span class="line">    	&lt;/action&gt;</span><br><span class="line">    	&lt;action name=<span class="string">"common"</span>&gt;</span><br><span class="line">    		&lt;result&gt;/page/common.jsp&lt;/result&gt;</span><br><span class="line">    	&lt;/action&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="全局结果"><a href="#全局结果" class="headerlink" title="全局结果"></a>全局结果</h3><blockquote>
+<p>实现同一个包中多个action共享一个结果<br>如果返回error，但是action并没有配置，会去找global-results</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 全局结果 --&gt;</span><br><span class="line">    	&lt;global-results&gt;</span><br><span class="line">    		&lt;result name=<span class="string">"error"</span>&gt;/error.jsp&lt;/result&gt;</span><br><span class="line">    	&lt;/global-results&gt;</span><br></pre></td></tr></table></figure>
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#回忆用户登录过程"><span class="toc-number">1.</span> <span class="toc-text">回忆用户登录过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#核心控制器"><span class="toc-number">1.1.</span> <span class="toc-text">核心控制器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Action-业务控制器"><span class="toc-number">1.2.</span> <span class="toc-text">Action 业务控制器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Result-实现对结果的处理"><span class="toc-number">1.3.</span> <span class="toc-text">Result 实现对结果的处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Struts-xml"><span class="toc-number">1.4.</span> <span class="toc-text">Struts.xml</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置Action"><span class="toc-number">2.</span> <span class="toc-text">配置Action</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#method属性"><span class="toc-number">2.1.</span> <span class="toc-text">method属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置默认action"><span class="toc-number">2.2.</span> <span class="toc-text">配置默认action</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简化Action的配置，调用方式"><span class="toc-number">3.</span> <span class="toc-text">简化Action的配置，调用方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#动态方法调用"><span class="toc-number">3.1.</span> <span class="toc-text">动态方法调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用通配符"><span class="toc-number">3.2.</span> <span class="toc-text">使用通配符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Result常用结果类型"><span class="toc-number">4.</span> <span class="toc-text">Result常用结果类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态结果"><span class="toc-number">5.</span> <span class="toc-text">动态结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全局结果"><span class="toc-number">6.</span> <span class="toc-text">全局结果</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/22/Struts2配置详解/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/22/Struts2配置详解/&text=Struts2配置详解"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/22/Struts2配置详解/&title=Struts2配置详解"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/22/Struts2配置详解/&is_video=false&description=Struts2配置详解"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Struts2配置详解&body=Check out this article: http://yoursite.com/2018/11/22/Struts2配置详解/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/22/Struts2配置详解/&title=Struts2配置详解"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/22/Struts2配置详解/&title=Struts2配置详解"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/22/Struts2配置详解/&title=Struts2配置详解"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/22/Struts2配置详解/&title=Struts2配置详解"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/22/Struts2配置详解/&name=Struts2配置详解&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

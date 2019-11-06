@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="简介  Spring Boot来简化Spring应用开发，去繁从简，基本上都是使用的Spring的技术栈，它就像maven配置了整合了所有的jar包，spring boot整合了所有的框架 j2EE笨重的开发，繁多的配置，低下的开发效率，复杂的部署流程，第三方技术集成难度大  解决  Spring全家桶时代Spring Boot &amp;gt; J2EE一站式解决方案Spring Cloud &amp;gt;">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot基本原理以及认识">
+<meta property="og:url" content="http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="简介  Spring Boot来简化Spring应用开发，去繁从简，基本上都是使用的Spring的技术栈，它就像maven配置了整合了所有的jar包，spring boot整合了所有的框架 j2EE笨重的开发，繁多的配置，低下的开发效率，复杂的部署流程，第三方技术集成难度大  解决  Spring全家桶时代Spring Boot &amp;gt; J2EE一站式解决方案Spring Cloud &amp;gt;">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=373070012,3476798351&fm=173&app=25&f=JPEG?w=640&h=299&s=6D82ED1BBBA5688A52C989D0000010B3">
+<meta property="og:updated_time" content="2018-12-17T01:17:22.554Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot基本原理以及认识">
+<meta name="twitter:description" content="简介  Spring Boot来简化Spring应用开发，去繁从简，基本上都是使用的Spring的技术栈，它就像maven配置了整合了所有的jar包，spring boot整合了所有的框架 j2EE笨重的开发，繁多的配置，低下的开发效率，复杂的部署流程，第三方技术集成难度大  解决  Spring全家桶时代Spring Boot &amp;gt; J2EE一站式解决方案Spring Cloud &amp;gt;">
+<meta name="twitter:image" content="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=373070012,3476798351&fm=173&app=25&f=JPEG?w=640&h=299&s=6D82ED1BBBA5688A52C989D0000010B3">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>SpringBoot基本原理以及认识</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/12/14/Java面试题/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/12/13/勿忘国耻吾辈自强/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&text=SpringBoot基本原理以及认识"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&title=SpringBoot基本原理以及认识"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&is_video=false&description=SpringBoot基本原理以及认识"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SpringBoot基本原理以及认识&body=Check out this article: http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&title=SpringBoot基本原理以及认识"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&title=SpringBoot基本原理以及认识"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&title=SpringBoot基本原理以及认识"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&title=SpringBoot基本原理以及认识"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&name=SpringBoot基本原理以及认识&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#微服务"><span class="toc-number">1.</span> <span class="toc-text">微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#怎样面对一个大型分布式的应用"><span class="toc-number">1.1.</span> <span class="toc-text">怎样面对一个大型分布式的应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境准备"><span class="toc-number">2.</span> <span class="toc-text">环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置Maven"><span class="toc-number">2.1.</span> <span class="toc-text">配置Maven</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置IDEA"><span class="toc-number">2.2.</span> <span class="toc-text">配置IDEA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建Maven项目"><span class="toc-number">2.3.</span> <span class="toc-text">创建Maven项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#导入Spring-boot相关依赖"><span class="toc-number">2.4.</span> <span class="toc-text">导入Spring boot相关依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建一个主程序-用来启动Spring-Boot应用"><span class="toc-number">2.5.</span> <span class="toc-text">创建一个主程序(用来启动Spring-Boot应用)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编写相关的Controller-Service"><span class="toc-number">2.6.</span> <span class="toc-text">编写相关的Controller,Service</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#然后直接运行主程序"><span class="toc-number">2.7.</span> <span class="toc-text">然后直接运行主程序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#探究"><span class="toc-number">3.</span> <span class="toc-text">探究</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#POM文件"><span class="toc-number">3.1.</span> <span class="toc-text">POM文件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#父项目"><span class="toc-number">3.1.1.</span> <span class="toc-text">父项目</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动器"><span class="toc-number">3.1.2.</span> <span class="toc-text">启动器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#主程序类"><span class="toc-number">3.1.3.</span> <span class="toc-text">主程序类</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        SpringBoot基本原理以及认识
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-12-13T11:08:44.000Z" itemprop="datePublished">2018-12-13</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <blockquote>
+<p><strong>简介</strong></p>
+</blockquote>
+<p><em>Spring Boot来简化Spring应用开发，去繁从简，基本上都是使用的Spring的技术栈，它就像maven配置了整合了所有的jar包，spring boot整合了所有的框架</em></p>
+<p><em>j2EE笨重的开发，繁多的配置，低下的开发效率，复杂的部署流程，第三方技术集成难度大</em></p>
+<blockquote>
+<p><strong>解决</strong></p>
+</blockquote>
+<p><em>Spring全家桶时代<br>Spring Boot &gt; J2EE一站式解决方案<br>Spring Cloud &gt; 分布式整体解决方案</em></p>
+<blockquote>
+<p><strong>优点</strong></p>
+</blockquote>
+<ul>
+<li>快速创建独立运行的Spring项目以及主流框架的集成</li>
+<li>使用嵌入式的servlet容器，应用不需要打成war包</li>
+<li>starters自动依赖与版本控制</li>
+<li>大量的自动配置，简化开发，也可修改默认值</li>
+<li>无需配置xml，无代码生成，开箱即用</li>
+<li>准生产环境的运行时应用监控</li>
+<li>与云计算的天然集成</li>
+</ul>
+<blockquote>
+<h3 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h3></blockquote>
+<p>微服务是一种架构风格<br>一个应用应该是一组小型服务，可以通过HTTP的方式来进行互通</p>
+<hr>
+<p><strong>单体应用</strong>：ALL IN ONE,所有东西写在一个里面,传统的web架构模式<br>它也有它的优点，比如开发，测试简单，因为都是一个应用，不牵扯到多个应用的互联，部署也是easy，整个项目打成war包，直接扔在服务器中，不会给运维带来太大的困难<br>但是他所带来的问题呢，也是能清楚的感觉到，牵一发而动全身，有可能因为我们的小小的修改，整个应用需要重新部署或运行，当然，更大的挑战是我们日益增长的软件需求</p>
+<hr>
+<p><strong>一个单体应用程序把它所有功能放在一个单一进程中，并且通过多个服务器上复制这个单体进行扩展</strong></p>
+<p><strong>微服务架构提倡把每个功能元素放入一个独立的服务中，并且通过跨服务器分发这些服务进行扩展，只在需要时才复制,节省了调用资源，而且每个服务都是一个可替换，可独立升级的独立单元，微服务使用，部署和运维是相当不容易的</strong><br><img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=373070012,3476798351&amp;fm=173&amp;app=25&amp;f=JPEG?w=640&amp;h=299&amp;s=6D82ED1BBBA5688A52C989D0000010B3" alt></p>
+<p><br></p>
+<h4 id="怎样面对一个大型分布式的应用"><a href="#怎样面对一个大型分布式的应用" class="headerlink" title="怎样面对一个大型分布式的应用"></a>怎样面对一个大型分布式的应用</h4><p><strong><em>Spring boot</em></strong>：可以快速构建一个应用<br><strong><em>Spring cloud</em></strong>：进行网状互联互调，应用分布式<br><br></p>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ul>
+<li>JDK 1.7：<strong>1.7及以上</strong></li>
+<li>Maven 3.6：<strong>3.3及以上</strong></li>
+<li>IDEA 2017</li>
+<li>Spring Boot 1.5.9.RELEASE</li>
+</ul>
+<blockquote>
+<p><em>Spring框架使用经验，熟练使用Maven进行项目构建和依赖管理，熟练使用Eclipse或IDEA</em></p>
+</blockquote>
+<h4 id="配置Maven"><a href="#配置Maven" class="headerlink" title="配置Maven"></a>配置Maven</h4><blockquote>
+<p><strong>conf的settings.xml文件添加,这段告诉Maven，项目使用jdk1.8来编译</strong><br><strong>可以使用 mvn -v 来查看自己jdk所对应的版本</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;profile&gt;</span><br><span class="line">      &lt;id&gt;jdk-1.8&lt;/id&gt;</span><br><span class="line"></span><br><span class="line">      &lt;activation&gt;</span><br><span class="line">        &lt;activeByDefault&gt;<span class="literal">true</span>&lt;/activeByDefault&gt;</span><br><span class="line">        &lt;jdk&gt;1.8&lt;/jdk&gt;</span><br><span class="line">      &lt;/activation&gt;</span><br><span class="line">      &lt;properties&gt;</span><br><span class="line">        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">        &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;</span><br><span class="line">      &lt;/properties&gt;</span><br><span class="line">  &lt;/profile&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="配置IDEA"><a href="#配置IDEA" class="headerlink" title="配置IDEA"></a>配置IDEA</h4><blockquote>
+<p><strong>进入setting设置，找到maven，设置本地maven仓库</strong></p>
+</blockquote>
+<p><br></p>
+<h4 id="创建Maven项目"><a href="#创建Maven项目" class="headerlink" title="创建Maven项目"></a>创建Maven项目</h4><h4 id="导入Spring-boot相关依赖"><a href="#导入Spring-boot相关依赖" class="headerlink" title="导入Spring boot相关依赖"></a>导入Spring boot相关依赖</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;1.5.9.RELEASE&lt;/version&gt;</span><br><span class="line">    &lt;/parent&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="创建一个主程序-用来启动Spring-Boot应用"><a href="#创建一个主程序-用来启动Spring-Boot应用" class="headerlink" title="创建一个主程序(用来启动Spring-Boot应用)"></a>创建一个主程序(用来启动Spring-Boot应用)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @SpringBootApplication 来标注一个主程序类，说明这是一个Spring Boot应用</span><br><span class="line"> */</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class HelloWorldMainApplication &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        // Spring应用启动</span><br><span class="line">        SpringApplication.run(HelloWorldMainApplication.class,args);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="编写相关的Controller-Service"><a href="#编写相关的Controller-Service" class="headerlink" title="编写相关的Controller,Service"></a>编写相关的Controller,Service</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class HelloController &#123;</span><br><span class="line"></span><br><span class="line">    @ResponseBody</span><br><span class="line">    @RequestMapping(<span class="string">"/hello"</span>)</span><br><span class="line">    public String <span class="function"><span class="title">hello</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span>  <span class="string">"你好，樊可"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="然后直接运行主程序"><a href="#然后直接运行主程序" class="headerlink" title="然后直接运行主程序"></a>然后直接运行主程序</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> /\\ / ___<span class="string">'_ __ _ _(_)_ __  __ _ \ \ \ \</span></span><br><span class="line"><span class="string">( ( )\___ | '</span>_ | <span class="string">'_| | '</span>_ \/ _` | \ \ \ \</span><br><span class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  <span class="string">'  |____| .__|_| |_|_| |_\__, | / / / /</span></span><br><span class="line"><span class="string"> =========|_|==============|___/=/_/_/_/</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>不需要做过多的配置，什么包扫描，视图解析器，前端控制器。。。</strong></p>
+</blockquote>
+<p><br></p>
+<h3 id="探究"><a href="#探究" class="headerlink" title="探究"></a>探究</h3><p><br></p>
+<h4 id="POM文件"><a href="#POM文件" class="headerlink" title="POM文件"></a>POM文件</h4><h5 id="父项目"><a href="#父项目" class="headerlink" title="父项目"></a>父项目</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;1.5.9.RELEASE&lt;/version&gt;</span><br><span class="line">    &lt;/parent&gt;</span><br><span class="line">    </span><br><span class="line">    它的父项目是</span><br><span class="line">    &lt;parent&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;1.5.9.RELEASE&lt;/version&gt;</span><br><span class="line">		&lt;relativePath&gt;../../spring-boot-dependencies&lt;/relativePath&gt;</span><br><span class="line">	&lt;/parent&gt;</span><br><span class="line">    他来真正管理Spring Boot应用里面的所有依赖版本</span><br></pre></td></tr></table></figure>
+<h5 id="启动器"><a href="#启动器" class="headerlink" title="启动器"></a>启动器</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>spring-boot-starter</strong>-web:<br>&nbsp;spring-boot-starter:spring-boot场景启动器;帮我们导入了web模块正常运行所依赖的组建<br><br><br>Spring boot将所有功能场景都抽取出来，做成一个个的starters(启动器),只需要在项目中引入这些starter相关场景的所有依赖都会导入进来</p>
+<p><br></p>
+<h5 id="主程序类"><a href="#主程序类" class="headerlink" title="主程序类"></a>主程序类</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @SpringBootApplication 来标注一个主程序类，说明这是一个Spring Boot应用</span><br><span class="line"> */</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class HelloWorldMainApplication &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        // Spring应用启动</span><br><span class="line">        SpringApplication.run(HelloWorldMainApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>@SpringBootApplication</strong>：Spring Boot 应用标注在某个类上说明这个类是SpringBoot的主配置类,SpringBoot就应该运行这个类的Main方法来启动SpringBoot应用</p>
+<p><br><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Inherited</span><br><span class="line">@SpringBootConfiguration</span><br><span class="line">@EnableAutoConfiguration</span><br><span class="line">@ComponentScan(</span><br><span class="line">    excludeFilters = &#123;@Filter(</span><br><span class="line">    <span class="built_in">type</span> = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;TypeExcludeFilter.class&#125;</span><br><span class="line">), @Filter(</span><br><span class="line">    <span class="built_in">type</span> = FilterType.CUSTOM,</span><br><span class="line">    classes = &#123;AutoConfigurationExcludeFilter.class&#125;</span><br><span class="line">)&#125;</span><br><span class="line">)</span><br><span class="line">public @interface SpringBootApplication &#123;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>@Configuration</strong>：配置类上类标注这个注解</li>
+<li><strong>@EnableAutoConfiguration</strong>：开启自动配置功能,以前我们需要配置的东西，Spring Boot帮我们自动配置</li>
+<li><strong>@AutoConfigurationPackage</strong>：自动配置包<ul>
+<li><strong>@Import({Registrar.class})</strong>：Spring的底层注解，给容器中导入一个组建，导入的组件由Registrar.class</li>
+<li>将主配置(@SpringBootApplication所标注的类)的所在包以及所在下面的子包里面的所有组件扫描到Spring容器中</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#微服务"><span class="toc-number">1.</span> <span class="toc-text">微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#怎样面对一个大型分布式的应用"><span class="toc-number">1.1.</span> <span class="toc-text">怎样面对一个大型分布式的应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境准备"><span class="toc-number">2.</span> <span class="toc-text">环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置Maven"><span class="toc-number">2.1.</span> <span class="toc-text">配置Maven</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置IDEA"><span class="toc-number">2.2.</span> <span class="toc-text">配置IDEA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建Maven项目"><span class="toc-number">2.3.</span> <span class="toc-text">创建Maven项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#导入Spring-boot相关依赖"><span class="toc-number">2.4.</span> <span class="toc-text">导入Spring boot相关依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建一个主程序-用来启动Spring-Boot应用"><span class="toc-number">2.5.</span> <span class="toc-text">创建一个主程序(用来启动Spring-Boot应用)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编写相关的Controller-Service"><span class="toc-number">2.6.</span> <span class="toc-text">编写相关的Controller,Service</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#然后直接运行主程序"><span class="toc-number">2.7.</span> <span class="toc-text">然后直接运行主程序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#探究"><span class="toc-number">3.</span> <span class="toc-text">探究</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#POM文件"><span class="toc-number">3.1.</span> <span class="toc-text">POM文件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#父项目"><span class="toc-number">3.1.1.</span> <span class="toc-text">父项目</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动器"><span class="toc-number">3.1.2.</span> <span class="toc-text">启动器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#主程序类"><span class="toc-number">3.1.3.</span> <span class="toc-text">主程序类</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&text=SpringBoot基本原理以及认识"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&title=SpringBoot基本原理以及认识"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&is_video=false&description=SpringBoot基本原理以及认识"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SpringBoot基本原理以及认识&body=Check out this article: http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&title=SpringBoot基本原理以及认识"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&title=SpringBoot基本原理以及认识"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&title=SpringBoot基本原理以及认识"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&title=SpringBoot基本原理以及认识"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/12/13/SpringBoot基本原理以及认识/&name=SpringBoot基本原理以及认识&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

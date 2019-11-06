@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="if 语句123456&amp;lt;select id=&quot;selectUserByUsernameAndSex&quot; resultType=&quot;user&quot; parameterType=&quot;com.ys.po.User&quot;&amp;gt;select * from user where&amp;lt;if test=&quot;username != null&quot;&amp;gt;username=#&amp;#123;username&amp;#125;&amp;lt;/i">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis动态SQL">
+<meta property="og:url" content="http://yoursite.com/2018/11/06/Mybatis动态SQL/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="if 语句123456&amp;lt;select id=&quot;selectUserByUsernameAndSex&quot; resultType=&quot;user&quot; parameterType=&quot;com.ys.po.User&quot;&amp;gt;select * from user where&amp;lt;if test=&quot;username != null&quot;&amp;gt;username=#&amp;#123;username&amp;#125;&amp;lt;/i">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2018-11-06T01:02:23.920Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mybatis动态SQL">
+<meta name="twitter:description" content="if 语句123456&amp;lt;select id=&quot;selectUserByUsernameAndSex&quot; resultType=&quot;user&quot; parameterType=&quot;com.ys.po.User&quot;&amp;gt;select * from user where&amp;lt;if test=&quot;username != null&quot;&amp;gt;username=#&amp;#123;username&amp;#125;&amp;lt;/i">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Mybatis动态SQL</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/11/06/Spring核心概念/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/11/06/MybatisSQL映射文件/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/06/Mybatis动态SQL/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&text=Mybatis动态SQL"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&title=Mybatis动态SQL"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&is_video=false&description=Mybatis动态SQL"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Mybatis动态SQL&body=Check out this article: http://yoursite.com/2018/11/06/Mybatis动态SQL/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&title=Mybatis动态SQL"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&title=Mybatis动态SQL"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&title=Mybatis动态SQL"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&title=Mybatis动态SQL"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&name=Mybatis动态SQL&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#if-语句"><span class="toc-number">1.</span> <span class="toc-text">if 语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#if-where-语句"><span class="toc-number">2.</span> <span class="toc-text">if+where 语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#if-set-语句"><span class="toc-number">3.</span> <span class="toc-text">if+set 语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#choose-when-otherwise-语句"><span class="toc-number">4.</span> <span class="toc-text">choose(when,otherwise) 语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trim-语句"><span class="toc-number">5.</span> <span class="toc-text">trim 语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#foreach-语句"><span class="toc-number">6.</span> <span class="toc-text">foreach 语句</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Mybatis动态SQL
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-11-06T00:56:28.000Z" itemprop="datePublished">2018-11-06</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/SSM/">SSM</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=<span class="string">"selectUserByUsernameAndSex"</span> resultType=<span class="string">"user"</span> parameterType=<span class="string">"com.ys.po.User"</span>&gt;</span><br><span class="line">select * from user <span class="built_in">where</span></span><br><span class="line">&lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"username != null"</span>&gt;</span><br><span class="line">username=<span class="comment">#&#123;username&#125;</span></span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="if-where-语句"><a href="#if-where-语句" class="headerlink" title="if+where 语句"></a>if+where 语句</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=<span class="string">"selectUserByUsernameAndSex"</span> resultType=<span class="string">"user"</span> parameterType=<span class="string">"com.ys.po.User"</span>&gt;</span><br><span class="line">select * from user</span><br><span class="line">&lt;<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"username != null"</span>&gt;</span><br><span class="line">username=<span class="comment">#&#123;username&#125;</span></span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">&lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"username != null"</span>&gt;</span><br><span class="line">and sex=<span class="comment">#&#123;sex&#125;</span></span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">&lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+<p>“where”标签会知道如果它包含的标签中有返回值的话，它就插入一个‘where’。此外，如果标签返回的内容是以AND 或OR 开头的，则它会剔除掉。</p>
+<h2 id="if-set-语句"><a href="#if-set-语句" class="headerlink" title="if+set 语句"></a>if+set 语句</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 根据 id 更新 user 表的数据 --&gt;</span><br><span class="line">&lt;update id=&quot;updateUserById&quot; parameterType=&quot;com.ys.po.User&quot;&gt;</span><br><span class="line">update user u</span><br><span class="line">&lt;set&gt;</span><br><span class="line">&lt;if test=&quot;username != null and username != &apos;&apos;&quot;&gt;</span><br><span class="line">u.username = #&#123;username&#125;,</span><br><span class="line">&lt;/if&gt;</span><br><span class="line">&lt;if test=&quot;sex != null and sex != &apos;&apos;&quot;&gt;</span><br><span class="line">u.sex = #&#123;sex&#125;</span><br><span class="line">&lt;/if&gt;</span><br><span class="line">&lt;/set&gt;</span><br><span class="line">where id=#&#123;id&#125;</span><br><span class="line">&lt;/update&gt;</span><br></pre></td></tr></table></figure>
+<p>如果第一个条件 username 为空，那么 sql 语句为：update user u set u.sex=? where id=?<br>如果第一个条件不为空，那么 sql 语句为：update user u set u.username = ? ,u.sex = ? where id=?</p>
+<h2 id="choose-when-otherwise-语句"><a href="#choose-when-otherwise-语句" class="headerlink" title="choose(when,otherwise) 语句"></a>choose(when,otherwise) 语句</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=<span class="string">"selectUserByChoose"</span> resultType=<span class="string">"com.ys.po.User"</span> parameterType=<span class="string">"com.ys.po.User"</span>&gt;</span><br><span class="line">select * from user</span><br><span class="line">&lt;<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;choose&gt;</span><br><span class="line">&lt;when <span class="built_in">test</span>=<span class="string">"id !='' and id != null"</span>&gt;</span><br><span class="line">id=<span class="comment">#&#123;id&#125;</span></span><br><span class="line">&lt;/when&gt;</span><br><span class="line">&lt;when <span class="built_in">test</span>=<span class="string">"username !='' and username != null"</span>&gt;</span><br><span class="line">and username=<span class="comment">#&#123;username&#125;</span></span><br><span class="line">&lt;/when&gt;</span><br><span class="line">&lt;otherwise&gt;</span><br><span class="line">and sex=<span class="comment">#&#123;sex&#125;</span></span><br><span class="line">&lt;/otherwise&gt;</span><br><span class="line">&lt;/choose&gt;</span><br><span class="line">&lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+<p>和switch语句差不多</p>
+<h2 id="trim-语句"><a href="#trim-语句" class="headerlink" title="trim 语句"></a>trim 语句</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=<span class="string">"selectUserByUsernameAndSex"</span> resultType=<span class="string">"user"</span> parameterType=<span class="string">"com.ys.po.User"</span>&gt;</span><br><span class="line">select * from user</span><br><span class="line">&lt;!-- &lt;<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"username != null"</span>&gt;</span><br><span class="line">username=<span class="comment">#&#123;username&#125;</span></span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">&lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"username != null"</span>&gt;</span><br><span class="line">and sex=<span class="comment">#&#123;sex&#125;</span></span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">&lt;/<span class="built_in">where</span>&gt;  --&gt;</span><br><span class="line">&lt;trim prefix=<span class="string">"where"</span> prefixOverrides=<span class="string">"and | or"</span>&gt;</span><br><span class="line">&lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"username != null"</span>&gt;</span><br><span class="line">and username=<span class="comment">#&#123;username&#125;</span></span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">&lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"sex != null"</span>&gt;</span><br><span class="line">and sex=<span class="comment">#&#123;sex&#125;</span></span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">&lt;/trim&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+<p>prefix：前缀<br>prefixoverride：去掉第一个and或者是or<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;trim prefix=<span class="string">"set"</span> suffixOverrides=<span class="string">","</span>&gt; //去掉最后一个逗号</span><br><span class="line">&lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"username != null and username != ''"</span>&gt;</span><br><span class="line">u.username = <span class="comment">#&#123;username&#125;,</span></span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">&lt;<span class="keyword">if</span> <span class="built_in">test</span>=<span class="string">"sex != null and sex != ''"</span>&gt;</span><br><span class="line">u.sex = <span class="comment">#&#123;sex&#125;,</span></span><br><span class="line">&lt;/<span class="keyword">if</span>&gt;</span><br><span class="line">&lt;/trim&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="foreach-语句"><a href="#foreach-语句" class="headerlink" title="foreach 语句"></a>foreach 语句</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=<span class="string">"selectUserByListId"</span> parameterType=<span class="string">"com.ys.vo.UserVo"</span> resultType=<span class="string">"com.ys.po.User"</span>&gt;</span><br><span class="line">    select * from user</span><br><span class="line">    &lt;<span class="built_in">where</span>&gt;</span><br><span class="line">        &lt;!--</span><br><span class="line">            collection:指定输入对象中的集合属性</span><br><span class="line">            item:每次遍历生成的对象</span><br><span class="line">            open:开始遍历时的拼接字符串</span><br><span class="line">            close:结束时拼接的字符串</span><br><span class="line">            separator:遍历对象之间需要拼接的字符串</span><br><span class="line">            select * from user <span class="built_in">where</span> 1=1 and (id=1 or id=2 or id=3)</span><br><span class="line">          --&gt;</span><br><span class="line">        &lt;foreach collection=<span class="string">"ids"</span> item=<span class="string">"id"</span> open=<span class="string">"and ("</span> close=<span class="string">")"</span> separator=<span class="string">"or"</span>&gt;</span><br><span class="line">            id=<span class="comment">#&#123;id&#125;</span></span><br><span class="line">        &lt;/foreach&gt;</span><br><span class="line">    &lt;/<span class="built_in">where</span>&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#if-语句"><span class="toc-number">1.</span> <span class="toc-text">if 语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#if-where-语句"><span class="toc-number">2.</span> <span class="toc-text">if+where 语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#if-set-语句"><span class="toc-number">3.</span> <span class="toc-text">if+set 语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#choose-when-otherwise-语句"><span class="toc-number">4.</span> <span class="toc-text">choose(when,otherwise) 语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trim-语句"><span class="toc-number">5.</span> <span class="toc-text">trim 语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#foreach-语句"><span class="toc-number">6.</span> <span class="toc-text">foreach 语句</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/06/Mybatis动态SQL/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&text=Mybatis动态SQL"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&title=Mybatis动态SQL"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&is_video=false&description=Mybatis动态SQL"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Mybatis动态SQL&body=Check out this article: http://yoursite.com/2018/11/06/Mybatis动态SQL/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&title=Mybatis动态SQL"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&title=Mybatis动态SQL"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&title=Mybatis动态SQL"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&title=Mybatis动态SQL"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/06/Mybatis动态SQL/&name=Mybatis动态SQL&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

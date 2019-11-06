@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="灵活配置DataSource使用属性文件配置数据源123456789101112&amp;lt;!-- 使用数据配置文件设置数据源 --&amp;gt;&amp;lt;beanclass=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&amp;gt;&amp;lt;property name=&quot;location&quot;&amp;gt;&amp;lt;value&amp;">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring配置补充">
+<meta property="og:url" content="http://yoursite.com/2018/11/06/Spring配置补充/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="灵活配置DataSource使用属性文件配置数据源123456789101112&amp;lt;!-- 使用数据配置文件设置数据源 --&amp;gt;&amp;lt;beanclass=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&amp;gt;&amp;lt;property name=&quot;location&quot;&amp;gt;&amp;lt;value&amp;">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2018-11-06T01:51:29.872Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring配置补充">
+<meta name="twitter:description" content="灵活配置DataSource使用属性文件配置数据源123456789101112&amp;lt;!-- 使用数据配置文件设置数据源 --&amp;gt;&amp;lt;beanclass=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&amp;gt;&amp;lt;property name=&quot;location&quot;&amp;gt;&amp;lt;value&amp;">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Spring配置补充</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/11/06/MVC体系结构和处理请求控制器/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/11/06/Mybatis与Spring的整合/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/06/Spring配置补充/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/06/Spring配置补充/&text=Spring配置补充"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/06/Spring配置补充/&title=Spring配置补充"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/06/Spring配置补充/&is_video=false&description=Spring配置补充"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Spring配置补充&body=Check out this article: http://yoursite.com/2018/11/06/Spring配置补充/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/06/Spring配置补充/&title=Spring配置补充"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/06/Spring配置补充/&title=Spring配置补充"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/06/Spring配置补充/&title=Spring配置补充"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/06/Spring配置补充/&title=Spring配置补充"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/06/Spring配置补充/&name=Spring配置补充&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#灵活配置DataSource"><span class="toc-number">1.</span> <span class="toc-text">灵活配置DataSource</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用属性文件配置数据源"><span class="toc-number">1.1.</span> <span class="toc-text">使用属性文件配置数据源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用jndi数据源-Context节点下"><span class="toc-number">1.2.</span> <span class="toc-text">使用jndi数据源 Context节点下</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring中bean的作用域（scope属性）"><span class="toc-number">2.</span> <span class="toc-text">Spring中bean的作用域（scope属性）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring自动装配"><span class="toc-number">2.1.</span> <span class="toc-text">Spring自动装配</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拆分Spring配置文件"><span class="toc-number">3.</span> <span class="toc-text">拆分Spring配置文件</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Spring配置补充
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-11-06T01:48:23.000Z" itemprop="datePublished">2018-11-06</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/SSM/">SSM</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="灵活配置DataSource"><a href="#灵活配置DataSource" class="headerlink" title="灵活配置DataSource"></a>灵活配置DataSource</h3><h4 id="使用属性文件配置数据源"><a href="#使用属性文件配置数据源" class="headerlink" title="使用属性文件配置数据源"></a>使用属性文件配置数据源</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 使用数据配置文件设置数据源 --&gt;</span><br><span class="line">&lt;bean</span><br><span class="line">class=<span class="string">"org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"</span>&gt;</span><br><span class="line">&lt;property name=<span class="string">"location"</span>&gt;</span><br><span class="line">&lt;value&gt;classpath:database.properties&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line">&lt;!-- 数据源在配置文件中 --&gt;</span><br><span class="line">&lt;bean id=<span class="string">"dataSource"</span> class=<span class="string">"org.apache.commons.dbcp.BasicDataSource"</span>&gt;</span><br><span class="line">&lt;property name=<span class="string">"driverClassName"</span> value=<span class="string">"<span class="variable">$&#123;driver&#125;</span>"</span>&gt;&lt;/property&gt; &lt;property</span><br><span class="line">name=<span class="string">"url"</span> value=<span class="string">"<span class="variable">$&#123;url&#125;</span>"</span>&gt;&lt;/property&gt; &lt;property name=<span class="string">"username"</span> value=<span class="string">"<span class="variable">$&#123;user&#125;</span>"</span>&gt;&lt;/property&gt;</span><br><span class="line">&lt;property name=<span class="string">"password"</span> value=<span class="string">"<span class="variable">$&#123;password&#125;</span>"</span>&gt;&lt;/property&gt; &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="使用jndi数据源-Context节点下"><a href="#使用jndi数据源-Context节点下" class="headerlink" title="使用jndi数据源 Context节点下"></a>使用jndi数据源 Context节点下</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 使用jndi数据源 在tomcat content.xml配置 --&gt;</span><br><span class="line">&lt;Resource name=<span class="string">"jndi/smbms"</span> auth=<span class="string">"Container"</span> <span class="built_in">type</span>=<span class="string">"javax.sql.DataSource"</span></span><br><span class="line">maxActive=<span class="string">"100"</span> maxIdle=<span class="string">"30"</span> driverClassName=<span class="string">"com.mysql.jdbc.Driver"</span></span><br><span class="line">username=<span class="string">"root"</span> password=<span class="string">"123456"</span></span><br><span class="line">url=<span class="string">"jdbc:mysql://localhost:3306/smbms?useUnicode=true&amp;characterEncoding=utf-8"</span> /&gt;</span><br><span class="line">&lt;!-- &lt;bean id=<span class="string">"dataSource"</span> class=<span class="string">"org.springframework.jndi.JndiObjectFactoryBean"</span>&gt;</span><br><span class="line">&lt;property name=<span class="string">"jndiName"</span>&gt;</span><br><span class="line">&lt;value&gt;java:comp/env/jndi/smbms&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;/bean&gt; --&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Spring中bean的作用域（scope属性）"><a href="#Spring中bean的作用域（scope属性）" class="headerlink" title="Spring中bean的作用域（scope属性）"></a>Spring中bean的作用域（scope属性）</h3><p>singleton 默认值：单利模式创建bean的实例，实例只有一个 安全差<br>prototype 每次从容器中获取bean时，都会创建一个新的bean<br>request web环境 针对每次请求都会创建一个新的bean<br>session web环境 同一个会话共享一个，不同会话使用不同的实例<br>使用注解指定作用域<br>@Scope（””）<br>@Service()</p>
+<h4 id="Spring自动装配"><a href="#Spring自动装配" class="headerlink" title="Spring自动装配"></a>Spring自动装配</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">autowire属性：</span><br><span class="line">no：不使用自动装配，bean依赖关系必须通过property定义</span><br><span class="line">bytype：根据属性类型进行装配，寻找容器中的全部bean，找出属性类型相同的bean，如果有多个抛出异常</span><br><span class="line">byName：根据属性名进行装配，找出id与属性的setter方法匹配的bean</span><br><span class="line">constructor：与bytype相似，但是用于构造器参数</span><br></pre></td></tr></table></figure>
+<h3 id="拆分Spring配置文件"><a href="#拆分Spring配置文件" class="headerlink" title="拆分Spring配置文件"></a>拆分Spring配置文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext ctx=new ClassPathXmlApplicationContext(<span class="string">"applicationContextl.xml</span></span><br><span class="line"><span class="string">applicationContextl-dao.xml</span></span><br><span class="line"><span class="string">applicationContextl-service.xml"</span>);</span><br><span class="line">使用import导入主配置文件</span><br><span class="line">&lt;import resource=<span class="string">""</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#灵活配置DataSource"><span class="toc-number">1.</span> <span class="toc-text">灵活配置DataSource</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用属性文件配置数据源"><span class="toc-number">1.1.</span> <span class="toc-text">使用属性文件配置数据源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用jndi数据源-Context节点下"><span class="toc-number">1.2.</span> <span class="toc-text">使用jndi数据源 Context节点下</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring中bean的作用域（scope属性）"><span class="toc-number">2.</span> <span class="toc-text">Spring中bean的作用域（scope属性）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring自动装配"><span class="toc-number">2.1.</span> <span class="toc-text">Spring自动装配</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拆分Spring配置文件"><span class="toc-number">3.</span> <span class="toc-text">拆分Spring配置文件</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/06/Spring配置补充/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/06/Spring配置补充/&text=Spring配置补充"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/06/Spring配置补充/&title=Spring配置补充"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/06/Spring配置补充/&is_video=false&description=Spring配置补充"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Spring配置补充&body=Check out this article: http://yoursite.com/2018/11/06/Spring配置补充/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/06/Spring配置补充/&title=Spring配置补充"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/06/Spring配置补充/&title=Spring配置补充"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/06/Spring配置补充/&title=Spring配置补充"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/06/Spring配置补充/&title=Spring配置补充"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/06/Spring配置补充/&name=Spring配置补充&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

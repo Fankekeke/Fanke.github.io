@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="控制反转（ioc）也成为依赖注入，来降低代码之间的耦合度搭建spring环境部署jar包12345commons-logging-1.2.jarspring-beans-3.2.13.RELEASE.jarspring-context-3.2.13.RELEASE.jarspring-core-3.2.13.RELEASE.jarspring-expression-3.2.13.RELEASE.j">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring核心概念">
+<meta property="og:url" content="http://yoursite.com/2018/11/06/Spring核心概念/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="控制反转（ioc）也成为依赖注入，来降低代码之间的耦合度搭建spring环境部署jar包12345commons-logging-1.2.jarspring-beans-3.2.13.RELEASE.jarspring-context-3.2.13.RELEASE.jarspring-core-3.2.13.RELEASE.jarspring-expression-3.2.13.RELEASE.j">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2018-11-06T01:08:11.163Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring核心概念">
+<meta name="twitter:description" content="控制反转（ioc）也成为依赖注入，来降低代码之间的耦合度搭建spring环境部署jar包12345commons-logging-1.2.jarspring-beans-3.2.13.RELEASE.jarspring-context-3.2.13.RELEASE.jarspring-core-3.2.13.RELEASE.jarspring-expression-3.2.13.RELEASE.j">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Spring核心概念</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/11/06/IOC和AOP的使用扩展/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/11/06/Mybatis动态SQL/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/06/Spring核心概念/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/06/Spring核心概念/&text=Spring核心概念"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/06/Spring核心概念/&title=Spring核心概念"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/06/Spring核心概念/&is_video=false&description=Spring核心概念"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Spring核心概念&body=Check out this article: http://yoursite.com/2018/11/06/Spring核心概念/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/06/Spring核心概念/&title=Spring核心概念"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/06/Spring核心概念/&title=Spring核心概念"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/06/Spring核心概念/&title=Spring核心概念"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/06/Spring核心概念/&title=Spring核心概念"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/06/Spring核心概念/&name=Spring核心概念&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#控制反转（ioc）也成为依赖注入，来降低代码之间的耦合度"><span class="toc-number">1.</span> <span class="toc-text">控制反转（ioc）也成为依赖注入，来降低代码之间的耦合度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建spring环境"><span class="toc-number">2.</span> <span class="toc-text">搭建spring环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#部署jar包"><span class="toc-number">2.1.</span> <span class="toc-text">部署jar包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建resources目录，在里面创建applicationContextl-xml"><span class="toc-number">2.2.</span> <span class="toc-text">创建resources目录，在里面创建applicationContextl.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建测试类"><span class="toc-number">2.3.</span> <span class="toc-text">创建测试类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#aop"><span class="toc-number">2.4.</span> <span class="toc-text">aop</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在aop包下创建aop输出类（前置和后置）"><span class="toc-number">2.4.1.</span> <span class="toc-text">在aop包下创建aop输出类（前置和后置）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#spring陪着文件导入相关配置"><span class="toc-number">2.4.2.</span> <span class="toc-text">spring陪着文件导入相关配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定义切入点，加入增强处理"><span class="toc-number">2.4.3.</span> <span class="toc-text">定义切入点，加入增强处理</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Spring核心概念
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-11-06T01:03:12.000Z" itemprop="datePublished">2018-11-06</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/SSM/">SSM</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="控制反转（ioc）也成为依赖注入，来降低代码之间的耦合度"><a href="#控制反转（ioc）也成为依赖注入，来降低代码之间的耦合度" class="headerlink" title="控制反转（ioc）也成为依赖注入，来降低代码之间的耦合度"></a>控制反转（ioc）也成为依赖注入，来降低代码之间的耦合度</h2><h2 id="搭建spring环境"><a href="#搭建spring环境" class="headerlink" title="搭建spring环境"></a>搭建spring环境</h2><h3 id="部署jar包"><a href="#部署jar包" class="headerlink" title="部署jar包"></a>部署jar包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">commons-logging-1.2.jar</span><br><span class="line">spring-beans-3.2.13.RELEASE.jar</span><br><span class="line">spring-context-3.2.13.RELEASE.jar</span><br><span class="line">spring-core-3.2.13.RELEASE.jar</span><br><span class="line">spring-expression-3.2.13.RELEASE.jar</span><br></pre></td></tr></table></figure>
+<h3 id="创建resources目录，在里面创建applicationContextl-xml"><a href="#创建resources目录，在里面创建applicationContextl-xml" class="headerlink" title="创建resources目录，在里面创建applicationContextl.xml"></a>创建resources目录，在里面创建applicationContextl.xml</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;beans xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span></span><br><span class="line">xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">xmlns:aop=<span class="string">"http://www.springframework.org/schema/aop"</span></span><br><span class="line">xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/aop</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/aop/spring-aop.xsd"</span>&gt;</span><br><span class="line">//根据属性seter()方法</span><br><span class="line">&lt;bean id=<span class="string">"kai"</span> class=<span class="string">"naruto.entity.Equip"</span>&gt;</span><br><span class="line">&lt;property name=<span class="string">"name"</span> value=<span class="string">"万世荣光铠甲"</span>/&gt;</span><br><span class="line">&lt;property name=<span class="string">"speedPlus"</span> value=<span class="string">"4"</span>/&gt;</span><br><span class="line">&lt;property name=<span class="string">"attackPlus"</span> value=<span class="string">"108"</span>/&gt;</span><br><span class="line">&lt;property name=<span class="string">"defencePlus"</span> value=<span class="string">"40"</span>/&gt;</span><br><span class="line">&lt;property name=<span class="string">"type"</span> value=<span class="string">"铠甲"</span>/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="创建测试类"><a href="#创建测试类" class="headerlink" title="创建测试类"></a>创建测试类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext(<span class="string">"applicationContextl.xml"</span>); //xml路径</span><br><span class="line">EquipMess jc=(EquipMess)context.getBean(<span class="string">"equip"</span>); //bean的id值</span><br></pre></td></tr></table></figure>
+<h3 id="aop"><a href="#aop" class="headerlink" title="aop"></a>aop</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">加入jar包</span><br><span class="line">spring-aop-3.2.13.RELEASE.jar</span><br><span class="line">aopalliance-1.0.jar</span><br><span class="line">aspectjweaver.jar</span><br></pre></td></tr></table></figure>
+<h4 id="在aop包下创建aop输出类（前置和后置）"><a href="#在aop包下创建aop输出类（前置和后置）" class="headerlink" title="在aop包下创建aop输出类（前置和后置）"></a>在aop包下创建aop输出类（前置和后置）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private static Logger logger=Logger.getLogger(UserServiceLogger.class);</span><br><span class="line">public void before(JoinPoint jp)&#123;</span><br><span class="line">logger.info(<span class="string">"调用"</span>+jp.getTarget()+<span class="string">"的"</span>+jp.getSignature()+<span class="string">"方法，方法参数"</span>+Arrays.toString(jp.getArgs()));</span><br><span class="line">&#125;</span><br><span class="line">public void afterReturning(JoinPoint jp,Object result)&#123;</span><br><span class="line">logger.info(<span class="string">"调用"</span>+jp.getTarget()+<span class="string">"的"</span>+jp.getSignature()+<span class="string">"方法，方法返回值"</span>+result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="spring陪着文件导入相关配置"><a href="#spring陪着文件导入相关配置" class="headerlink" title="spring陪着文件导入相关配置"></a>spring陪着文件导入相关配置</h4><h4 id="定义切入点，加入增强处理"><a href="#定义切入点，加入增强处理" class="headerlink" title="定义切入点，加入增强处理"></a>定义切入点，加入增强处理</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"theLogger"</span> class=<span class="string">"naruto.aop.Snippet"</span>&gt;&lt;/bean&gt;</span><br><span class="line">&lt;aop:config&gt;</span><br><span class="line">&lt;aop:pointcut id=<span class="string">"pointcut"</span></span><br><span class="line">expression=<span class="string">"execution(public void updateEquip(entity.Equip))"</span> /&gt;</span><br><span class="line">&lt;aop:aspect ref=<span class="string">"theLogger"</span>&gt;</span><br><span class="line">&lt;aop:before method=<span class="string">"before"</span> pointcut-ref=<span class="string">"pointcut"</span>&gt;&lt;/aop:before&gt;</span><br><span class="line">&lt;aop:after-returning method=<span class="string">"afterReturning"</span></span><br><span class="line">pointcut-ref=<span class="string">"pointcut"</span> returning=<span class="string">"result"</span> /&gt;</span><br><span class="line">&lt;/aop:aspect&gt;</span><br><span class="line">&lt;/aop:config&gt;</span><br></pre></td></tr></table></figure>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#控制反转（ioc）也成为依赖注入，来降低代码之间的耦合度"><span class="toc-number">1.</span> <span class="toc-text">控制反转（ioc）也成为依赖注入，来降低代码之间的耦合度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建spring环境"><span class="toc-number">2.</span> <span class="toc-text">搭建spring环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#部署jar包"><span class="toc-number">2.1.</span> <span class="toc-text">部署jar包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建resources目录，在里面创建applicationContextl-xml"><span class="toc-number">2.2.</span> <span class="toc-text">创建resources目录，在里面创建applicationContextl.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建测试类"><span class="toc-number">2.3.</span> <span class="toc-text">创建测试类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#aop"><span class="toc-number">2.4.</span> <span class="toc-text">aop</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在aop包下创建aop输出类（前置和后置）"><span class="toc-number">2.4.1.</span> <span class="toc-text">在aop包下创建aop输出类（前置和后置）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#spring陪着文件导入相关配置"><span class="toc-number">2.4.2.</span> <span class="toc-text">spring陪着文件导入相关配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定义切入点，加入增强处理"><span class="toc-number">2.4.3.</span> <span class="toc-text">定义切入点，加入增强处理</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/06/Spring核心概念/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/06/Spring核心概念/&text=Spring核心概念"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/06/Spring核心概念/&title=Spring核心概念"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/06/Spring核心概念/&is_video=false&description=Spring核心概念"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Spring核心概念&body=Check out this article: http://yoursite.com/2018/11/06/Spring核心概念/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/06/Spring核心概念/&title=Spring核心概念"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/06/Spring核心概念/&title=Spring核心概念"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/06/Spring核心概念/&title=Spring核心概念"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/06/Spring核心概念/&title=Spring核心概念"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/06/Spring核心概念/&name=Spring核心概念&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="批处理文件（batch file）包含一系列 DOS命令，通常用于自动执行重复性任务。用户只需双击批处理文件便可执行任务，而无需重复输入相同指令。编写批处理文件非常简单，但难点在于确保一切按顺序执行。编写严谨的批处理文件可以极大程度地节省时间，在应对重复性工作时尤其有效。  禁止命令回显echo off 表示此语句后的所有运行的命令都不显示命令本身（不包括输出结果） @ 与 echo off 相似">
+<meta name="keywords" content="Bat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bat命令详解">
+<meta property="og:url" content="http://yoursite.com/2019/09/28/Bat命令详解/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="批处理文件（batch file）包含一系列 DOS命令，通常用于自动执行重复性任务。用户只需双击批处理文件便可执行任务，而无需重复输入相同指令。编写批处理文件非常简单，但难点在于确保一切按顺序执行。编写严谨的批处理文件可以极大程度地节省时间，在应对重复性工作时尤其有效。  禁止命令回显echo off 表示此语句后的所有运行的命令都不显示命令本身（不包括输出结果） @ 与 echo off 相似">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-11-06T14:31:25.256Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bat命令详解">
+<meta name="twitter:description" content="批处理文件（batch file）包含一系列 DOS命令，通常用于自动执行重复性任务。用户只需双击批处理文件便可执行任务，而无需重复输入相同指令。编写批处理文件非常简单，但难点在于确保一切按顺序执行。编写严谨的批处理文件可以极大程度地节省时间，在应对重复性工作时尤其有效。  禁止命令回显echo off 表示此语句后的所有运行的命令都不显示命令本身（不包括输出结果） @ 与 echo off 相似">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Bat命令详解</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/10/07/从零开始的Java8/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/07/12/Java高级/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/09/28/Bat命令详解/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/09/28/Bat命令详解/&text=Bat命令详解"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/09/28/Bat命令详解/&title=Bat命令详解"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/09/28/Bat命令详解/&is_video=false&description=Bat命令详解"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bat命令详解&body=Check out this article: http://yoursite.com/2019/09/28/Bat命令详解/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/09/28/Bat命令详解/&title=Bat命令详解"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/09/28/Bat命令详解/&title=Bat命令详解"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/09/28/Bat命令详解/&title=Bat命令详解"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/09/28/Bat命令详解/&title=Bat命令详解"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/09/28/Bat命令详解/&name=Bat命令详解&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#禁止命令回显"><span class="toc-number">1.</span> <span class="toc-text">禁止命令回显</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注释"><span class="toc-number">2.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出信息"><span class="toc-number">3.</span> <span class="toc-text">输出信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#暂停"><span class="toc-number">4.</span> <span class="toc-text">暂停</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#退出脚本"><span class="toc-number">5.</span> <span class="toc-text">退出脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出文件内容"><span class="toc-number">6.</span> <span class="toc-text">输出文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义变量"><span class="toc-number">7.</span> <span class="toc-text">定义变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-循环"><span class="toc-number">8.</span> <span class="toc-text">for 循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if语句"><span class="toc-number">9.</span> <span class="toc-text">if语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#goto-语句"><span class="toc-number">10.</span> <span class="toc-text">goto 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串处理"><span class="toc-number">11.</span> <span class="toc-text">字符串处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特殊标记符"><span class="toc-number">12.</span> <span class="toc-text">特殊标记符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用批处理调用yuicompressor压缩js、css的脚本"><span class="toc-number">13.</span> <span class="toc-text">用批处理调用yuicompressor压缩js、css的脚本</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Bat命令详解
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-09-28T14:41:36.000Z" itemprop="datePublished">2019-09-28</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Bat/">Bat</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>批处理文件（batch file）包含一系列 DOS命令，通常用于自动执行重复性任务。用户只需双击批处理文件便可执行任务，而无需重复输入相同指令。编写批处理文件非常简单，但难点在于确保一切按顺序执行。编写严谨的批处理文件可以极大程度地节省时间，在应对重复性工作时尤其有效。 </p>
+<h3 id="禁止命令回显"><a href="#禁止命令回显" class="headerlink" title="禁止命令回显"></a>禁止命令回显</h3><p>echo off 表示此语句后的所有运行的命令都不显示命令本身（不包括输出结果）</p>
+<p>@ 与 echo off 相似，但它是加在每个命令的最前面，只作用于当前命令，表示运行时不显示这一命令。</p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>rem 用来注释。rem全称remark（不确定），意为注释</p>
+<h3 id="输出信息"><a href="#输出信息" class="headerlink" title="输出信息"></a>输出信息</h3><p>echo 表示显示此命令后的字符，也可以用于将命令后的字符串输出到文件</p>
+<p>echo abc to file &gt;&gt; targetfile.txt 上面的命令将把abc to fil写到targetfile.txt </p>
+<h3 id="暂停"><a href="#暂停" class="headerlink" title="暂停"></a>暂停</h3><p>pause 暂停执行并在屏幕上显示Press any key to continue…的提示，等待用户按任意键后继续</p>
+<h3 id="退出脚本"><a href="#退出脚本" class="headerlink" title="退出脚本"></a>退出脚本</h3><p>exit /b code 加上/b选项表示退出当前批处理脚本（b是bat的缩写），而不是cmd.exe，相当于函数的return语句。code是个数字，表示执行结果</p>
+<h3 id="输出文件内容"><a href="#输出文件内容" class="headerlink" title="输出文件内容"></a>输出文件内容</h3><p>type 用来输出文件内容，下面的命令输出subfor.bat文件的内容</p>
+<p>type subfor.bat</p>
+<h3 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h3><p>set 用于定义变量。如set x=1</p>
+<h3 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h3><p>for循环遍历一个集合并执行指定命令： FOR %%variable IN (set) DO command [command-parameters]<br>%%variable 指定一个单一字母可替换的参数。<br>(set) 指定一个或一组文件。可以使用通配符。<br>command 指定对每个文件执行的命令。<br>command-parameters 为特定命令指定参数或命令行开关。</p>
+<p>for 循环遍历集合<br>set items=a b c d<br>set letters=x y z<br>for %%a in (%items%) do (<br>    for %%b in (%letters%) do (<br>        call subfor.bat %%a %%b<br>    )<br>)<br>subfor.bat<br>@echo off<br>echo echo in subfor.bat :  %1 %2</p>
+<p>for循环处理用通配符指定的一组文件<br>for %%a in (*.txt) do (<br>    rem 如果文件名有空格，必须使用””<br>    rem type “%%a”<br>)</p>
+<p>for 循环处理文件内容<br>rem 读取text.txt中的每一行作为参数%%a的值，调用循环体<br>for /F “delims=” %%a in (text.txt) do (<br>    echo %%a<br>)</p>
+<p>数值范围迭代<br>格式： for /L %%i in (start, step, end) do cmd<br>for /L %%i in (1, 1, 5) do echo %%i<br>for 循环命令的使用比较复杂，必须认真阅读使用说明。</p>
+<h3 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h3><p>if语句有三种格式：<br>判定参数是否符合期望值：if [not] “参数” == “字符串” 待执行的命令<br>if %1 == “abc 123”  (<br>    echo first var’value is :abc 123<br>) else (<br>    echo first var’value not excepted, it is :%1<br>)<br>判定文件是否存在：if [not] exist [路径\文件名] 待执行的命令<br>if exist “abc 123.txt”  (<br>    echo content of file abc 123.txt is :<br>    type “abc 123.txt”<br>) else (<br>    echo abc 123.txt is exist .<br>)<br>call subif.bat 3<br>根据errorlevel来执行命令<br>if errorlevel &lt;数字&gt; 待执行的命令<br>返回值必须按照从大到小的顺序排列 。<br>    if errorlevel 3 (<br>        echo errorlevel is three .<br>    ) else if errorlevel 2 (<br>        echo errorlevel is two .<br>    ) else if errorlevel 1 (<br>        echo errorlevel is one .<br>    ) else (<br>        echo execute success .<br>    )<br>subif.bat<br>@echo off<br>if “%1” == “” (<br>    rem 加上/b选项表示退出当前批处理，而不是退出cmd.exe<br>    exit /b 0<br>) else (<br>    exit /b %1<br>)</p>
+<h3 id="goto-语句"><a href="#goto-语句" class="headerlink" title="goto 语句"></a>goto 语句</h3><p>goto语句可以结合标签进行跳转。<br>标签就是用冒号加单词定义，单独放在一行如： :labelName<br>@echo off<br>if “%1” == “” (<br>    goto default<br>) else if “%1” == “helloworld” (<br>    goto helloworld<br>)<br>:default<br>echo you come to default .<br>goto end<br>:hellowrold<br>echo why you come to hello world ?<br>goto end<br>:end</p>
+<h3 id="字符串处理"><a href="#字符串处理" class="headerlink" title="字符串处理"></a>字符串处理</h3><p>主要是字符串截取、替换，通过替换删除指定字符串：</p>
+<p>字符串拼接<br>语法：newStr=%str1%%str2%<br>set str1=abc<br>set str2=123<br>set newStr=%str1%%str2%<br>echo %newStr%</p>
+<p>字符串截取<br>语法：%var:~x,y% (x,y∈Z), 说明：<br>当x为正数时表示从左到右第x+1位开始截取，当x为负数时表示从右到左第x位开始截取(右一位是-1)<br>当省略x时采用默认值0；<br>当y为正数时表示截取的长度，当y为负数时表示截取到从右到左的第y+1位，当省略y时采用默认值-1。<br>set src=abc  123 456<br>set trunk=%src:~2,4%<br>echo %trunk%<br>echo %src:~-5,4%</p>
+<p>字符串替换<br>语法：%var:str1=str2%<br>说明：将字符串var中所有的str1替换为str2<br>echo %src:123=789%<br>替换功能也可以用于完成删除操作，只需要替换为空就行了。<br>删除字符串里的空格<br>set str5=abc 123 4 5 6 7 8<br>echo %str5: =%<br>删除字符串里的tab<br>echo %str5: =%</p>
+<h3 id="特殊标记符"><a href="#特殊标记符" class="headerlink" title="特殊标记符"></a>特殊标记符</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CR(<span class="number">0</span>D)      命令行结束符</span><br><span class="line">Space(<span class="number">20</span>)   空格，常用的参数界定符</span><br><span class="line">Tab(<span class="number">09</span>)     不常用的参数界定符</span><br><span class="line">+           命令文件连接符</span><br><span class="line">*, ?        文件通配符</span><br><span class="line">""          字符串界定符</span><br><span class="line">^           转义符，其后面的特殊字符按原样输出</span><br><span class="line">|           命令管道符</span><br><span class="line">, &gt;&gt;    文件重定向符</span><br><span class="line">@           命令行回显屏蔽符</span><br><span class="line">/           参数开关引导符</span><br><span class="line">:           批处理标签引导符</span><br><span class="line">%           批处理变量引导符</span><br></pre></td></tr></table></figure>
+<h3 id="用批处理调用yuicompressor压缩js、css的脚本"><a href="#用批处理调用yuicompressor压缩js、css的脚本" class="headerlink" title="用批处理调用yuicompressor压缩js、css的脚本"></a>用批处理调用yuicompressor压缩js、css的脚本</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">setlocal</span> enabledelayedexpansion</span><br><span class="line"><span class="built_in">set</span> pwd=<span class="variable">%CD%</span></span><br><span class="line"><span class="built_in">set</span> srcDir=<span class="variable">%pwd%</span>testcompress</span><br><span class="line"><span class="built_in">set</span> dstDir=<span class="variable">%pwd%</span>testcompressres</span><br><span class="line"><span class="built_in">del</span> /F /Q /S <span class="variable">%dstDir%</span>*</span><br><span class="line"><span class="keyword">for</span> /R <span class="variable">%srcDir%</span> <span class="variable">%%D</span> <span class="keyword">in</span> (*) <span class="keyword">do</span> (</span><br><span class="line">    <span class="built_in">set</span> pth=<span class="variable">%%~</span>dpD</span><br><span class="line">    <span class="built_in">set</span> pth=<span class="variable">!pth:%srcDir%=%dstDir%!</span></span><br><span class="line">    <span class="built_in">set</span> fname=<span class="variable">%%~</span>nD</span><br><span class="line">    <span class="built_in">set</span> ext=<span class="variable">%%~</span>xD</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exist</span> <span class="variable">!pth!</span>  <span class="built_in">mkdir</span> <span class="variable">!pth!</span></span><br><span class="line">    <span class="built_in">set</span> dst=<span class="variable">!pth!</span><span class="variable">!fname!</span><span class="variable">!ext!</span></span><br><span class="line">    <span class="keyword">if</span> /I "<span class="variable">!ext!</span>" == ".css" (</span><br><span class="line">        java -jar yuicompressor-<span class="number">2</span>.<span class="number">4</span>.<span class="number">7</span>buildyuicompressor-<span class="number">2</span>.<span class="number">4</span>.<span class="number">7</span>.jar --charset utf8 --<span class="built_in">type</span> css -o <span class="variable">!dst!</span> <span class="variable">%%D</span></span><br><span class="line">    ) <span class="keyword">else</span> <span class="keyword">if</span> "<span class="variable">!ext!</span>" == ".js" (</span><br><span class="line">        java -jar yuicompressor-<span class="number">2</span>.<span class="number">4</span>.<span class="number">7</span>buildyuicompressor-<span class="number">2</span>.<span class="number">4</span>.<span class="number">7</span>.jar --charset utf8 --<span class="built_in">type</span> js  -o <span class="variable">!dst!</span> <span class="variable">%%D</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#禁止命令回显"><span class="toc-number">1.</span> <span class="toc-text">禁止命令回显</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注释"><span class="toc-number">2.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出信息"><span class="toc-number">3.</span> <span class="toc-text">输出信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#暂停"><span class="toc-number">4.</span> <span class="toc-text">暂停</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#退出脚本"><span class="toc-number">5.</span> <span class="toc-text">退出脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出文件内容"><span class="toc-number">6.</span> <span class="toc-text">输出文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义变量"><span class="toc-number">7.</span> <span class="toc-text">定义变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-循环"><span class="toc-number">8.</span> <span class="toc-text">for 循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if语句"><span class="toc-number">9.</span> <span class="toc-text">if语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#goto-语句"><span class="toc-number">10.</span> <span class="toc-text">goto 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串处理"><span class="toc-number">11.</span> <span class="toc-text">字符串处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特殊标记符"><span class="toc-number">12.</span> <span class="toc-text">特殊标记符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用批处理调用yuicompressor压缩js、css的脚本"><span class="toc-number">13.</span> <span class="toc-text">用批处理调用yuicompressor压缩js、css的脚本</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/09/28/Bat命令详解/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/09/28/Bat命令详解/&text=Bat命令详解"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/09/28/Bat命令详解/&title=Bat命令详解"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/09/28/Bat命令详解/&is_video=false&description=Bat命令详解"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bat命令详解&body=Check out this article: http://yoursite.com/2019/09/28/Bat命令详解/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/09/28/Bat命令详解/&title=Bat命令详解"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/09/28/Bat命令详解/&title=Bat命令详解"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/09/28/Bat命令详解/&title=Bat命令详解"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/09/28/Bat命令详解/&title=Bat命令详解"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/09/28/Bat命令详解/&name=Bat命令详解&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

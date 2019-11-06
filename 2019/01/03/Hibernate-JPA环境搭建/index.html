@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Spring整合hibernate JPAJPA：由 Sun 公司提供了一对对于持久层操作的标准(接口+文档)Hibernate:是 Gavin King 开发的一套对于持久层操作的自动的 ORM 框架。Hibernate JPA:是在 Hibernate3.2 版本那种提供了对于 JPA 的标准的实现。提供了一套按照 JPA 标准来实现持久层开发的 API 1 创建项目：2 在项目中导入 HIb">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hibernate_JPA环境搭建">
+<meta property="og:url" content="http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="Spring整合hibernate JPAJPA：由 Sun 公司提供了一对对于持久层操作的标准(接口+文档)Hibernate:是 Gavin King 开发的一套对于持久层操作的自动的 ORM 框架。Hibernate JPA:是在 Hibernate3.2 版本那种提供了对于 JPA 的标准的实现。提供了一套按照 JPA 标准来实现持久层开发的 API 1 创建项目：2 在项目中导入 HIb">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-01-03T04:06:21.036Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hibernate_JPA环境搭建">
+<meta name="twitter:description" content="Spring整合hibernate JPAJPA：由 Sun 公司提供了一对对于持久层操作的标准(接口+文档)Hibernate:是 Gavin King 开发的一套对于持久层操作的自动的 ORM 框架。Hibernate JPA:是在 Hibernate3.2 版本那种提供了对于 JPA 的标准的实现。提供了一套按照 JPA 标准来实现持久层开发的 API 1 创建项目：2 在项目中导入 HIb">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Hibernate_JPA环境搭建</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/01/03/SpringData-JPA/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/01/03/Spring整合Hibernate/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&text=Hibernate_JPA环境搭建"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&title=Hibernate_JPA环境搭建"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&is_video=false&description=Hibernate_JPA环境搭建"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hibernate_JPA环境搭建&body=Check out this article: http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&title=Hibernate_JPA环境搭建"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&title=Hibernate_JPA环境搭建"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&title=Hibernate_JPA环境搭建"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&title=Hibernate_JPA环境搭建"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&name=Hibernate_JPA环境搭建&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring整合hibernate-JPA"><span class="toc-number">1.</span> <span class="toc-text">Spring整合hibernate JPA</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-创建项目："><span class="toc-number">1.1.</span> <span class="toc-text">1 创建项目：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-在项目中导入-HIbernateJPA-相关的-jar-包"><span class="toc-number">1.2.</span> <span class="toc-text">2 在项目中导入 HIbernateJPA 相关的 jar 包</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-修改配置文件"><span class="toc-number">1.3.</span> <span class="toc-text">3 修改配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pojo"><span class="toc-number">1.4.</span> <span class="toc-text">pojo</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hibernate-JPA-的-CRUD-操作"><span class="toc-number">2.</span> <span class="toc-text">Hibernate JPA 的 CRUD 操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#接口实现类"><span class="toc-number">2.1.</span> <span class="toc-text">接口实现类</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Hibernate_JPA环境搭建
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-01-03T02:05:02.000Z" itemprop="datePublished">2019-01-03</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/SpringData/">SpringData</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h4 id="Spring整合hibernate-JPA"><a href="#Spring整合hibernate-JPA" class="headerlink" title="Spring整合hibernate JPA"></a>Spring整合hibernate JPA</h4><p><br><br><strong>JPA</strong>：由 Sun 公司提供了一对对于持久层操作的标准(接口+文档)<br><strong>Hibernate</strong>:是 Gavin King 开发的一套对于持久层操作的自动的 ORM 框架。<br><strong>Hibernate JPA</strong>:是在 Hibernate3.2 版本那种提供了对于 JPA 的标准的实现。提供了一套按<br>照 JPA 标准来实现持久层开发的 API</p>
+<h5 id="1-创建项目："><a href="#1-创建项目：" class="headerlink" title="1 创建项目："></a>1 创建项目：</h5><h5 id="2-在项目中导入-HIbernateJPA-相关的-jar-包"><a href="#2-在项目中导入-HIbernateJPA-相关的-jar-包" class="headerlink" title="2 在项目中导入 HIbernateJPA 相关的 jar 包"></a>2 在项目中导入 HIbernateJPA 相关的 jar 包</h5><h5 id="3-修改配置文件"><a href="#3-修改配置文件" class="headerlink" title="3 修改配置文件"></a>3 修改配置文件</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;beans xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span></span><br><span class="line">       xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">       xmlns:context=<span class="string">"http://www.springframework.org/schema/context"</span></span><br><span class="line">       xmlns:aop=<span class="string">"http://www.springframework.org/schema/aop"</span></span><br><span class="line">       xmlns:tx=<span class="string">"http://www.springframework.org/schema/tx"</span></span><br><span class="line">       xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/context</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/context/spring-context.xsd</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/aop</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/aop/spring-aop.xsd</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/tx</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/tx/spring-tx.xsd"</span>&gt;</span><br><span class="line">    &lt;!-- 配置读取 properties 文件的工具类 --&gt;</span><br><span class="line">    &lt;context:property-placeholder</span><br><span class="line">            location=<span class="string">"classpath:jdbc.properties"</span>/&gt;</span><br><span class="line">    &lt;!-- 配置 c3p0 数据库连接池 --&gt;</span><br><span class="line">    &lt;bean id=<span class="string">"dataSource"</span></span><br><span class="line">          <span class="class"><span class="keyword">class</span></span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span><br><span class="line">        &lt;property name=<span class="string">"jdbcUrl"</span> value=<span class="string">"$&#123;jdbc.url&#125;"</span>/&gt;</span><br><span class="line">        &lt;property name=<span class="string">"driverClass"</span> value=<span class="string">"$&#123;jdbc.driver.class&#125;"</span>/&gt;</span><br><span class="line">        &lt;property name=<span class="string">"user"</span> value=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span><br><span class="line">        &lt;property name=<span class="string">"password"</span> value=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">    &lt;!-- Spring 整合 JPA 配置 EntityManagerFactory--&gt;</span><br><span class="line">    &lt;bean id=<span class="string">"entityManagerFactory"</span></span><br><span class="line">          <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"</span>&gt;</span><br><span class="line">        &lt;property name=<span class="string">"dataSource"</span> ref=<span class="string">"dataSource"</span>/&gt;</span><br><span class="line">        &lt;property name=<span class="string">"jpaVendorAdapter"</span>&gt;</span><br><span class="line">            &lt;bean</span><br><span class="line">                    <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"</span>&gt;</span><br><span class="line">                &lt;!-- hibernate 相关的属性的注入 --&gt;</span><br><span class="line">                &lt;!-- 配置数据库类型 --&gt;</span><br><span class="line">                &lt;property name=<span class="string">"database"</span> value=<span class="string">"MYSQL"</span>/&gt;</span><br><span class="line">                &lt;!-- 正向工程 自动创建表 --&gt;</span><br><span class="line">                &lt;property name=<span class="string">"generateDdl"</span> value=<span class="string">"true"</span>/&gt;</span><br><span class="line">                &lt;!-- 显示执行的 SQL --&gt;</span><br><span class="line">                &lt;property name=<span class="string">"showSql"</span> value=<span class="string">"true"</span>/&gt;</span><br><span class="line">            &lt;/bean&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">        &lt;!-- 扫描实体的包 --&gt;</span><br><span class="line">        &lt;property name=<span class="string">"packagesToScan"</span>&gt;</span><br><span class="line">            &lt;list&gt;</span><br><span class="line">                &lt;value&gt;com.fanke.pojo&lt;/value&gt;</span><br><span class="line">            &lt;/list&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">    &lt;!-- 配置 Hibernate 的事务管理器 --&gt;</span><br><span class="line">    &lt;bean id=<span class="string">"transactionManager"</span></span><br><span class="line">          <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.orm.jpa.JpaTransactionManager"</span>&gt;</span><br><span class="line">        &lt;property name=<span class="string">"entityManagerFactory"</span></span><br><span class="line">                  ref=<span class="string">"entityManagerFactory"</span>/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">    &lt;!-- 配置开启注解事务处理 --&gt;</span><br><span class="line">    &lt;tx:annotation-driven transaction-manager=<span class="string">"transactionManager"</span>/&gt;</span><br><span class="line">    &lt;!-- 配置 springIOC 的注解扫描 --&gt;</span><br><span class="line">    &lt;context:component-scan base-<span class="keyword">package</span>=<span class="string">"com.fanke"</span>/&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="pojo"><a href="#pojo" class="headerlink" title="pojo"></a>pojo</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.fanke.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name = <span class="string">"users"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Users</span> </span>&#123;</span><br><span class="line">    <span class="comment">//    主键自增策略，自增</span></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)</span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"id"</span>)</span><br><span class="line">    <span class="keyword">private</span> Integer userId;</span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"username"</span>)</span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"password"</span>)</span><br><span class="line">    <span class="keyword">private</span> String passWord;</span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"email"</span>)</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Users</span><span class="params">(Integer userId, String userName, String passWord, String email)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">        <span class="keyword">this</span>.userName = userName;</span><br><span class="line">        <span class="keyword">this</span>.passWord = passWord;</span><br><span class="line">        <span class="keyword">this</span>.email = email;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Users</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Users&#123;"</span> +</span><br><span class="line">                <span class="string">"userId="</span> + userId +</span><br><span class="line">                <span class="string">", userName='"</span> + userName + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", passWord='"</span> + passWord + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", email='"</span> + email + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(Integer userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserName</span><span class="params">(String userName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userName = userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPassWord</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> passWord;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassWord</span><span class="params">(String passWord)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.passWord = passWord;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getEmail</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> email;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEmail</span><span class="params">(String email)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.email = email;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Hibernate-JPA-的-CRUD-操作"><a href="#Hibernate-JPA-的-CRUD-操作" class="headerlink" title="Hibernate JPA 的 CRUD 操作"></a>Hibernate JPA 的 CRUD 操作</h4><h5 id="接口实现类"><a href="#接口实现类" class="headerlink" title="接口实现类"></a>接口实现类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Repository;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.persistence.EntityManager;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.PersistenceContext;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.TypedQuery;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.criteria.CriteriaBuilder;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.criteria.CriteriaQuery;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.criteria.Predicate;</span><br><span class="line"><span class="keyword">import</span> javax.persistence.criteria.Root;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="meta">@Repository</span>(value = <span class="string">"usersDao"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UsersDaoImpl</span> <span class="keyword">implements</span> <span class="title">UsersDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PersistenceContext</span>(name=<span class="string">"entityManagerFactory"</span>)</span><br><span class="line">    <span class="keyword">private</span> EntityManager entityManager;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertUsers</span><span class="params">(Users users)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.entityManager.persist(users);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateUsers</span><span class="params">(Users users)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.entityManager.merge(users);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteUsers</span><span class="params">(Users users)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.entityManager.remove(users);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Users <span class="title">selectUsersById</span><span class="params">(Integer userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.entityManager.find(Users.class,userId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Users&gt; <span class="title">selectUserByName</span><span class="params">(String userName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.entityManager.createQuery(<span class="string">"from Users where userName=:abc"</span>).setParameter(<span class="string">"abc"</span>,userName).getResultList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Users&gt; <span class="title">selectUserByNameSQL</span><span class="params">(String userName)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//在 Hibernate JPA 中 如果通过？方式来帮顶参数，那么他的查数是从 1开始的。而 hibernate 中是从 0 开始的。</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.entityManager.createNativeQuery(<span class="string">"select * from users where username = ?"</span>, Users.class).setParameter(<span class="number">1</span>,userName).getResultList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Users&gt; <span class="title">selectUserByNameCriteria</span><span class="params">(String userName)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//CriteriaBuilder 对象：创建一个 CriteriaQuery,创建查询条件。</span></span><br><span class="line">        CriteriaBuilder builber =</span><br><span class="line">                <span class="keyword">this</span>.entityManager.getCriteriaBuilder();</span><br><span class="line">        <span class="comment">//CriteriaQuery 对象：执行查询的 Criteria 对象</span></span><br><span class="line">        <span class="comment">//select * from t_users</span></span><br><span class="line">        CriteriaQuery&lt;Users&gt; query = builber.createQuery(Users.class);</span><br><span class="line">        <span class="comment">//获取要查询的实体类的对象</span></span><br><span class="line">        Root&lt;Users&gt; root = query.from(Users.class);</span><br><span class="line">        <span class="comment">//封装查询条件</span></span><br><span class="line">        Predicate cate = builber.equal(root.get(<span class="string">"username"</span>), userName);</span><br><span class="line">        <span class="comment">//select * from t_users where username = 张三</span></span><br><span class="line">        query.where(cate);</span><br><span class="line">        <span class="comment">//执行查询</span></span><br><span class="line">        TypedQuery&lt;Users&gt; typeQuery =</span><br><span class="line">                <span class="keyword">this</span>.entityManager.createQuery(query);</span><br><span class="line">        <span class="keyword">return</span> typeQuery.getResultList();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring整合hibernate-JPA"><span class="toc-number">1.</span> <span class="toc-text">Spring整合hibernate JPA</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-创建项目："><span class="toc-number">1.1.</span> <span class="toc-text">1 创建项目：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-在项目中导入-HIbernateJPA-相关的-jar-包"><span class="toc-number">1.2.</span> <span class="toc-text">2 在项目中导入 HIbernateJPA 相关的 jar 包</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-修改配置文件"><span class="toc-number">1.3.</span> <span class="toc-text">3 修改配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pojo"><span class="toc-number">1.4.</span> <span class="toc-text">pojo</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hibernate-JPA-的-CRUD-操作"><span class="toc-number">2.</span> <span class="toc-text">Hibernate JPA 的 CRUD 操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#接口实现类"><span class="toc-number">2.1.</span> <span class="toc-text">接口实现类</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&text=Hibernate_JPA环境搭建"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&title=Hibernate_JPA环境搭建"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&is_video=false&description=Hibernate_JPA环境搭建"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hibernate_JPA环境搭建&body=Check out this article: http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&title=Hibernate_JPA环境搭建"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&title=Hibernate_JPA环境搭建"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&title=Hibernate_JPA环境搭建"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&title=Hibernate_JPA环境搭建"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/01/03/Hibernate-JPA环境搭建/&name=Hibernate_JPA环境搭建&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

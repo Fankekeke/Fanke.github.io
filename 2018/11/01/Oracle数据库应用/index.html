@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="回顾什么是索引索引是对数据库表中一列或多列的值进行排序的一种结构,索引会帮助您更快地获得该信息 索引分为几类123456789101112131.普通索引   添加INDEXALTER TABLE `table_name` ADD INDEX index_name ( `column` )下面演示下给user表的name字段添加一个索引2.主键索引   添加PRIMARY KEYALTER TAB">
+<meta name="keywords" content="悲しいミカンの木">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle数据库应用">
+<meta property="og:url" content="http://yoursite.com/2018/11/01/Oracle数据库应用/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="回顾什么是索引索引是对数据库表中一列或多列的值进行排序的一种结构,索引会帮助您更快地获得该信息 索引分为几类123456789101112131.普通索引   添加INDEXALTER TABLE `table_name` ADD INDEX index_name ( `column` )下面演示下给user表的name字段添加一个索引2.主键索引   添加PRIMARY KEYALTER TAB">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2018-11-16T00:37:20.133Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle数据库应用">
+<meta name="twitter:description" content="回顾什么是索引索引是对数据库表中一列或多列的值进行排序的一种结构,索引会帮助您更快地获得该信息 索引分为几类123456789101112131.普通索引   添加INDEXALTER TABLE `table_name` ADD INDEX index_name ( `column` )下面演示下给user表的name字段添加一个索引2.主键索引   添加PRIMARY KEYALTER TAB">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Oracle数据库应用</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/11/02/理想乡/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/11/01/Oracle数据库基础/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/01/Oracle数据库应用/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&text=Oracle数据库应用"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&title=Oracle数据库应用"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&is_video=false&description=Oracle数据库应用"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Oracle数据库应用&body=Check out this article: http://yoursite.com/2018/11/01/Oracle数据库应用/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&title=Oracle数据库应用"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&title=Oracle数据库应用"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&title=Oracle数据库应用"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&title=Oracle数据库应用"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&name=Oracle数据库应用&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#回顾"><span class="toc-number">1.</span> <span class="toc-text">回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是索引"><span class="toc-number">1.1.</span> <span class="toc-text">什么是索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引分为几类"><span class="toc-number">1.2.</span> <span class="toc-text">索引分为几类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#序列可以作为主键，还有什么可以作为主键？"><span class="toc-number">1.3.</span> <span class="toc-text">序列可以作为主键，还有什么可以作为主键？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#间隔分区和范围分区的区别"><span class="toc-number">1.4.</span> <span class="toc-text">间隔分区和范围分区的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#私有同义词和共有同义词的区别"><span class="toc-number">1.5.</span> <span class="toc-text">私有同义词和共有同义词的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表空间（用来存放各种应用文件）"><span class="toc-number">2.</span> <span class="toc-text">表空间（用来存放各种应用文件）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些基本的授权"><span class="toc-number">3.</span> <span class="toc-text">一些基本的授权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同义词（公有和私有-私有只能被当前模式用户访问）"><span class="toc-number">4.</span> <span class="toc-text">同义词（公有和私有 //私有只能被当前模式用户访问）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建序列"><span class="toc-number">5.</span> <span class="toc-text">创建序列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反向键索引"><span class="toc-number">6.</span> <span class="toc-text">反向键索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#位图索引"><span class="toc-number">7.</span> <span class="toc-text">位图索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#唯一索引"><span class="toc-number">8.</span> <span class="toc-text">唯一索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#熟练并背诵"><span class="toc-number">9.</span> <span class="toc-text">熟练并背诵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#范围分区（超好用，就是麻烦）"><span class="toc-number">10.</span> <span class="toc-text">范围分区（超好用，就是麻烦）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询分区情况"><span class="toc-number">10.1.</span> <span class="toc-text">查询分区情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#间隔分区表，会自动创建分区"><span class="toc-number">11.</span> <span class="toc-text">间隔分区表，会自动创建分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用分区查找信息"><span class="toc-number">12.</span> <span class="toc-text">使用分区查找信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#今天我是听着Ragga-Bomb-Skrillex完成的"><span class="toc-number">13.</span> <span class="toc-text">今天我是听着Ragga Bomb -Skrillex完成的</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Oracle数据库应用
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-11-01T14:50:09.000Z" itemprop="datePublished">2018-11-01</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Oracle/">Oracle</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2><h3 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h3><p>索引是对数据库表中一列或多列的值进行排序的一种结构,索引会帮助您更快地获得该信息</p>
+<h3 id="索引分为几类"><a href="#索引分为几类" class="headerlink" title="索引分为几类"></a>索引分为几类</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1.普通索引   添加INDEX</span><br><span class="line">ALTER TABLE `table_name` ADD INDEX index_name ( `column` )</span><br><span class="line"></span><br><span class="line">下面演示下给user表的name字段添加一个索引</span><br><span class="line"></span><br><span class="line">2.主键索引   添加PRIMARY KEY</span><br><span class="line">ALTER TABLE `table_name` ADD PRIMARY KEY ( `column` )</span><br><span class="line"></span><br><span class="line">3.唯一索引    添加UNIQUE</span><br><span class="line">ALTER TABLE `table_name` ADD UNIQUE ( `column` )</span><br><span class="line"></span><br><span class="line">4.全文索引    添加FULLTEXT</span><br><span class="line">ALTER TABLE `table_name` ADD FULLTEXT ( `column`)</span><br></pre></td></tr></table></figure>
+<h3 id="序列可以作为主键，还有什么可以作为主键？"><a href="#序列可以作为主键，还有什么可以作为主键？" class="headerlink" title="序列可以作为主键，还有什么可以作为主键？"></a>序列可以作为主键，还有什么可以作为主键？</h3><p>rowid：就是数据的实际物理地址，rowid没必要自己创建，用户也没有权限创建rowid，它是oracle系统生成的索引</p>
+<h3 id="间隔分区和范围分区的区别"><a href="#间隔分区和范围分区的区别" class="headerlink" title="间隔分区和范围分区的区别"></a>间隔分区和范围分区的区别</h3><p>间隔分区实现的自动生成分区</p>
+<h3 id="私有同义词和共有同义词的区别"><a href="#私有同义词和共有同义词的区别" class="headerlink" title="私有同义词和共有同义词的区别"></a>私有同义词和共有同义词的区别</h3><p>私有同义词只能在当前模式内访问，且不能与当前模式的对象同名</p>
+<p>公有同义词可被所有的数据库用户访问使用</p>
+<h2 id="表空间（用来存放各种应用文件）"><a href="#表空间（用来存放各种应用文件）" class="headerlink" title="表空间（用来存放各种应用文件）"></a>表空间（用来存放各种应用文件）</h2><p>一般分为三种<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ 永久性表空间：一般保存表，过程，索引等数据</span><br><span class="line">$ 临时性表空间：只用于保存系统中短期活动的数据，如排序数据</span><br><span class="line">$ 撤销表空间：用来帮助回退为=未提交的事务数据</span><br></pre></td></tr></table></figure></p>
+<p>那么为什么要创建表空间呢？<br>对不同用户分配不同的表空间，方便管理<br>有利于管理磁盘空间，提高i/o性能</p>
+<h2 id="一些基本的授权"><a href="#一些基本的授权" class="headerlink" title="一些基本的授权"></a>一些基本的授权</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">创建用户没有授权【创建表】</span><br><span class="line">create table student(stu_id number(2),stu_name varchar2(10));</span><br><span class="line">create table student(stu_id number(2),stu_name varchar2(10))</span><br><span class="line">*</span><br><span class="line">第 1 行出现错误:</span><br><span class="line">ORA-01031: 权限不足</span><br><span class="line">?</span><br><span class="line">//使用system用户授权</span><br><span class="line">grant connect,resource to martin; //授权用户connect,resource 权限</span><br><span class="line">grant select on scott.emp to martin; //允许用户查看emp表中记录</span><br><span class="line">grant update on scott.emp to martin; //允许用户修改emp表中记录</span><br></pre></td></tr></table></figure>
+<h2 id="同义词（公有和私有-私有只能被当前模式用户访问）"><a href="#同义词（公有和私有-私有只能被当前模式用户访问）" class="headerlink" title="同义词（公有和私有 //私有只能被当前模式用户访问）"></a>同义词（公有和私有 //私有只能被当前模式用户访问）</h2><p>简化sql语句<br>隐藏对象名称和所有者<br>为分布式数据库的远程对象提供了位置透明性<br>提供对象的公共访问</p>
+<pre><code class="bash">给用户martin授权同义词
+grant create synonym to martin;
+?
+创建私有同义词
+SQL&gt; create synonym sy_emp <span class="keyword">for</span> system.employee;
+?
+同义词已创建。
+?
+SQL&gt; select *from sy_emp;
+?
+创建共有同义词（在物主用户上创建）
+SQL&gt; create public synonym public_sy_emp <span class="keyword">for</span> employee;
+?
+同义词已创建。
+?
+SQL&gt;
+?
+删除私有同义词
+SQL&gt; drop synonym martin.sy_emp;
+?
+同义词已删除。
+?
+SQL&gt;
+?
+删除共有同义词
+SQL&gt; drop public synonym public_sy_emp;
+?
+同义词已删除。
+SQL&gt;
+
+</code></pre>
+<h2 id="创建序列"><a href="#创建序列" class="headerlink" title="创建序列"></a>创建序列</h2><p>和就是生成主键要用的，感觉不好用</p>
+<pre><code class="bash">SQL&gt; create sequence seq1
+  2  start with 10
+  3  increment by 1
+  4  maxvalue 2000
+  5  nocycle
+  6  cache 30;
+?
+序列已创建。
+?
+SQL&gt; create table toys(toyid number(2), toyname varchar2(10),toyprice number(4,2));
+?
+表已创建。
+?
+SQL&gt; insert into toys(toyid,toyname,toyprice)values(seql.nextval,<span class="string">'杰尼龟'</span>,25);
+insert into toys(toyid,toyname,toyprice)values(seql.nextval,<span class="string">'杰尼龟'</span>,25)
+                                               *
+第 1 行出现错误:
+ORA-02289: 序列不存在
+?
+?
+SQL&gt; insert into toys(toyid,toyname,toyprice)values(seq1.nextval,<span class="string">'杰尼龟'</span>,25);
+?
+已创建 1 行。
+?
+SQL&gt; insert into toys(toyid,toyname,toyprice)values(seq1.nextval,<span class="string">'憨八龟'</span>,35);
+?
+已创建 1 行。
+?
+SQL&gt; select * from toys;
+?
+     TOYID TOYNAME                TOYPRICE
+---------- -------------------- ----------
+        11 杰尼龟                       25
+        12 憨八龟                       35
+?
+SQL&gt; create table tots(totid number(2), totname varchar2(10),totprice number(4,2));
+?
+表已创建。
+?
+SQL&gt; insert into tots(totid,totname,totprice)values(seq1.nextval,<span class="string">'小火龙'</span>,40);
+?
+已创建 1 行。
+?
+SQL&gt; insert into tots(totid,totname,totprice)values(seq1.nextval,<span class="string">'毒龙钻'</span>,80);
+?
+已创建 1 行。
+?
+SQL&gt; select * from tots;
+?
+     TOTID TOTNAME                TOTPRICE
+---------- -------------------- ----------
+        14 小火龙                       40
+        15 毒龙钻                       80
+
+</code></pre>
+<h2 id="反向键索引"><a href="#反向键索引" class="headerlink" title="反向键索引"></a>反向键索引</h2><p>目的：比如索引值是一个自动增长的列<br>多个用户对集中在少数块上的索引行进行修改，容易引起资源的争用，比如对数据块的等待。此时建立反向索 引。<br>语法：CREATE INDEX index_REVERSE_EMPNO ON table (column) REVERSE;</p>
+<h2 id="位图索引"><a href="#位图索引" class="headerlink" title="位图索引"></a>位图索引</h2><p>1、 何时创建：<br>列中有非常多的重复的值时候。例如某列保存了 “性别”信息。<br>Where 条件中包含了很多OR操作符。<br>较少的update操作，因为要相应的跟新所有的bitmap<br>2、 结构：位图索引使用位图作为键值，对于表中的每一数据行位图包含了TRUE(1)、FALSE(0)、或NULL值。<br>3、 优点：位图以一种压缩格式存放，因此占用的磁盘空间比标准索引要小得多<br>4、 语法：CREATE BITMAP INDEX index ON table (column[, column]…);</p>
+<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>1、 何时创建：当某列任意两行的值都不相同<br>2、 当建立Primary Key(主键)或者Unique constraint(唯一约束)时，唯一索引将被自动建立<br>3、 语法：CREATE UNIQUE INDEX index ON table (column);</p>
+<h2 id="熟练并背诵"><a href="#熟练并背诵" class="headerlink" title="熟练并背诵"></a>熟练并背诵</h2><p>数据库建立索引的原则<br>1，确定针对该表的操作是大量的查询操作还是大量的增删改操作。<br>?<br>2，尝试建立索引来帮助特定的查询。检查自己的sql语句，为那些频繁在where子句中出现的字段建立索引。<br>?<br>3，尝试建立复合索引来进一步提高系统性能。修改复合索引将消耗更长时间，同时，复合索引也占磁盘空间。<br>?<br>4，对于小型的表，建立索引可能会影响性能<br>?<br>5，应该避免对具有较少值的字段进行索引。<br>?<br>6，避免选择大型数据类型的列作为索引。<br>?<br>索引建立的原则<br>?<br>索引查询是数据库中重要的记录查询方法，要不要进入索引以及在那些字段上建立索引都要和实际数据库系统的查询要求结合来考虑，下面给出实际中的一些通用的原则：<br>?</p>
+<ol>
+<li>在经常用作过滤器的字段上建立索引；<br>?</li>
+<li>在SQL语句中经常进行GROUP BY、ORDER BY的字段上建立索引；<br>?</li>
+<li>在不同值较少的字段上不必要建立索引，如性别字段；<br>?</li>
+<li>对于经常存取的列避免建立索引；<br>?</li>
+<li>用于联接的列（主健/外健）上建立索引；<br>?</li>
+<li>在经常存取的多个列上建立复合索引，但要注意复合索引的建立顺序要按照使用的频度来确定；<br>?</li>
+<li>缺省情况下建立的是非簇集索引，但在以下情况下最好考虑簇集索引，如：含有有限数目（不是很少）唯一的列；进行大范围的查询；充分的利用索引可以减少表扫描I/0的次数，有效的避免对整表的搜索。当然合理的索引要建立在对各种查询的分析和预测中，也取决于DBA的所设计的数据库结构。</li>
+</ol>
+<h2 id="范围分区（超好用，就是麻烦）"><a href="#范围分区（超好用，就是麻烦）" class="headerlink" title="范围分区（超好用，就是麻烦）"></a>范围分区（超好用，就是麻烦）</h2><pre><code class="bash">范围分区（数字类型）
+create table graderecord  
+  (  
+  sno varchar2(10),  
+  sname varchar2(20),  
+  dormitory varchar2(3),  
+  grade int  
+)  
+partition by range(grade)  
+(  
+  partition bujige values less than(60), --不及格  
+  partition jige values less than(85), --及格  
+  partition youxiu values less than(maxvalue) --优秀  
+)
+?
+范围分区（日期类型）
+create table sales
+(
+       sales_id number,
+       product_id varchar2(5),
+       sales_date date not null,
+       sales_cost number(10),
+       areacode varchar2(10)
+)
+partition by range(sales_date)
+(
+       partition p1 values less than(to_date(<span class="string">'2013-04-1'</span>,<span class="string">'yyyy-mm-dd'</span>)),
+       partition p2 values less than(to_date(<span class="string">'2013-07-1'</span>,<span class="string">'yyyy-mm-dd'</span>)),
+       partition p3 values less than(to_date(<span class="string">'2013-10-1'</span>,<span class="string">'yyyy-mm-dd'</span>)),
+       partition p4 values less than(to_date(<span class="string">'2014-01-1'</span>,<span class="string">'yyyy-mm-dd'</span>)),
+       partition p5 values less than(maxvalue)
+);
+insert into sales values(1,<span class="string">'22'</span>,to_date(<span class="string">'2013-04-1'</span>,<span class="string">'yyyy-mm-dd'</span>),92,<span class="string">'美国'</span>);
+insert into sales values(2,<span class="string">'22'</span>,to_date(<span class="string">'2013-05-1'</span>,<span class="string">'yyyy-mm-dd'</span>),92,<span class="string">'韩国'</span>);  
+insert into sales values(3,<span class="string">'23'</span>,to_date(<span class="string">'2013-08-1'</span>,<span class="string">'yyyy-mm-dd'</span>),92,<span class="string">'中国'</span>);  
+insert into sales values(4,<span class="string">'24'</span>,to_date(<span class="string">'2013-11-1'</span>,<span class="string">'yyyy-mm-dd'</span>),92,<span class="string">'日本'</span>);  
+insert into sales values(5,<span class="string">'25'</span>,to_date(<span class="string">'2013-09-1'</span>,<span class="string">'yyyy-mm-dd'</span>),92,<span class="string">'俄罗斯'</span>); 
+
+</code></pre>
+<h3 id="查询分区情况"><a href="#查询分区情况" class="headerlink" title="查询分区情况"></a>查询分区情况</h3><pre><code class="bash">查询分区情况
+SELECT table_name,partition_name,tablespace_name 
+FROM user_tab_partitions 
+WHERE table_name=UPPER(<span class="string">'sales_interval1'</span>);
+
+</code></pre>
+<h2 id="间隔分区表，会自动创建分区"><a href="#间隔分区表，会自动创建分区" class="headerlink" title="间隔分区表，会自动创建分区"></a>间隔分区表，会自动创建分区</h2><pre><code class="bash">===========================================================
+|          间隔分区表
+============================================================
+*/
+CREATE TABLE sales_interval1
+(sales_id   NUMBER NOT NULL,
+ product_id   VARCHAR2(5),
+ sales_date   DATE,
+ sales_cost   NUMBER(10),
+ areacode    VARCHAR2(5)
+)
+PARTITION BY RANGE(sales_date)
+INTERVAL(NUMTOYMINTERVAL(1,<span class="string">'YEAR'</span>))
+(PARTITION part1 VALUES LESS THAN (to_date(<span class="string">'2011/01/01'</span>,<span class="string">'yyyy/mm/dd'</span>)))
+
+</code></pre>
+<h2 id="使用分区查找信息"><a href="#使用分区查找信息" class="headerlink" title="使用分区查找信息"></a>使用分区查找信息</h2><pre><code class="bash">查看分区并查询信息
+SQL&gt; select table_name,partition_name from user_tab_partitions <span class="built_in">where</span> table_name=upper(<span class="string">'sales2'</span>);
+?
+TABLE_NAME
+------------------------------------------------------------
+PARTITION_NAME
+------------------------------------------------------------
+SALES2
+P1
+?
+SALES2
+SYS_P24
+?
+?
+SQL&gt; select * from sales2 partition(sys_p24);
+?
+  SALES_ID PRODUCT_ID SALES_DATE     SALES_COST AREACODE
+---------- ---------- -------------- ---------- --------------------
+         4 24         01-11月-13             92 日本
+         5 25         01-9月 -13             92 俄罗斯
+?
+SQL&gt; select * from sales2 partition(p1);
+?
+  SALES_ID PRODUCT_ID SALES_DATE     SALES_COST AREACODE
+---------- ---------- -------------- ---------- --------------------
+         1 22         01-4月 -13             92 美国
+         2 22         01-5月 -13             92 韩国
+         3 23         01-8月 -13             92 中国
+?
+SQL&gt;
+?
+
+</code></pre>
+<h2 id="今天我是听着Ragga-Bomb-Skrillex完成的"><a href="#今天我是听着Ragga-Bomb-Skrillex完成的" class="headerlink" title="今天我是听着Ragga Bomb -Skrillex完成的"></a>今天我是听着Ragga Bomb -Skrillex完成的</h2>
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#回顾"><span class="toc-number">1.</span> <span class="toc-text">回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是索引"><span class="toc-number">1.1.</span> <span class="toc-text">什么是索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#索引分为几类"><span class="toc-number">1.2.</span> <span class="toc-text">索引分为几类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#序列可以作为主键，还有什么可以作为主键？"><span class="toc-number">1.3.</span> <span class="toc-text">序列可以作为主键，还有什么可以作为主键？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#间隔分区和范围分区的区别"><span class="toc-number">1.4.</span> <span class="toc-text">间隔分区和范围分区的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#私有同义词和共有同义词的区别"><span class="toc-number">1.5.</span> <span class="toc-text">私有同义词和共有同义词的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表空间（用来存放各种应用文件）"><span class="toc-number">2.</span> <span class="toc-text">表空间（用来存放各种应用文件）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些基本的授权"><span class="toc-number">3.</span> <span class="toc-text">一些基本的授权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同义词（公有和私有-私有只能被当前模式用户访问）"><span class="toc-number">4.</span> <span class="toc-text">同义词（公有和私有 //私有只能被当前模式用户访问）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建序列"><span class="toc-number">5.</span> <span class="toc-text">创建序列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反向键索引"><span class="toc-number">6.</span> <span class="toc-text">反向键索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#位图索引"><span class="toc-number">7.</span> <span class="toc-text">位图索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#唯一索引"><span class="toc-number">8.</span> <span class="toc-text">唯一索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#熟练并背诵"><span class="toc-number">9.</span> <span class="toc-text">熟练并背诵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#范围分区（超好用，就是麻烦）"><span class="toc-number">10.</span> <span class="toc-text">范围分区（超好用，就是麻烦）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询分区情况"><span class="toc-number">10.1.</span> <span class="toc-text">查询分区情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#间隔分区表，会自动创建分区"><span class="toc-number">11.</span> <span class="toc-text">间隔分区表，会自动创建分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用分区查找信息"><span class="toc-number">12.</span> <span class="toc-text">使用分区查找信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#今天我是听着Ragga-Bomb-Skrillex完成的"><span class="toc-number">13.</span> <span class="toc-text">今天我是听着Ragga Bomb -Skrillex完成的</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/01/Oracle数据库应用/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&text=Oracle数据库应用"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&title=Oracle数据库应用"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&is_video=false&description=Oracle数据库应用"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Oracle数据库应用&body=Check out this article: http://yoursite.com/2018/11/01/Oracle数据库应用/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&title=Oracle数据库应用"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&title=Oracle数据库应用"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&title=Oracle数据库应用"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&title=Oracle数据库应用"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/01/Oracle数据库应用/&name=Oracle数据库应用&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

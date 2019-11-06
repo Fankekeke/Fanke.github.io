@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Message Broker是一种消息验证、传输、路由的架构模式  消息路由到一个或多个目的地 消息转化为其他的表现方式 执行消息的聚集、消息的分解，并将结果发送到他们的目的地，然后重新组合相应返回给消息用户 调用Web服务来检索数据 响应事件或错误 使用发布-订阅模式来提供内容或基于主题的消息路由   AMQP是Advanced Message Queuing Protocol的简称，它是一个面">
+<meta name="keywords" content="RabbitMQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始的消息RabbitMQ">
+<meta property="og:url" content="http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="Message Broker是一种消息验证、传输、路由的架构模式  消息路由到一个或多个目的地 消息转化为其他的表现方式 执行消息的聚集、消息的分解，并将结果发送到他们的目的地，然后重新组合相应返回给消息用户 调用Web服务来检索数据 响应事件或错误 使用发布-订阅模式来提供内容或基于主题的消息路由   AMQP是Advanced Message Queuing Protocol的简称，它是一个面">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-11-06T14:49:01.365Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始的消息RabbitMQ">
+<meta name="twitter:description" content="Message Broker是一种消息验证、传输、路由的架构模式  消息路由到一个或多个目的地 消息转化为其他的表现方式 执行消息的聚集、消息的分解，并将结果发送到他们的目的地，然后重新组合相应返回给消息用户 调用Web服务来检索数据 响应事件或错误 使用发布-订阅模式来提供内容或基于主题的消息路由   AMQP是Advanced Message Queuing Protocol的简称，它是一个面">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>从零开始的消息RabbitMQ</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/02/04/BRE-TH-LESS/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/01/21/Rabbit交换器/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&text=从零开始的消息RabbitMQ"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&title=从零开始的消息RabbitMQ"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&is_video=false&description=从零开始的消息RabbitMQ"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=从零开始的消息RabbitMQ&body=Check out this article: http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&title=从零开始的消息RabbitMQ"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&title=从零开始的消息RabbitMQ"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&title=从零开始的消息RabbitMQ"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&title=从零开始的消息RabbitMQ"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&name=从零开始的消息RabbitMQ&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引入依赖"><span class="toc-number">1.</span> <span class="toc-text">引入依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rabbitmq配置"><span class="toc-number">2.</span> <span class="toc-text">Rabbitmq配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建管理配置-发送消息"><span class="toc-number">2.1.</span> <span class="toc-text">创建管理配置 发送消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接受消息"><span class="toc-number">2.2.</span> <span class="toc-text">接受消息</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        从零开始的消息RabbitMQ
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-01-23T07:26:36.000Z" itemprop="datePublished">2019-01-23</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/RabbitMQ/">RabbitMQ</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Message Broker是一种消息验证、传输、路由的架构模式</p>
+<ul>
+<li>消息路由到一个或多个目的地</li>
+<li>消息转化为其他的表现方式</li>
+<li>执行消息的聚集、消息的分解，并将结果发送到他们的目的地，然后重新组合相应返回给消息用户</li>
+<li>调用Web服务来检索数据</li>
+<li>响应事件或错误</li>
+<li>使用发布-订阅模式来提供内容或基于主题的消息路由</li>
+</ul>
+<hr>
+<p>AMQP是Advanced Message Queuing Protocol的简称，它是一个面向消息中间件的开放式标准应用层协议</p>
+<ul>
+<li>消息方向</li>
+<li>消息队列</li>
+<li>消息路由（包括：点到点和发布-订阅模式）</li>
+<li>可靠性</li>
+<li>安全性</li>
+</ul>
+<p>RabbitMQ是一个由erlang开发的AMQP（高级消息队列协议）的开源实现</p>
+<ul>
+<li>Message：消息，消息是不具名的，由消息头和消息体组成，消息体是不透明的，而消息头是由一系列可选属性组成，这些属性包括routing-key（路由键），priority（相对于其他消息的优先权），delivery-mode（指出该消息可能需要持久性存储）</li>
+<li>Publisher：消息的生产者，也是一个向交换器发布消息的客户端应用程序</li>
+<li>Exchange：交换器，用来接收生产者发送的消息并将这些消息的路由给服务器中的队列，Exchange有四种类型：direct（默认），fanout，topic，headers</li>
+<li>Queue：用来给保存消息直到发送给消费者，它是消息的容器，也是消息的终点。一个消息可以投入一个或多个队列，消息一直在队列里面，等待消费者链接这个队列将其取走</li>
+<li>Binding：绑定，用于消息队列和交换器之间的关联，一个绑定就是基于路由键将交换器和消息队列连接起来的路由规则，所以可以将交换器理解成一个由路由绑定构成的路由表，Exchange和Queue的绑定可以是多对多的关系</li>
+<li>Connection：网络连接，如一个tcp连接</li>
+<li>Consumer：消息的消费者，表示一个从消息队列取得消息的客户端应用程序</li>
+<li>Virtual Host：虚拟主机，表示一批交换器，消息队列和相关对象</li>
+<li>Broker：表示消息队列服务器实体</li>
+</ul>
+<h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Rabbitmq配置"><a href="#Rabbitmq配置" class="headerlink" title="Rabbitmq配置"></a>Rabbitmq配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用户名</span></span><br><span class="line">spring.rabbitmq.username=guest</span><br><span class="line"><span class="comment">#密码</span></span><br><span class="line">spring.rabbitmq.password=guest</span><br><span class="line"><span class="comment">#服务器ip</span></span><br><span class="line">spring.rabbitmq.host=localhost</span><br><span class="line"><span class="comment">#虚拟空间地址</span></span><br><span class="line">spring.rabbitmq.virtual-host=/</span><br><span class="line"><span class="comment">#端口号</span></span><br><span class="line">spring.rabbitmq.port=5672</span><br><span class="line"><span class="comment">#配置发布消息确认回调</span></span><br><span class="line">spring.rabbitmq.publisher-confirms=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>配置序列化转换器<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义消息转换器，默认是jdk的序列化转换器，我们自定义为json的</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAMQPConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MessageConverter <span class="title">messageConverter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Jackson2JsonMessageConverter();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="创建管理配置-发送消息"><a href="#创建管理配置-发送消息" class="headerlink" title="创建管理配置 发送消息"></a>创建管理配置 发送消息</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringbootRabbitmqApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	AmqpAdmin amqpAdmin;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">create</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="comment">//创建Exchange</span></span><br><span class="line">		amqpAdmin.declareExchange( <span class="keyword">new</span> DirectExchange( <span class="string">"exchange.direct"</span>) );</span><br><span class="line">		amqpAdmin.declareExchange( <span class="keyword">new</span> FanoutExchange( <span class="string">"exchange.fanout"</span>) );</span><br><span class="line">		amqpAdmin.declareExchange( <span class="keyword">new</span> TopicExchange( <span class="string">"exchange.topic"</span>) );</span><br><span class="line"></span><br><span class="line">		<span class="comment">//创建Queue</span></span><br><span class="line">		amqpAdmin.declareQueue( <span class="keyword">new</span> Queue( <span class="string">"direct.queue"</span> , <span class="keyword">true</span> ) );</span><br><span class="line">		amqpAdmin.declareQueue( <span class="keyword">new</span> Queue( <span class="string">"fanout.queue"</span> , <span class="keyword">true</span> ) );</span><br><span class="line"></span><br><span class="line">		<span class="comment">//绑定Queue</span></span><br><span class="line">		amqpAdmin.declareBinding( <span class="keyword">new</span> Binding( <span class="string">"direct.queue"</span> , Binding.DestinationType.QUEUE , <span class="string">"exchange.direct"</span> , <span class="string">"direct.queue"</span> , <span class="keyword">null</span> ) );</span><br><span class="line">		amqpAdmin.declareBinding( <span class="keyword">new</span> Binding( <span class="string">"fanout.queue"</span> , Binding.DestinationType.QUEUE , <span class="string">"exchange.direct"</span> , <span class="string">"fanout.queue"</span> , <span class="keyword">null</span> ) );</span><br><span class="line">		amqpAdmin.declareBinding( <span class="keyword">new</span> Binding( <span class="string">"direct.queue"</span> , Binding.DestinationType.QUEUE , <span class="string">"exchange.fanout"</span> , <span class="string">""</span> , <span class="keyword">null</span> ) );</span><br><span class="line">		amqpAdmin.declareBinding( <span class="keyword">new</span> Binding( <span class="string">"fanout.queue"</span> , Binding.DestinationType.QUEUE , <span class="string">"exchange.fanout"</span> , <span class="string">""</span> , <span class="keyword">null</span> ) );</span><br><span class="line">		amqpAdmin.declareBinding( <span class="keyword">new</span> Binding( <span class="string">"direct.queue"</span> , Binding.DestinationType.QUEUE , <span class="string">"exchange.topic"</span> , <span class="string">"direct.#"</span> , <span class="keyword">null</span> ) );</span><br><span class="line">		amqpAdmin.declareBinding( <span class="keyword">new</span> Binding( <span class="string">"fanout.queue"</span> , Binding.DestinationType.QUEUE , <span class="string">"exchange.topic"</span> , <span class="string">"direct.*"</span> , <span class="keyword">null</span> ) );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send2Direct</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Map&lt;String , Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		map.put( <span class="string">"msg"</span> , <span class="string">"这是一条点对点消息"</span> );</span><br><span class="line">		map.put( <span class="string">"data"</span> , Arrays.asList(<span class="string">"helloworld"</span> , <span class="number">123</span> , <span class="keyword">true</span>) );</span><br><span class="line"></span><br><span class="line">		rabbitTemplate.convertAndSend( <span class="string">"exchange.direct"</span> , <span class="string">"direct.queue"</span> , map );</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send2Topic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Map&lt;String , Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		map.put( <span class="string">"msg"</span> , <span class="string">"这是一条广播消息"</span> );</span><br><span class="line">		map.put( <span class="string">"data"</span> , Arrays.asList(<span class="string">"topic消息"</span> , <span class="number">123</span> , <span class="keyword">true</span>) );</span><br><span class="line"></span><br><span class="line">		rabbitTemplate.convertAndSend( <span class="string">"exchange.fanout"</span> , <span class="string">""</span>, map );</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Object o = rabbitTemplate.receiveAndConvert( <span class="string">"direct.queue"</span> );</span><br><span class="line">		o.getClass();</span><br><span class="line">		System.out.println(o.getClass());</span><br><span class="line">		System.out.println(o);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="接受消息"><a href="#接受消息" class="headerlink" title="接受消息"></a>接受消息</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">启动类 </span><br><span class="line"><span class="meta">@EnableRabbit</span></span><br><span class="line">-------------------------------------------</span><br><span class="line"><span class="meta">@RabbitListener</span>(queues = <span class="string">"fanout.queue"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receive</span><span class="params">(Message message)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"收到消息 : "</span> + <span class="keyword">new</span> String(message.getBody()));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>@EnableRabbit</p>
+</blockquote>
+<p>@EnableRabbit和@Configuration一起使用，可以加在类或者方法上，这个注解开启了容器对注册的bean的@RabbitListener检查。</p>
+<blockquote>
+<p>@RabbitListener</p>
+</blockquote>
+<p>@RabbitListener用于注册Listener时使用的信息：如queue，exchange，key、ListenerContainerFactory和RabbitAdmin的bean name。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RabbitListener</span>(containerFactory = <span class="string">"rabbitListenerContainerFactory"</span>, bindings = <span class="meta">@QueueBinding</span>(</span><br><span class="line">        value = <span class="meta">@Queue</span>(value = <span class="string">"$&#123;mq.config.queue&#125;"</span>, durable = <span class="string">"true"</span>),</span><br><span class="line">        exchange = <span class="meta">@Exchange</span>(value = <span class="string">"$&#123;mq.config.exchange&#125;"</span>, type = ExchangeTypes.TOPIC),</span><br><span class="line">        key = <span class="string">"$&#123;mq.config.key&#125;"</span>), admin = <span class="string">"rabbitAdmin"</span>)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>@RabbitHandler</p>
+</blockquote>
+<p>@RabbitListener 和 @RabbitHandler结合使用，不同类型的消息使用不同的方法来处理。</p>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引入依赖"><span class="toc-number">1.</span> <span class="toc-text">引入依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rabbitmq配置"><span class="toc-number">2.</span> <span class="toc-text">Rabbitmq配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建管理配置-发送消息"><span class="toc-number">2.1.</span> <span class="toc-text">创建管理配置 发送消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接受消息"><span class="toc-number">2.2.</span> <span class="toc-text">接受消息</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&text=从零开始的消息RabbitMQ"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&title=从零开始的消息RabbitMQ"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&is_video=false&description=从零开始的消息RabbitMQ"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=从零开始的消息RabbitMQ&body=Check out this article: http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&title=从零开始的消息RabbitMQ"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&title=从零开始的消息RabbitMQ"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&title=从零开始的消息RabbitMQ"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&title=从零开始的消息RabbitMQ"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/01/23/从零开始的消息RabbitMQ/&name=从零开始的消息RabbitMQ&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Lambda表达式和函数式接口它允许我们将函数当成参数传递给某个方法，或者把代码本身当作数据处理 最简单的Lambda表达式可由逗号分隔的参数列表、-&amp;gt;符号和语句块组成1Arrays.asList( &quot;a&quot;, &quot;b&quot;, &quot;d&quot; ).forEach( e -&amp;gt; System.out.println( e ) ); 如果Lambda表达式需要更复杂的语句块，则可以使用花括号将该语句块括起">
+<meta name="keywords" content="Java 高级">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始的JAVA8">
+<meta property="og:url" content="http://yoursite.com/2019/10/07/从零开始的Java8/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="Lambda表达式和函数式接口它允许我们将函数当成参数传递给某个方法，或者把代码本身当作数据处理 最简单的Lambda表达式可由逗号分隔的参数列表、-&amp;gt;符号和语句块组成1Arrays.asList( &quot;a&quot;, &quot;b&quot;, &quot;d&quot; ).forEach( e -&amp;gt; System.out.println( e ) ); 如果Lambda表达式需要更复杂的语句块，则可以使用花括号将该语句块括起">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/44770-73405c5b1812f6e7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/728/format/webp">
+<meta property="og:updated_time" content="2019-11-06T14:35:52.137Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始的JAVA8">
+<meta name="twitter:description" content="Lambda表达式和函数式接口它允许我们将函数当成参数传递给某个方法，或者把代码本身当作数据处理 最简单的Lambda表达式可由逗号分隔的参数列表、-&amp;gt;符号和语句块组成1Arrays.asList( &quot;a&quot;, &quot;b&quot;, &quot;d&quot; ).forEach( e -&amp;gt; System.out.println( e ) ); 如果Lambda表达式需要更复杂的语句块，则可以使用花括号将该语句块括起">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/44770-73405c5b1812f6e7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/728/format/webp">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>从零开始的JAVA8</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/10/10/RESTful API/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/09/28/Bat命令详解/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/10/07/从零开始的Java8/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/10/07/从零开始的Java8/&text=从零开始的JAVA8"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/10/07/从零开始的Java8/&title=从零开始的JAVA8"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/10/07/从零开始的Java8/&is_video=false&description=从零开始的JAVA8"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=从零开始的JAVA8&body=Check out this article: http://yoursite.com/2019/10/07/从零开始的Java8/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/10/07/从零开始的Java8/&title=从零开始的JAVA8"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/10/07/从零开始的Java8/&title=从零开始的JAVA8"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/10/07/从零开始的Java8/&title=从零开始的JAVA8"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/10/07/从零开始的Java8/&title=从零开始的JAVA8"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/10/07/从零开始的Java8/&name=从零开始的JAVA8&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda表达式和函数式接口"><span class="toc-number">1.</span> <span class="toc-text">Lambda表达式和函数式接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数式接口"><span class="toc-number">1.1.</span> <span class="toc-text">函数式接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stream"><span class="toc-number">1.2.</span> <span class="toc-text">Stream</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        从零开始的JAVA8
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-10-07T11:24:36.000Z" itemprop="datePublished">2019-10-07</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Java-高级/">Java 高级</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><img src="https://upload-images.jianshu.io/upload_images/44770-73405c5b1812f6e7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/728/format/webp" alt></p>
+<h2 id="Lambda表达式和函数式接口"><a href="#Lambda表达式和函数式接口" class="headerlink" title="Lambda表达式和函数式接口"></a>Lambda表达式和函数式接口</h2><p>它允许我们将函数当成参数传递给某个方法，或者把代码本身当作数据处理</p>
+<p>最简单的Lambda表达式可由逗号分隔的参数列表、-&gt;符号和语句块组成<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Arrays.asList( <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"d"</span> ).forEach( e -&gt; System.out.println( e ) );</span><br></pre></td></tr></table></figure></p>
+<p>如果Lambda表达式需要更复杂的语句块，则可以使用花括号将该语句块括起来，类似于Java中的函数体<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Arrays.asList( <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"d"</span> ).forEach( e -&gt; &#123;</span><br><span class="line">    System.out.print( e );</span><br><span class="line">    System.out.print( e );</span><br><span class="line">&#125; );</span><br></pre></td></tr></table></figure></p>
+<h3 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h3><p>lambad前置条件：必须是函数式接口才可以使用lambad表达式</p>
+<blockquote>
+<p>函数式接口特征</p>
+<ul>
+<li>接口中标注了@Functionallnterface注解</li>
+<li>接口中只有一个抽象方法</li>
+<li>接口中有一个抽象方法 并且包含了Object类的其他抽象方法</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>实例方法引用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ReferenceTest test = <span class="keyword">new</span> ReferenceTest();</span><br><span class="line">    Function&lt;String,String&gt; f = test::sayHello;</span><br><span class="line">    f.apply(<span class="string">"hello"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>构造方法引用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyLOVE</span> </span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">getLove</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    MyLove f = String::<span class="keyword">new</span>;</span><br><span class="line">    f.getLove();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h3><p>Java 8 API添加了一个新的抽象称为流Stream，可以让你以一种声明的方式处理数据。</p>
+<p>Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象。</p>
+<p>这种风格将要处理的元素集合看作一种流， 流在管道中传输， 并且可以在管道的节点上进行处理， 比如筛选， 排序，聚合等。</p>
+<p>元素流在管道中经过中间操作（intermediate operation）的处理，最后由最终操作(terminal operation)得到前面处理的结果。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+--------------------+       +------+   +------+   +---+   +-------+</span><br><span class="line">| stream of elements +-----&gt; |filter+-&gt; |sorted+-&gt; |map+-&gt; |collect|</span><br><span class="line">+--------------------+       +------+   +------+   +---+   +-------+</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; transactionsIds = </span><br><span class="line">widgets.stream()</span><br><span class="line">             .filter(b -&gt; b.getColor() == RED)</span><br><span class="line">             .sorted((x,y) -&gt; x.getWeight() - y.getWeight())</span><br><span class="line">             .mapToInt(Widget::getWeight)</span><br><span class="line">             .sum();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>元素是特定类型的对象，形成一个队列。 Java中的Stream并不会存储元素，而是按需计算。</li>
+<li>数据源 流的来源。 可以是集合，数组，I/O channel， 产生器generator 等。</li>
+<li>聚合操作 类似SQL语句一样的操作， 比如filter, map, reduce, find, match, sorted等。<blockquote>
+<p>生成流</p>
+</blockquote>
+</li>
+</ul>
+<p>stream() − 为集合创建串行流。<br>parallelStream() − 为集合创建并行流。</p>
+<hr>
+<p>未完</p>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lambda表达式和函数式接口"><span class="toc-number">1.</span> <span class="toc-text">Lambda表达式和函数式接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数式接口"><span class="toc-number">1.1.</span> <span class="toc-text">函数式接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stream"><span class="toc-number">1.2.</span> <span class="toc-text">Stream</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/10/07/从零开始的Java8/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/10/07/从零开始的Java8/&text=从零开始的JAVA8"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/10/07/从零开始的Java8/&title=从零开始的JAVA8"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/10/07/从零开始的Java8/&is_video=false&description=从零开始的JAVA8"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=从零开始的JAVA8&body=Check out this article: http://yoursite.com/2019/10/07/从零开始的Java8/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/10/07/从零开始的Java8/&title=从零开始的JAVA8"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/10/07/从零开始的Java8/&title=从零开始的JAVA8"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/10/07/从零开始的Java8/&title=从零开始的JAVA8"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/10/07/从零开始的Java8/&title=从零开始的JAVA8"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/10/07/从零开始的Java8/&name=从零开始的JAVA8&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

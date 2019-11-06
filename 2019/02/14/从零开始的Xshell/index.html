@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang=ja>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="R1qagnyoKf">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Shell 既是一种命令语言，又是一种程序设计语言。 Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务 hello12#!/bin/bashecho &quot;Hello World !&quot; #! 是一个约定的标记，它告诉系统这个脚本需要什么解释器来执行，即使用哪一种 Shell。 echo 命令用于向窗口输出文本。  运行 Shell 脚本有两种方法  作为">
+<meta name="keywords" content="SH 脚本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始的Xshell">
+<meta property="og:url" content="http://yoursite.com/2019/02/14/从零开始的Xshell/index.html">
+<meta property="og:site_name" content="悲伤的桔子树">
+<meta property="og:description" content="Shell 既是一种命令语言，又是一种程序设计语言。 Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务 hello12#!/bin/bashecho &quot;Hello World !&quot; #! 是一个约定的标记，它告诉系统这个脚本需要什么解释器来执行，即使用哪一种 Shell。 echo 命令用于向窗口输出文本。  运行 Shell 脚本有两种方法  作为">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2019-11-06T14:47:14.527Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始的Xshell">
+<meta name="twitter:description" content="Shell 既是一种命令语言，又是一种程序设计语言。 Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务 hello12#!/bin/bashecho &quot;Hello World !&quot; #! 是一个约定的标记，它告诉系统这个脚本需要什么解释器来执行，即使用哪一种 Shell。 echo 命令用于向窗口输出文本。  运行 Shell 脚本有两种方法  作为">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>从零开始的Xshell</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/03/16/Linux基本操作/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/02/09/女生徒/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">前回の</span>
+      <span id="i-next" class="info" style="display:none;">后回の</span>
+      <span id="i-top" class="info" style="display:none;">back_to_top</span>
+      <span id="i-share" class="info" style="display:none;">Share</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/02/14/从零开始的Xshell/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&text=从零开始的Xshell"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&title=从零开始的Xshell"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&is_video=false&description=从零开始的Xshell"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=从零开始的Xshell&body=Check out this article: http://yoursite.com/2019/02/14/从零开始的Xshell/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&title=从零开始的Xshell"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&title=从零开始的Xshell"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&title=从零开始的Xshell"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&title=从零开始的Xshell"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&name=从零开始的Xshell&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hello"><span class="toc-number">1.</span> <span class="toc-text">hello</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量"><span class="toc-number">2.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串"><span class="toc-number">2.1.</span> <span class="toc-text">字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shell传递参数"><span class="toc-number">3.</span> <span class="toc-text">Shell传递参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shell-基本运算符"><span class="toc-number">4.</span> <span class="toc-text">Shell 基本运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#echo"><span class="toc-number">5.</span> <span class="toc-text">echo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#test"><span class="toc-number">6.</span> <span class="toc-text">test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流程控制"><span class="toc-number">7.</span> <span class="toc-text">流程控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数"><span class="toc-number">8.</span> <span class="toc-text">函数</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        从零开始的Xshell
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">悲伤的桔子树</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-02-14T15:45:36.000Z" itemprop="datePublished">2019-02-14</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/SH-脚本/">SH 脚本</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Shell 既是一种命令语言，又是一种程序设计语言。</p>
+<p>Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务</p>
+<h3 id="hello"><a href="#hello" class="headerlink" title="hello"></a>hello</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Hello World !"</span></span><br></pre></td></tr></table></figure>
+<p>#! 是一个约定的标记，它告诉系统这个脚本需要什么解释器来执行，即使用哪一种 Shell。</p>
+<p>echo 命令用于向窗口输出文本。</p>
+<blockquote>
+<p>运行 Shell 脚本有两种方法</p>
+<ul>
+<li>作为可执行程序<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x ./test.sh  <span class="comment">#使脚本具有执行权限</span></span><br><span class="line">./test.sh  <span class="comment">#执行脚本</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p> 注意，一定要写成 ./test.sh，而不是 test.sh，运行其它二进制的程序也一样，直接写 test.sh，linux 系统会去 PATH 里寻找有没有叫 test.sh 的，而只有 /bin, /sbin, /usr/bin，/usr/sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 test.sh 是会找不到命令的，要用 ./test.sh 告诉系统说，就在当前目录找。</p>
+<ul>
+<li>作为解释器参数<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/bin/sh test.sh</span><br><span class="line">/bin/php test.php</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ul>
+<li>命名只能使用英文字母，数字和下划线，首个字符不能以数字开头。</li>
+<li>中间不能有空格，可以使用下划线（_）。</li>
+<li>不能使用标点符号。</li>
+<li>不能使用bash里的关键字（可用help命令查看保留关键字）。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">your_name=<span class="string">"runoob.com"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>使用变量<br>变量名前面加美元符号<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">your_name=<span class="string">"qinjx"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$your_name</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;your_name&#125;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>只读变量</p>
+</blockquote>
+<p>使用 readonly 命令可以将变量定义为只读变量，只读变量的值不能被改变<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">myUrl=<span class="string">"http://www.google.com"</span></span><br><span class="line"><span class="built_in">readonly</span> myUrl</span><br><span class="line">myUrl=<span class="string">"http://www.baidu.com"</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>删除变量<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unset</span> variable_name</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>变量被删除后不能再次使用。unset 命令不能删除只读变量。</p>
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><blockquote>
+<p>单引号<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str=<span class="string">'this is a string'</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>单引号里的任何字符都会原样输出，单引号字符串中的变量是无效的；</p>
+<p>单引号字串中不能出现单独一个的单引号（对单引号使用转义符后也不行），但可成对出现，作为字符串拼接使用。</p>
+<blockquote>
+<p>双引号<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">your_name=<span class="string">'runoob'</span></span><br><span class="line">str=<span class="string">"Hello, I know you are \"<span class="variable">$your_name</span>\"! \n"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="variable">$str</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>双引号里可以有变量 —<br>双引号里可以出现转义字符</p>
+<blockquote>
+<p>拼接字符串<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">your_name=<span class="string">"runoob"</span></span><br><span class="line"><span class="comment"># 使用双引号拼接</span></span><br><span class="line">greeting=<span class="string">"hello, "</span><span class="variable">$your_name</span><span class="string">" !"</span></span><br><span class="line">greeting_1=<span class="string">"hello, <span class="variable">$&#123;your_name&#125;</span> !"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$greeting</span>  <span class="variable">$greeting_1</span></span><br><span class="line"><span class="comment"># 使用单引号拼接</span></span><br><span class="line">greeting_2=<span class="string">'hello, '</span><span class="variable">$your_name</span><span class="string">' !'</span></span><br><span class="line">greeting_3=<span class="string">'hello, $&#123;your_name&#125; !'</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$greeting_2</span>  <span class="variable">$greeting_3</span></span><br><span class="line"></span><br><span class="line">-----------------------------------</span><br><span class="line"></span><br><span class="line">hello, runoob ! hello, runoob !</span><br><span class="line">hello, runoob ! hello, <span class="variable">$&#123;your_name&#125;</span> !</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>获取字符串长度</p>
+</blockquote>
+<p>从字符串第 2 个字符开始截取 4 个字符<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string=<span class="string">"abcd"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#string&#125;</span> <span class="comment">#输出 4</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>截取字符串<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string=<span class="string">"runoob is a great site"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;string:1:4&#125;</span> <span class="comment"># 输出 unoo</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>查找字符串</p>
+</blockquote>
+<p>字符 i 或 o 的位置(哪个字母先出现就计算哪个)<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string=<span class="string">"runoob is a great site"</span></span><br><span class="line"><span class="built_in">echo</span> `expr index <span class="string">"<span class="variable">$string</span>"</span> io`  <span class="comment"># 输出 4</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Shell 数组</p>
+</blockquote>
+<p>在 Shell 中，用括号来表示数组，数组元素用”空格”符号分割开<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">数组名=(值1 值2 ... 值n)</span><br><span class="line"></span><br><span class="line">array_name=(value0 value1 value2 value3)</span><br><span class="line"></span><br><span class="line">array_name=(</span><br><span class="line">value0</span><br><span class="line">value1</span><br><span class="line">value2</span><br><span class="line">value3</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>获取数组中所有元素<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;array_name[@]&#125;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>获取数组长度<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 取得数组元素的个数</span></span><br><span class="line">length=<span class="variable">$&#123;#array_name[@]&#125;</span></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">length=<span class="variable">$&#123;#array_name[*]&#125;</span></span><br><span class="line"><span class="comment"># 取得数组单个元素的长度</span></span><br><span class="line">lengthn=<span class="variable">$&#123;#array_name[n]&#125;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>注释<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##### 用户配置区 开始 #####</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 这里可以添加脚本描述信息</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">##### 用户配置区 结束  #####</span></span><br><span class="line"></span><br><span class="line">:&lt;&lt;EOF</span><br><span class="line">注释内容...</span><br><span class="line">注释内容...</span><br><span class="line">注释内容...</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">:&lt;&lt;<span class="string">'</span></span><br><span class="line"><span class="string">注释内容...</span></span><br><span class="line"><span class="string">注释内容...</span></span><br><span class="line"><span class="string">注释内容...</span></span><br><span class="line"><span class="string">'</span></span><br><span class="line"></span><br><span class="line">:&lt;&lt;!</span><br><span class="line">注释内容...</span><br><span class="line">注释内容...</span><br><span class="line">注释内容...</span><br><span class="line">!</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="Shell传递参数"><a href="#Shell传递参数" class="headerlink" title="Shell传递参数"></a>Shell传递参数</h3><p>向脚本传递参数，脚本内获取参数的格式为：$n。n 代表一个数字<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Shell 传递参数实例！"</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"执行的文件名：<span class="variable">$0</span>"</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"第一个参数为：<span class="variable">$1</span>"</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"第二个参数为：<span class="variable">$2</span>"</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"第三个参数为：<span class="variable">$3</span>"</span>;</span><br><span class="line"></span><br><span class="line">$ chmod +x test.sh </span><br><span class="line">$ ./test.sh 1 2 3</span><br><span class="line">Shell 传递参数实例！</span><br><span class="line">执行的文件名：./test.sh</span><br><span class="line">第一个参数为：1</span><br><span class="line">第二个参数为：2</span><br><span class="line">第三个参数为：3</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>特殊处理<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"Shell 传递参数实例！"</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"第一个参数为：<span class="variable">$1</span>"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"参数个数为：<span class="variable">$#</span>"</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"传递的参数作为一个字符串显示：$*"</span>;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="Shell-基本运算符"><a href="#Shell-基本运算符" class="headerlink" title="Shell 基本运算符"></a>Shell 基本运算符</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">val=`expr 2 + 2`</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"两数之和为 : <span class="variable">$val</span>"</span></span><br></pre></td></tr></table></figure>
+<p>表达式和运算符之间要有空格，例如 2+2 是不对的，必须写成 2 + 2，这与我们熟悉的大多数编程语言不一样。</p>
+<p>完整的表达式要被 <code></code> 包含，注意这个字符不是常用的单引号，在 Esc 键下边</p>
+<p> a 为 10，变量 b 为 20        </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">运算符</th>
+<th style="text-align:center">说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td style="text-align:right">+</td>
+<td style="text-align:center">加法</td>
+<td><code>expr $a + $b</code> 结果为 30。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-</td>
+<td style="text-align:center">减法</td>
+<td><code>expr $a - $b</code> 结果为 -10。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">*</td>
+<td style="text-align:center">乘法</td>
+<td><code>expr $a \* $b</code> 结果为  200。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">/</td>
+<td style="text-align:center">除法</td>
+<td><code>expr $b / $a</code> 结果为 2。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">%</td>
+<td style="text-align:center">取余</td>
+<td><code>expr $b % $a</code> 结果为 0。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">=</td>
+<td style="text-align:center">赋值</td>
+<td>a=$b 将把变量 b 的值赋给 a。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">==</td>
+<td style="text-align:center">相等</td>
+<td>用于比较两个数字，相同则返回 true。    [ $a == $b ] 返回 false。</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">!=</td>
+<td style="text-align:center">不相等</td>
+<td>用于比较两个数字，不相同则返回 true。    [ $a != $b ] 返回 true。</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">a=10</span><br><span class="line">b=20</span><br><span class="line"></span><br><span class="line">val=`expr <span class="variable">$a</span> + <span class="variable">$b</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"a + b : <span class="variable">$val</span>"</span></span><br><span class="line"></span><br><span class="line">val=`expr <span class="variable">$a</span> - <span class="variable">$b</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"a - b : <span class="variable">$val</span>"</span></span><br><span class="line"></span><br><span class="line">val=`expr <span class="variable">$a</span> \* <span class="variable">$b</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"a * b : <span class="variable">$val</span>"</span></span><br><span class="line"></span><br><span class="line">val=`expr <span class="variable">$b</span> / <span class="variable">$a</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"b / a : <span class="variable">$val</span>"</span></span><br><span class="line"></span><br><span class="line">val=`expr <span class="variable">$b</span> % <span class="variable">$a</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"b % a : <span class="variable">$val</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$a</span> == <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"a 等于 b"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$a</span> != <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"a 不等于 b"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>乘号(*)前边必须加反斜杠()才能实现乘法运算</p>
+<blockquote>
+<p>关系运算符</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">运算符</th>
+<th style="text-align:center">说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td style="text-align:right">-eq</td>
+<td style="text-align:center">检测两个数是否相等，相等返回 true。</td>
+<td>[ $a -eq $b ] 返回 false。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-ne</td>
+<td style="text-align:center">检测两个数是否不相等，不相等返回 true。</td>
+<td>[ $a -ne $b ] 返回 true。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-gt</td>
+<td style="text-align:center">检测左边的数是否大于右边的，如果是，则返回 true。</td>
+<td>[ $a -gt $b ] 返回 false。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-lt</td>
+<td style="text-align:center">检测左边的数是否小于右边的，如果是，则返回 true。</td>
+<td>[ $a -lt $b ] 返回 true。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-ge</td>
+<td style="text-align:center">检测左边的数是否大于等于右边的，如果是，则返回 true。</td>
+<td>[ $a -ge $b ] 返回 false。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-le</td>
+<td style="text-align:center">检测左边的数是否小于等于右边的，如果是，则返回 true。</td>
+<td>[ $a -le $b ] 返回 true。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">a=10</span><br><span class="line">b=20</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$a</span> -eq <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"<span class="variable">$a</span> -eq <span class="variable">$b</span> : a 等于 b"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"<span class="variable">$a</span> -eq <span class="variable">$b</span>: a 不等于 b"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$a</span> -ne <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"<span class="variable">$a</span> -ne <span class="variable">$b</span>: a 不等于 b"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"<span class="variable">$a</span> -ne <span class="variable">$b</span> : a 等于 b"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$a</span> -gt <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"<span class="variable">$a</span> -gt <span class="variable">$b</span>: a 大于 b"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"<span class="variable">$a</span> -gt <span class="variable">$b</span>: a 不大于 b"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$a</span> -lt <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"<span class="variable">$a</span> -lt <span class="variable">$b</span>: a 小于 b"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"<span class="variable">$a</span> -lt <span class="variable">$b</span>: a 不小于 b"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$a</span> -ge <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"<span class="variable">$a</span> -ge <span class="variable">$b</span>: a 大于或等于 b"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"<span class="variable">$a</span> -ge <span class="variable">$b</span>: a 小于 b"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$a</span> -le <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"<span class="variable">$a</span> -le <span class="variable">$b</span>: a 小于或等于 b"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"<span class="variable">$a</span> -le <span class="variable">$b</span>: a 大于 b"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>布尔运算符</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">运算符</th>
+<th style="text-align:center">说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td style="text-align:right">!</td>
+<td style="text-align:center">非运算，表达式为 true 则返回 false，否则返回 true。</td>
+<td>[ ! false ] 返回 true。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-o</td>
+<td style="text-align:center">或运算，有一个表达式为 true 则返回 true。</td>
+<td>[ $a -lt 20 -o $b -gt 100 ] 返回 true。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-a</td>
+<td style="text-align:center">与运算，两个表达式都为 true 才返回 true。</td>
+<td>[ $a -lt 20 -a $b -gt 100 ] 返回 false</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>逻辑运算符</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">运算符</th>
+<th style="text-align:center">说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td style="text-align:right">&amp;&amp;</td>
+<td style="text-align:center">逻辑的 AND</td>
+<td>[[ $a -lt 100 &amp;&amp; $b -gt 100 ]] 返回 false</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">ll</td>
+<td style="text-align:center">逻辑的 OR</td>
+<td>[[ $a -lt 100</td>
+<td></td>
+<td>$b -gt 100 ]] 返回 true</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>字符串运算符</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">运算符</th>
+<th style="text-align:center">说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td style="text-align:right">=</td>
+<td style="text-align:center">检测两个字符串是否相等，相等返回 true。</td>
+<td>[ $a = $b ] 返回 false。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">!=</td>
+<td style="text-align:center">检测两个字符串是否相等，不相等返回 true。</td>
+<td>[ $a != $b ] 返回 true。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-z</td>
+<td style="text-align:center">检测字符串长度是否为0，为0返回 true。</td>
+<td>[ -z $a ] 返回 false。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-n</td>
+<td style="text-align:center">检测字符串长度是否为0，不为0返回 true。</td>
+<td>[ -n “$a” ] 返回 true。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">$</td>
+<td style="text-align:center">检测字符串是否为空，不为空返回 true。</td>
+<td>[ $a ] 返回 true。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>文件测试运算符</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">运算符</th>
+<th style="text-align:center">说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td style="text-align:right">-b file</td>
+<td style="text-align:center">检测文件是否是块设备文件，如果是，则返回 true。</td>
+<td>[ -b $file ] 返回 false。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-c file</td>
+<td style="text-align:center">检测文件是否是字符设备文件，如果是，则返回 true</td>
+<td>[ -c $file ] 返回 false。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-d file</td>
+<td style="text-align:center">检测文件是否是目录，如果是，则返回 true。</td>
+<td>[ -d $file ] 返回 false。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-f file</td>
+<td style="text-align:center">检测文件是否是普通文件（既不是目录，也不是设备文件），如果是，则返回 true。</td>
+<td>[ -f $file ] 返回 true。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-g file</td>
+<td style="text-align:center">检测文件是否设置了 SGID 位，如果是，则返回 true。</td>
+<td>[ -g $file ] 返回 false。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-k file</td>
+<td style="text-align:center">检测文件是否设置了粘着位(Sticky Bit)，如果是，则返回 true。</td>
+<td>[ -k $file ] 返回 false。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-p file</td>
+<td style="text-align:center">检测文件是否是有名管道，如果是，则返回 true。</td>
+<td>[ -p $file ] 返回 false。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-u file</td>
+<td style="text-align:center">检测文件是否设置了 SUID 位，如果是，则返回 true。</td>
+<td>[ -u $file ] 返回 false。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-r file</td>
+<td style="text-align:center">检测文件是否可读，如果是，则返回 true。</td>
+<td>[ -r $file ] 返回 true。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-w file</td>
+<td style="text-align:center">检测文件是否可写，如果是，则返回 true。</td>
+<td>[ -w $file ] 返回 true。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-x file</td>
+<td style="text-align:center">检测文件是否可执行，如果是，则返回 true</td>
+<td>[ -x $file ] 返回 true。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-s file</td>
+<td style="text-align:center">检测文件是否为空（文件大小是否大于0），不为空返回 true。</td>
+<td>[ -s $file ] 返回 true。</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-e file</td>
+<td style="text-align:center">检测文件（包括目录）是否存在，如果是，则返回 true。</td>
+<td>[ -e $file ] 返回 true。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h3><p>用于字符串的输出。命令格式</p>
+<blockquote>
+<p>显示变量</p>
+</blockquote>
+<p>read 命令从标准输入中读取一行,并把输入行的每个字段的值指定给 shell 变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">read</span> name </span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$name</span> It is a test"</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>显示换行<br> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -e <span class="string">"OK! \n"</span> <span class="comment"># -e 开启转义</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"It is a test"</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>显示不换行<br> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"OK! \c"</span> <span class="comment"># -e 开启转义 \c 不换行</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"It is a test"</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>显示重定向至文件<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"It is a test"</span> &gt; myfile</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>显示命令执行结果<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> `date`</span><br><span class="line"></span><br><span class="line">Thu Jul 24 10:08:46 CST 2014</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><blockquote>
+<p>数值测试</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td style="text-align:right">-eq</td>
+<td>等于则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-ne</td>
+<td>不等于则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-gt</td>
+<td>大于则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-ge</td>
+<td>大于等于则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-lt</td>
+<td>小于则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-le</td>
+<td>小于等于则为真</td>
+</tr>
+</tbody>
+</table>
+<p> [] 执行基本的算数运算</p>
+<blockquote>
+<p>字符串测试</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td style="text-align:right">=</td>
+<td>等于则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">!=</td>
+<td>不相等则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-z</td>
+<td>字符串    字符串的长度为零则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-n</td>
+<td>字符串    字符串的长度不为零则为真</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>文件测试</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:right">运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td style="text-align:right">-e 文件名</td>
+<td>如果文件存在则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-r 文件名</td>
+<td>如果文件存在且可读则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-w 文件名</td>
+<td>如果文件存在且可写则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-x 文件名</td>
+<td>如果文件存在且可执行则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-s 文件名</td>
+<td>如果文件存在且至少有一个字符则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-d 文件名</td>
+<td>如果文件存在且为目录则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-f 文件名</td>
+<td>如果文件存在且为普通文件则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-c 文件名</td>
+<td>如果文件存在且为字符型特殊文件则为真</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:right">-b 文件名</td>
+<td>如果文件存在且为块特殊文件则为真</td>
+</tr>
+</tbody>
+</table>
+<h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><blockquote>
+<p>if<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> condition</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    command1 </span><br><span class="line">    command2</span><br><span class="line">    ...</span><br><span class="line">    commandN </span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>if else<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> condition</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    command1 </span><br><span class="line">    command2</span><br><span class="line">    ...</span><br><span class="line">    commandN</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">command</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>if else-if else<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> condition1</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    command1</span><br><span class="line"><span class="keyword">elif</span> condition2 </span><br><span class="line"><span class="keyword">then</span> </span><br><span class="line">    command2</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    commandN</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>for循环<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> var <span class="keyword">in</span> item1 item2 ... itemN</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    command1</span><br><span class="line">    command2</span><br><span class="line">    ...</span><br><span class="line">    commandN</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>单行<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> var <span class="keyword">in</span> item1 item2 ... itemN; <span class="keyword">do</span> command1; command2… <span class="keyword">done</span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>函数格式<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[ <span class="keyword">function</span> ] funname [()]</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    action;</span><br><span class="line"></span><br><span class="line">    [<span class="built_in">return</span> int;]</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>1、可以带function fun() 定义，也可以直接fun() 定义,不带任何参数。</p>
+<p>2、参数返回，可以显示加：return 返回，如果不加，将以最后一条命令运行结果，作为返回值。 return后跟数值n(0-255)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">funWithReturn</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"这个函数会对输入的两个数字进行相加运算..."</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"输入第一个数字: "</span></span><br><span class="line">    <span class="built_in">read</span> aNum</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"输入第二个数字: "</span></span><br><span class="line">    <span class="built_in">read</span> anotherNum</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"两个数字分别为 <span class="variable">$aNum</span> 和 <span class="variable">$anotherNum</span> !"</span></span><br><span class="line">    <span class="built_in">return</span> $((<span class="variable">$aNum</span>+<span class="variable">$anotherNum</span>))</span><br><span class="line">&#125;</span><br><span class="line">funWithReturn</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"输入的两个数字之和为 $? !"</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+   <div class="comment"></div>
+    <script>
+        new Valine({
+            el: '.comment', // 
+            app_id: '7dRFVyiYlaSvfmOdlTx89sgC-gzGzoHsz', // 这里填写上面得到的APP ID
+            app_key: 'OBDEy7xxoOdx1G0eFHUv7Vej', // 这里填写上面得到的APP KEY
+            placeholder: '説話を言う...', // [v1.0.7 new]留言框占位提示文字
+            notify: true, // 邮件提醒!!!
+            verify: true, // 验证码
+            avatar: 'robohash'
+        });
+    </script>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hello"><span class="toc-number">1.</span> <span class="toc-text">hello</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量"><span class="toc-number">2.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串"><span class="toc-number">2.1.</span> <span class="toc-text">字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shell传递参数"><span class="toc-number">3.</span> <span class="toc-text">Shell传递参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shell-基本运算符"><span class="toc-number">4.</span> <span class="toc-text">Shell 基本运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#echo"><span class="toc-number">5.</span> <span class="toc-text">echo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#test"><span class="toc-number">6.</span> <span class="toc-text">test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流程控制"><span class="toc-number">7.</span> <span class="toc-text">流程控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数"><span class="toc-number">8.</span> <span class="toc-text">函数</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/02/14/从零开始的Xshell/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&text=从零开始的Xshell"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&title=从零开始的Xshell"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&is_video=false&description=从零开始的Xshell"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=从零开始的Xshell&body=Check out this article: http://yoursite.com/2019/02/14/从零开始的Xshell/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&title=从零开始的Xshell"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&title=从零开始的Xshell"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&title=从零开始的Xshell"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&title=从零开始的Xshell"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/02/14/从零开始的Xshell/&name=从零开始的Xshell&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> Toc</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> back_to_top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    著作権 &copy; 2019 樊可
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">要チ页</a></li>
+         
+          <li><a href="/about/">俺の情報</a></li>
+         
+          <li><a href="/archives/">記事ク</a></li>
+         
+          <li><a href="https://github.com/Fankekeke/Fanke.github.io">プロジェクト</a></li>
+         
+          <li><a href="/search/">検索プ</a></li>
+         
+          <li><a href="/categories/">類別</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
