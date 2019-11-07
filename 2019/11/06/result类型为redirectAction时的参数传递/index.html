@@ -7,18 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="layout: struts2title: result类型为redirectAction时的参数传递date: 2018-12-14 11:20:11tags:  分享     12345&amp;lt;result name=&quot;success&quot; type=&quot;redirectAction&quot;&amp;gt;    	&amp;lt;param name=&quot;actionName&quot;&amp;gt;findDetailAll&amp;lt;">
+    <meta name="description" content="title: result类型为redirectAction时的参数传递date: 2018-12-14 11:20:11tags:  分享     12345&amp;lt;result name=&quot;success&quot; type=&quot;redirectAction&quot;&amp;gt;    &amp;lt;param name=&quot;actionName&quot;&amp;gt;findDetailAll&amp;lt;/param&amp;gt;    &amp;l">
 <meta name="keywords" content="悲しいミカンの木">
 <meta property="og:type" content="article">
 <meta property="og:title" content="悲伤的桔子树">
 <meta property="og:url" content="http://yoursite.com/2019/11/06/result类型为redirectAction时的参数传递/index.html">
 <meta property="og:site_name" content="悲伤的桔子树">
-<meta property="og:description" content="layout: struts2title: result类型为redirectAction时的参数传递date: 2018-12-14 11:20:11tags:  分享     12345&amp;lt;result name=&quot;success&quot; type=&quot;redirectAction&quot;&amp;gt;    	&amp;lt;param name=&quot;actionName&quot;&amp;gt;findDetailAll&amp;lt;">
+<meta property="og:description" content="title: result类型为redirectAction时的参数传递date: 2018-12-14 11:20:11tags:  分享     12345&amp;lt;result name=&quot;success&quot; type=&quot;redirectAction&quot;&amp;gt;    &amp;lt;param name=&quot;actionName&quot;&amp;gt;findDetailAll&amp;lt;/param&amp;gt;    &amp;l">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2018-12-15T00:21:43.552Z">
+<meta property="og:updated_time" content="2019-11-07T14:53:30.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="悲伤的桔子树">
-<meta name="twitter:description" content="layout: struts2title: result类型为redirectAction时的参数传递date: 2018-12-14 11:20:11tags:  分享     12345&amp;lt;result name=&quot;success&quot; type=&quot;redirectAction&quot;&amp;gt;    	&amp;lt;param name=&quot;actionName&quot;&amp;gt;findDetailAll&amp;lt;">
+<meta name="twitter:description" content="title: result类型为redirectAction时的参数传递date: 2018-12-14 11:20:11tags:  分享     12345&amp;lt;result name=&quot;success&quot; type=&quot;redirectAction&quot;&amp;gt;    &amp;lt;param name=&quot;actionName&quot;&amp;gt;findDetailAll&amp;lt;/param&amp;gt;    &amp;l">
     
     
         
@@ -150,14 +150,14 @@
 
   <div class="content" itemprop="articleBody">
     <hr>
-<p>layout: struts2<br>title: result类型为redirectAction时的参数传递<br>date: 2018-12-14 11:20:11<br>tags:</p>
+<p>title: result类型为redirectAction时的参数传递<br>date: 2018-12-14 11:20:11<br>tags:</p>
 <ul>
 <li>分享</li>
 </ul>
 <hr>
 <blockquote>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;result name=<span class="string">"success"</span> <span class="built_in">type</span>=<span class="string">"redirectAction"</span>&gt;</span><br><span class="line">    	&lt;param name=<span class="string">"actionName"</span>&gt;findDetailAll&lt;/param&gt;</span><br><span class="line">        &lt;!-- 第一个bizClaimVoucher.id为findDetailAll Action中的属性,第二个bizClaimVoucher.id为当前Action的属性 --&gt;</span><br><span class="line">	&lt;param name=<span class="string">"bizClaimVoucher.id"</span>&gt;<span class="variable">$&#123;bizClaimVoucher.id&#125;</span>&lt;/param&gt;</span><br><span class="line">&lt;/result&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span> <span class="attr">type</span>=<span class="string">"redirectAction"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"actionName"</span>&gt;</span>findDetailAll<span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 第一个bizClaimVoucher.id为findDetailAll Action中的属性,第二个bizClaimVoucher.id为当前Action的属性 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"bizClaimVoucher.id"</span>&gt;</span>$&#123;bizClaimVoucher.id&#125;<span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
   </div>
    <div class="comment"></div>
