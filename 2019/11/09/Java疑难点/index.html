@@ -10,7 +10,7 @@
     <meta name="description" content="1. 基础1.1. 正确使用 equals 方法Object的equals方法容易抛空指针异常，应使用常量或确定有值的对象来调用 equals。  举个例子： 1234567// 不能使用一个值为null的引用类型变量来调用非静态方法，否则会抛出异常String str = null;if (str.equals(&quot;SnailClimb&quot;)) &amp;#123;  ...&amp;#125; else &amp;#12">
 <meta name="keywords" content="Java 高级">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java基础">
+<meta property="og:title" content="Java疑难点">
 <meta property="og:url" content="http://yoursite.com/2019/11/09/Java疑难点/index.html">
 <meta property="og:site_name" content="悲伤的桔子树">
 <meta property="og:description" content="1. 基础1.1. 正确使用 equals 方法Object的equals方法容易抛空指针异常，应使用常量或确定有值的对象来调用 equals。  举个例子： 1234567// 不能使用一个值为null的引用类型变量来调用非静态方法，否则会抛出异常String str = null;if (str.equals(&quot;SnailClimb&quot;)) &amp;#123;  ...&amp;#125; else &amp;#12">
@@ -18,9 +18,9 @@
 <meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019/7/BigDecimal.png">
 <meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/阿里巴巴Java开发手-Arrays.asList(">
 <meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019/7/foreach-remove:add.png">
-<meta property="og:updated_time" content="2019-11-09T15:14:57.032Z">
+<meta property="og:updated_time" content="2019-11-09T15:36:47.390Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java基础">
+<meta name="twitter:title" content="Java疑难点">
 <meta name="twitter:description" content="1. 基础1.1. 正确使用 equals 方法Object的equals方法容易抛空指针异常，应使用常量或确定有值的对象来调用 equals。  举个例子： 1234567// 不能使用一个值为null的引用类型变量来调用非静态方法，否则会抛出异常String str = null;if (str.equals(&quot;SnailClimb&quot;)) &amp;#123;  ...&amp;#125; else &amp;#12">
 <meta name="twitter:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019/7/BigDecimal.png">
     
@@ -46,7 +46,7 @@
         
     
     <!-- title -->
-    <title>Java基础</title>
+    <title>Java疑难点</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -101,15 +101,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/11/09/Java疑难点/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/11/09/Java疑难点/&text=Java基础"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java基础"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/11/09/Java疑难点/&is_video=false&description=Java基础"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Java基础&body=Check out this article: http://yoursite.com/2019/11/09/Java疑难点/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java基础"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java基础"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java基础"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java基础"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/11/09/Java疑难点/&name=Java基础&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/11/09/Java疑难点/&text=Java疑难点"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java疑难点"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/11/09/Java疑难点/&is_video=false&description=Java疑难点"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java疑难点&body=Check out this article: http://yoursite.com/2019/11/09/Java疑难点/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java疑难点"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java疑难点"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java疑难点"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java疑难点"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/11/09/Java疑难点/&name=Java疑难点&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -126,7 +126,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Java基础
+        Java疑难点
     </h1>
 
 
@@ -292,15 +292,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/11/09/Java疑难点/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/11/09/Java疑难点/&text=Java基础"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java基础"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/11/09/Java疑难点/&is_video=false&description=Java基础"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Java基础&body=Check out this article: http://yoursite.com/2019/11/09/Java疑难点/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java基础"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java基础"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java基础"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java基础"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/11/09/Java疑难点/&name=Java基础&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/11/09/Java疑难点/&text=Java疑难点"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java疑难点"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/11/09/Java疑难点/&is_video=false&description=Java疑难点"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java疑难点&body=Check out this article: http://yoursite.com/2019/11/09/Java疑难点/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java疑难点"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java疑难点"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java疑难点"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/11/09/Java疑难点/&title=Java疑难点"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/11/09/Java疑难点/&name=Java疑难点&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
