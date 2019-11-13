@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>Java基础</title>
+      <title>Java容器面试题</title>
       <link href="/2019/11/13/Java%E5%AE%B9%E5%99%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
       <url>/2019/11/13/Java%E5%AE%B9%E5%99%A8%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
       
@@ -15,6 +15,25 @@
         <tags>
             
             <tag> Java 高级 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>给你的网站加上“锁”</title>
+      <link href="/2019/11/09/%E7%BB%99%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%8A%A0%E4%B8%8A%E9%94%81/"/>
+      <url>/2019/11/09/%E7%BB%99%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%8A%A0%E4%B8%8A%E9%94%81/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://stepimagewm.how2j.cn/9929.png" alt><br>协议是什么概念呢？ 就是浏览器和服务端事先约定好的规则，按照预定的规则，服务器和浏览器之间能够互相理解。</p><p>http 协议的缺陷，这里主要谈安全方面的缺陷。 http 协议是明文传输的，无论数据，账号，密码都是在网络上明文传输的，所以就存在巨大的安全隐患。一个是容易泄露密码，再一个容易被劫持</p><p>数据是放在云上的， 如果用户要获取数据，是不会直接从 服务器上去取的。 会先找运营商，然后运营商去把数据取出来，取出来之后，再发给用户</p><h2 id="联通放广告已经不是第一次了"><a href="#联通放广告已经不是第一次了" class="headerlink" title="联通放广告已经不是第一次了"></a>联通放广告已经不是第一次了</h2><h2 id="下载SSL证书"><a href="#下载SSL证书" class="headerlink" title="下载SSL证书"></a>下载SSL证书</h2><p>个人域名可以很简单的获取SSL证书</p><h2 id="利用Nginx进行代理"><a href="#利用Nginx进行代理" class="headerlink" title="利用Nginx进行代理"></a>利用Nginx进行代理</h2><p>1.得到.key文件与.pem文件</p><p>2.将文件放入Nginx根目录下</p><p>3.添加SSL证书<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">listen 443 ssl;</span><br><span class="line">ssl_certificate      F://chrome_download//nginx//2992871_how2j.cn.pem;  # 这个是证书的crt文件所在目录</span><br><span class="line">ssl_certificate_key  F://chrome_download//nginx//2992871_how2j.cn.key;  # 这个是证书key文件所在目录</span><br></pre></td></tr></table></figure></p><h2 id="OK"><a href="#OK" class="headerlink" title="OK"></a>OK</h2>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 分享 </tag>
             
         </tags>
       
@@ -47,25 +66,6 @@
       <url>/2019/11/09/%E5%88%86%E4%BA%AB/</url>
       
         <content type="html"><![CDATA[<h1 id="前端组件库"><a href="#前端组件库" class="headerlink" title="前端组件库"></a>前端组件库</h1><blockquote><p>只针对好看的组件库 框架不同</p><ol><li><a href="https://github.com/quasarframework/quasar" title="quasar" target="_blank" rel="noopener">quasar</a></li><li><a href="https://github.com/vuetifyjs/vuetify" target="_blank" rel="noopener">vuetify</a></li><li><a href="https://github.com/DataV-Team/DataV" target="_blank" rel="noopener">DataV 大屏显示</a></li><li><a href="https://github.com/SimonZhangITer/DataVisualization" target="_blank" rel="noopener">DataVisualization</a></li><li><a href="https://github.com/myliang/x-spreadsheet" title="web端表格在线编辑" target="_blank" rel="noopener">x-spreadsheet</a></li><li><a href="https://github.com/alexfoxy/laxxx" title="垂直动画" target="_blank" rel="noopener">laxxx</a></li><li><a href="https://github.com/EdernClemente/TypeLighterJS" title="键盘输入效果" target="_blank" rel="noopener">TypeLighterJS</a></li><li><a href="https://github.com/ilkeryilmaz/timelinejs" title="一款高颜值的时间线插件" target="_blank" rel="noopener">timelinejs</a></li><li><a href="https://github.com/shobhitsharma/embedo" title="通过特权将第三方内容嵌入DOM（6KB Gzip / Standalone）" target="_blank" rel="noopener">embedo</a></li><li><a href="https://github.com/jaredreich/pell" title="有趣的富文本框插件" target="_blank" rel="noopener">pell</a></li><li><a href="https://github.com/Varin6/Hover-Buttons" title="神奇的悬浮按钮" target="_blank" rel="noopener">Hover-Buttons</a></li><li><a href="https://github.com/OfficeDev/office-ui-fabric-react" title="也有vue版本的" target="_blank" rel="noopener">office-ui-fabric-react</a></li><li><a href="https://github.com/mui-org/material-ui" target="_blank" rel="noopener">Material-UI</a></li><li><a href="https://github.com/myxvisual/react-uwp" target="_blank" rel="noopener">react-uwp</a></li><li><a href="https://github.com/iview/iview-admin" target="_blank" rel="noopener">iview-admin</a></li><li><a href="https://github.com/airyland/vux" title="移动端UI" target="_blank" rel="noopener">vux</a></li><li><a href="https://github.com/phanan/vue-google-signin-button" target="_blank" rel="noopener">vue-google-signin-button</a></li><li><a href="https://github.com/JosephusPaye/Keen-UI" target="_blank" rel="noopener">Keen-UI</a></li><li><a href="https://github.com/iview/iview" target="_blank" rel="noopener">iview</a></li><li><a href="https://github.com/fighting41love/funNLP" title="百科全库" target="_blank" rel="noopener">funNLP</a></li><li><a href="https://github.com/stevenjoezhang/live2d-widget" title="看板娘" target="_blank" rel="noopener">live2d-widget</a></li><li><a href="https://github.com/rumengkai/awesome-vue" title="Vue相关开源项目库汇总" target="_blank" rel="noopener">awesome-vue</a></li></ol></blockquote><h1 id="休闲"><a href="#休闲" class="headerlink" title="休闲"></a>休闲</h1><ol><li><a href="https://github.com/TheodoreKrypton/slacking-off-tools" target="_blank" rel="noopener">上班摸鱼工具</a><h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1></li><li><a href="https://github.com/photopea/UPNG.js" title="快速和先进的PNG（APNG）解码器和编码器（有损/无损）" target="_blank" rel="noopener">UPNG.js</a></li><li><a href="https://github.com/notifme/notifme-sdk" title="一个Node.js库，用于发送各种事务通知" target="_blank" rel="noopener">notifme-sdk</a></li><li><a href="https://github.com/he426100/alipay-crawler" title="支付宝账单爬虫" target="_blank" rel="noopener">alipay-crawler</a></li></ol>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 分享 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>给你的网站加上“锁”</title>
-      <link href="/2019/11/09/%E7%BB%99%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%8A%A0%E4%B8%8A%E9%94%81/"/>
-      <url>/2019/11/09/%E7%BB%99%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%8A%A0%E4%B8%8A%E9%94%81/</url>
-      
-        <content type="html"><![CDATA[<p><img src="https://stepimagewm.how2j.cn/9929.png" alt><br>协议是什么概念呢？ 就是浏览器和服务端事先约定好的规则，按照预定的规则，服务器和浏览器之间能够互相理解。</p><p>http 协议的缺陷，这里主要谈安全方面的缺陷。 http 协议是明文传输的，无论数据，账号，密码都是在网络上明文传输的，所以就存在巨大的安全隐患。一个是容易泄露密码，再一个容易被劫持</p><p>数据是放在云上的， 如果用户要获取数据，是不会直接从 服务器上去取的。 会先找运营商，然后运营商去把数据取出来，取出来之后，再发给用户</p><h2 id="联通放广告已经不是第一次了"><a href="#联通放广告已经不是第一次了" class="headerlink" title="联通放广告已经不是第一次了"></a>联通放广告已经不是第一次了</h2><h2 id="下载SSL证书"><a href="#下载SSL证书" class="headerlink" title="下载SSL证书"></a>下载SSL证书</h2><p>个人域名可以很简单的获取SSL证书</p><h2 id="利用Nginx进行代理"><a href="#利用Nginx进行代理" class="headerlink" title="利用Nginx进行代理"></a>利用Nginx进行代理</h2><p>1.得到.key文件与.pem文件</p><p>2.将文件放入Nginx根目录下</p><p>3.添加SSL证书<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">listen 443 ssl;</span><br><span class="line">ssl_certificate      F://chrome_download//nginx//2992871_how2j.cn.pem;  # 这个是证书的crt文件所在目录</span><br><span class="line">ssl_certificate_key  F://chrome_download//nginx//2992871_how2j.cn.key;  # 这个是证书key文件所在目录</span><br></pre></td></tr></table></figure></p><h2 id="OK"><a href="#OK" class="headerlink" title="OK"></a>OK</h2>]]></content>
       
       
       
