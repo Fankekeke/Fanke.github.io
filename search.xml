@@ -68,25 +68,6 @@
     
     
     <entry>
-      <title>给你的网站加上“锁”</title>
-      <link href="/2019/11/09/%E7%BB%99%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%8A%A0%E4%B8%8A%E9%94%81/"/>
-      <url>/2019/11/09/%E7%BB%99%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%8A%A0%E4%B8%8A%E9%94%81/</url>
-      
-        <content type="html"><![CDATA[<p><img src="https://stepimagewm.how2j.cn/9929.png" alt><br>协议是什么概念呢？ 就是浏览器和服务端事先约定好的规则，按照预定的规则，服务器和浏览器之间能够互相理解。</p><p>http 协议的缺陷，这里主要谈安全方面的缺陷。 http 协议是明文传输的，无论数据，账号，密码都是在网络上明文传输的，所以就存在巨大的安全隐患。一个是容易泄露密码，再一个容易被劫持</p><p>数据是放在云上的， 如果用户要获取数据，是不会直接从 服务器上去取的。 会先找运营商，然后运营商去把数据取出来，取出来之后，再发给用户</p><h2 id="联通放广告已经不是第一次了"><a href="#联通放广告已经不是第一次了" class="headerlink" title="联通放广告已经不是第一次了"></a>联通放广告已经不是第一次了</h2><h2 id="下载SSL证书"><a href="#下载SSL证书" class="headerlink" title="下载SSL证书"></a>下载SSL证书</h2><p>个人域名可以很简单的获取SSL证书</p><h2 id="利用Nginx进行代理"><a href="#利用Nginx进行代理" class="headerlink" title="利用Nginx进行代理"></a>利用Nginx进行代理</h2><p>1.得到.key文件与.pem文件</p><p>2.将文件放入Nginx根目录下</p><p>3.添加SSL证书<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">listen 443 ssl;</span><br><span class="line">ssl_certificate      F://chrome_download//nginx//2992871_how2j.cn.pem;  # 这个是证书的crt文件所在目录</span><br><span class="line">ssl_certificate_key  F://chrome_download//nginx//2992871_how2j.cn.key;  # 这个是证书key文件所在目录</span><br></pre></td></tr></table></figure></p><h2 id="OK"><a href="#OK" class="headerlink" title="OK"></a>OK</h2>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 分享 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Java疑难点</title>
       <link href="/2019/11/09/Java%E7%96%91%E9%9A%BE%E7%82%B9/"/>
       <url>/2019/11/09/Java%E7%96%91%E9%9A%BE%E7%82%B9/</url>
@@ -98,6 +79,25 @@
         <tags>
             
             <tag> Java 高级 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>给你的网站加上“锁”</title>
+      <link href="/2019/11/09/%E7%BB%99%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%8A%A0%E4%B8%8A%E9%94%81/"/>
+      <url>/2019/11/09/%E7%BB%99%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%8A%A0%E4%B8%8A%E9%94%81/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://stepimagewm.how2j.cn/9929.png" alt><br>协议是什么概念呢？ 就是浏览器和服务端事先约定好的规则，按照预定的规则，服务器和浏览器之间能够互相理解。</p><p>http 协议的缺陷，这里主要谈安全方面的缺陷。 http 协议是明文传输的，无论数据，账号，密码都是在网络上明文传输的，所以就存在巨大的安全隐患。一个是容易泄露密码，再一个容易被劫持</p><p>数据是放在云上的， 如果用户要获取数据，是不会直接从 服务器上去取的。 会先找运营商，然后运营商去把数据取出来，取出来之后，再发给用户</p><h2 id="联通放广告已经不是第一次了"><a href="#联通放广告已经不是第一次了" class="headerlink" title="联通放广告已经不是第一次了"></a>联通放广告已经不是第一次了</h2><h2 id="下载SSL证书"><a href="#下载SSL证书" class="headerlink" title="下载SSL证书"></a>下载SSL证书</h2><p>个人域名可以很简单的获取SSL证书</p><h2 id="利用Nginx进行代理"><a href="#利用Nginx进行代理" class="headerlink" title="利用Nginx进行代理"></a>利用Nginx进行代理</h2><p>1.得到.key文件与.pem文件</p><p>2.将文件放入Nginx根目录下</p><p>3.添加SSL证书<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">listen 443 ssl;</span><br><span class="line">ssl_certificate      F://chrome_download//nginx//2992871_how2j.cn.pem;  # 这个是证书的crt文件所在目录</span><br><span class="line">ssl_certificate_key  F://chrome_download//nginx//2992871_how2j.cn.key;  # 这个是证书key文件所在目录</span><br></pre></td></tr></table></figure></p><h2 id="OK"><a href="#OK" class="headerlink" title="OK"></a>OK</h2>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 分享 </tag>
             
         </tags>
       
@@ -2286,25 +2286,6 @@
     
     
     <entry>
-      <title>Oracle数据库基础</title>
-      <link href="/2018/11/01/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/"/>
-      <url>/2018/11/01/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</url>
-      
-        <content type="html"><![CDATA[<h2 id="Oracle简介"><a href="#Oracle简介" class="headerlink" title="Oracle简介"></a>Oracle简介</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ 众所周知，Oracle是个数据库，是Oracle公司的核心产品，优越的数据安全性和完整性，以及跨操作系统，跨硬件平台，主要特点：支持多用户，大事务的事务处理，在保持数据安全性和完整性方面性能优越，支持分布式事务处理，具有可移植性</span><br></pre></td></tr></table></figure><h2 id="Oracle基本概念"><a href="#Oracle基本概念" class="headerlink" title="Oracle基本概念"></a>Oracle基本概念</h2><pre><code class="bash">$ 数据库：这不是我们平时所说的数据库，它是磁盘上存储数据的集合$ 全局数据库名：用于区分一个数据库的标识，要唯一$ 数据库实例：每个启动的数据库都对应一个数据库实例，有这个实例来访问数据库中的数据$ 表空间：数据库若干个表空间组成，...$ 数据文件：数据文件扩展名.dbf 是来存储数据库数据的文件$ 控制文件：控制文件扩展名.ctl 一个二进制文件,根据控制文件查找数据文件$ 日志文件：日志文件扩展名.<span class="built_in">log</span>,记录数据更改信息</code></pre><h2 id="Oracle重要的三个服务（建议全部设为手动，玩游戏的时候会卡的）"><a href="#Oracle重要的三个服务（建议全部设为手动，玩游戏的时候会卡的）" class="headerlink" title="Oracle重要的三个服务（建议全部设为手动，玩游戏的时候会卡的）"></a>Oracle重要的三个服务（建议全部设为手动，玩游戏的时候会卡的）</h2><pre><code class="bash">$ OracleServiceSID：Oracle数据库服务，对应名为SID（系统标识符）我的是orcl$ OracleOraDb11g_home1TNSListener：监听器服务，如果要远程链接数据库服务器，就必须启动它$ OracleDBConsoleSID：嗯，这个是控制台服务 SID（系统标识符）</code></pre><h2 id="连接Oracle数据库"><a href="#连接Oracle数据库" class="headerlink" title="连接Oracle数据库"></a>连接Oracle数据库</h2><pre><code class="bash">$ SQL*PLUS：system/orcl@orclDB  //system是当前用户，orcl为密码，orclDB为使用的网络服务名$ PL/SQL Developer：直接输入登录ok了</code></pre><h2 id="Oracle数据类型（列举几个比较难理解的）"><a href="#Oracle数据类型（列举几个比较难理解的）" class="headerlink" title="Oracle数据类型（列举几个比较难理解的）"></a>Oracle数据类型（列举几个比较难理解的）</h2><pre><code class="bash">$ NUMBER(P,S)：p是精度，标识数字的有效位数，不包括小数点后，s标识小数点右边的位数，是四舍五入的哦$ Date：SYSDATE标识返回当前的日期和时间，SYSTIMESTAMP返回当前的日期和时间和时区（精确到毫秒）可怕$ LOB数据类型（大对象）：CLOB(字符clob，存储大量文字),BLOB(二进制lob，存储视频，图片这类)，BFILE(二进制文件，存储二进制文件)，NCLOB(存储大的nchar数据)</code></pre><h2 id="Oracle中的伪列"><a href="#Oracle中的伪列" class="headerlink" title="Oracle中的伪列"></a>Oracle中的伪列</h2><p>就像是一个表列，但是它并没有存储到表中，可以查询伪列，但是不能增删改</p><pre><code class="bash">$ ROWID：每行都有一个行地址，ROWID就是返回该行地址$ ROWNUM：返回一个数值代表行的次序，可以限制返回的行数（ROWNUM=1可以查到数据，ROWNUM=2就查不到，ROWNUM&gt;N也差不到，ROWNUM&lt;11查询10条记录）</code></pre><h2 id="查询数据不重复显示-DISTINCT"><a href="#查询数据不重复显示-DISTINCT" class="headerlink" title="查询数据不重复显示(DISTINCT)"></a>查询数据不重复显示(DISTINCT)</h2><p>SELECT DISTINCT stuNmae from student</p><h2 id="集合操作符"><a href="#集合操作符" class="headerlink" title="集合操作符"></a>集合操作符</h2><p>UNION：返回连个查询选定的所有不重复行<br>UNION ALL：符合两个查询锁定的所有行，包括重复的行<br>INTERSECT：只返回两个查询都有的行<br>MINUS：只返回第一个选定而未被第二个选定的行</p><h2 id="连接操作符（-）"><a href="#连接操作符（-）" class="headerlink" title="连接操作符（||）"></a>连接操作符（||）</h2><p>将两个或多个字符串合并为一个字符串</p><h2 id="SQL函数"><a href="#SQL函数" class="headerlink" title="SQL函数"></a>SQL函数</h2><p>常用的转换函数</p><pre><code class="bash">$ TO_CHAR 转字符串 （TO_CHAR(SYSDATE，‘YYYY 年fmMM月fmDD日 HH24:MI:SS’)）$ TO_DATE 转日期类型$ TO_NUMBER 转数值类型</code></pre><p>其他函数</p><pre><code class="bash">$ NVL(EXP1,EXP2)：如果EXP1的值为null，返回EXP2,否则返回EXP1$ NVL2(EXP1,EXP2,EXP3)：如果EXP1为null，返回EXP3,否则返回EXP2$ DECODE(VALUE,IF1,THEN1,IF2,THEN2,ELSE)：VALUE值为IF1,则进入THEN1..</code></pre><h2 id="分析函数"><a href="#分析函数" class="headerlink" title="分析函数"></a>分析函数</h2><p>马上11点了.. 我先走了，自行百度</p><h2 id="今天我是听着THE-NIGHT-–-Avicii完成的"><a href="#今天我是听着THE-NIGHT-–-Avicii完成的" class="headerlink" title="今天我是听着THE NIGHT – Avicii完成的"></a>今天我是听着THE NIGHT – Avicii完成的</h2>]]></content>
-      
-      
-      <categories>
-          
-          <category> Oracle </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>漫漫归家路</title>
       <link href="/2018/11/01/2018-DJ-MAG/"/>
       <url>/2018/11/01/2018-DJ-MAG/</url>
@@ -2318,6 +2299,25 @@
             <tag> 分享 </tag>
             
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Oracle数据库基础</title>
+      <link href="/2018/11/01/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/"/>
+      <url>/2018/11/01/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Oracle简介"><a href="#Oracle简介" class="headerlink" title="Oracle简介"></a>Oracle简介</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ 众所周知，Oracle是个数据库，是Oracle公司的核心产品，优越的数据安全性和完整性，以及跨操作系统，跨硬件平台，主要特点：支持多用户，大事务的事务处理，在保持数据安全性和完整性方面性能优越，支持分布式事务处理，具有可移植性</span><br></pre></td></tr></table></figure><h2 id="Oracle基本概念"><a href="#Oracle基本概念" class="headerlink" title="Oracle基本概念"></a>Oracle基本概念</h2><pre><code class="bash">$ 数据库：这不是我们平时所说的数据库，它是磁盘上存储数据的集合$ 全局数据库名：用于区分一个数据库的标识，要唯一$ 数据库实例：每个启动的数据库都对应一个数据库实例，有这个实例来访问数据库中的数据$ 表空间：数据库若干个表空间组成，...$ 数据文件：数据文件扩展名.dbf 是来存储数据库数据的文件$ 控制文件：控制文件扩展名.ctl 一个二进制文件,根据控制文件查找数据文件$ 日志文件：日志文件扩展名.<span class="built_in">log</span>,记录数据更改信息</code></pre><h2 id="Oracle重要的三个服务（建议全部设为手动，玩游戏的时候会卡的）"><a href="#Oracle重要的三个服务（建议全部设为手动，玩游戏的时候会卡的）" class="headerlink" title="Oracle重要的三个服务（建议全部设为手动，玩游戏的时候会卡的）"></a>Oracle重要的三个服务（建议全部设为手动，玩游戏的时候会卡的）</h2><pre><code class="bash">$ OracleServiceSID：Oracle数据库服务，对应名为SID（系统标识符）我的是orcl$ OracleOraDb11g_home1TNSListener：监听器服务，如果要远程链接数据库服务器，就必须启动它$ OracleDBConsoleSID：嗯，这个是控制台服务 SID（系统标识符）</code></pre><h2 id="连接Oracle数据库"><a href="#连接Oracle数据库" class="headerlink" title="连接Oracle数据库"></a>连接Oracle数据库</h2><pre><code class="bash">$ SQL*PLUS：system/orcl@orclDB  //system是当前用户，orcl为密码，orclDB为使用的网络服务名$ PL/SQL Developer：直接输入登录ok了</code></pre><h2 id="Oracle数据类型（列举几个比较难理解的）"><a href="#Oracle数据类型（列举几个比较难理解的）" class="headerlink" title="Oracle数据类型（列举几个比较难理解的）"></a>Oracle数据类型（列举几个比较难理解的）</h2><pre><code class="bash">$ NUMBER(P,S)：p是精度，标识数字的有效位数，不包括小数点后，s标识小数点右边的位数，是四舍五入的哦$ Date：SYSDATE标识返回当前的日期和时间，SYSTIMESTAMP返回当前的日期和时间和时区（精确到毫秒）可怕$ LOB数据类型（大对象）：CLOB(字符clob，存储大量文字),BLOB(二进制lob，存储视频，图片这类)，BFILE(二进制文件，存储二进制文件)，NCLOB(存储大的nchar数据)</code></pre><h2 id="Oracle中的伪列"><a href="#Oracle中的伪列" class="headerlink" title="Oracle中的伪列"></a>Oracle中的伪列</h2><p>就像是一个表列，但是它并没有存储到表中，可以查询伪列，但是不能增删改</p><pre><code class="bash">$ ROWID：每行都有一个行地址，ROWID就是返回该行地址$ ROWNUM：返回一个数值代表行的次序，可以限制返回的行数（ROWNUM=1可以查到数据，ROWNUM=2就查不到，ROWNUM&gt;N也差不到，ROWNUM&lt;11查询10条记录）</code></pre><h2 id="查询数据不重复显示-DISTINCT"><a href="#查询数据不重复显示-DISTINCT" class="headerlink" title="查询数据不重复显示(DISTINCT)"></a>查询数据不重复显示(DISTINCT)</h2><p>SELECT DISTINCT stuNmae from student</p><h2 id="集合操作符"><a href="#集合操作符" class="headerlink" title="集合操作符"></a>集合操作符</h2><p>UNION：返回连个查询选定的所有不重复行<br>UNION ALL：符合两个查询锁定的所有行，包括重复的行<br>INTERSECT：只返回两个查询都有的行<br>MINUS：只返回第一个选定而未被第二个选定的行</p><h2 id="连接操作符（-）"><a href="#连接操作符（-）" class="headerlink" title="连接操作符（||）"></a>连接操作符（||）</h2><p>将两个或多个字符串合并为一个字符串</p><h2 id="SQL函数"><a href="#SQL函数" class="headerlink" title="SQL函数"></a>SQL函数</h2><p>常用的转换函数</p><pre><code class="bash">$ TO_CHAR 转字符串 （TO_CHAR(SYSDATE，‘YYYY 年fmMM月fmDD日 HH24:MI:SS’)）$ TO_DATE 转日期类型$ TO_NUMBER 转数值类型</code></pre><p>其他函数</p><pre><code class="bash">$ NVL(EXP1,EXP2)：如果EXP1的值为null，返回EXP2,否则返回EXP1$ NVL2(EXP1,EXP2,EXP3)：如果EXP1为null，返回EXP3,否则返回EXP2$ DECODE(VALUE,IF1,THEN1,IF2,THEN2,ELSE)：VALUE值为IF1,则进入THEN1..</code></pre><h2 id="分析函数"><a href="#分析函数" class="headerlink" title="分析函数"></a>分析函数</h2><p>马上11点了.. 我先走了，自行百度</p><h2 id="今天我是听着THE-NIGHT-–-Avicii完成的"><a href="#今天我是听着THE-NIGHT-–-Avicii完成的" class="headerlink" title="今天我是听着THE NIGHT – Avicii完成的"></a>今天我是听着THE NIGHT – Avicii完成的</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Oracle </category>
+          
+      </categories>
+      
       
     </entry>
     
