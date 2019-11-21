@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang=ja>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <!-- so meta -->
     <meta charset="utf-8">
     <meta name="baidu-site-verification" content="R1qagnyoKf">
@@ -52,6 +52,8 @@
     <!-- rss -->
     
     
+      <link rel="alternate" href="/atom.xml" title="悲伤的桔子树" type="application/atom+xml">
+    
 </head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -78,7 +80,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -95,7 +97,7 @@
       <span id="i-top" class="info" style="display:none;">back_to_top</span>
       <span id="i-share" class="info" style="display:none;">Share</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/08/SpringBoot定时任务/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
@@ -167,7 +169,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScheduledDemo</span> </span>&#123;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 定时任务方法</span></span><br><span class="line"><span class="comment">* <span class="doctag">@Scheduled</span>:设置定时任务</span></span><br><span class="line"><span class="comment">* cron 属性：cron 表达式。定时任务触发是时间的一个字符串表达形式</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Scheduled</span>(cron=<span class="string">"0/2 * * * * ?"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scheduledMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">System.out.println(<span class="string">"定时器被触发"</span>+<span class="keyword">new</span> Date());</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <h3 id="在启动类中开启定时任务的使用"><a href="#在启动类中开启定时任务的使用" class="headerlink" title="在启动类中开启定时任务的使用"></a>在启动类中开启定时任务的使用</h3></blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableScheduling</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">SpringApplication.run(App.class, args);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableScheduling</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">SpringApplication.run(App<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <h2 id="cron表达式"><a href="#cron表达式" class="headerlink" title="cron表达式"></a>cron表达式</h2></blockquote>
 <p>Cron 表达式是一个字符串，分为 6 或 7 个域，每一个域代表一个含义<br>Cron 有如下两种语法格式：<br>（1） Seconds Minutes Hours Day Month Week Year<br>（2）Seconds Minutes Hours Day Month Week</p>

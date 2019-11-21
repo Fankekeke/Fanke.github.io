@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang=ja>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <!-- so meta -->
     <meta charset="utf-8">
     <meta name="baidu-site-verification" content="R1qagnyoKf">
@@ -52,6 +52,8 @@
     <!-- rss -->
     
     
+      <link rel="alternate" href="/atom.xml" title="悲伤的桔子树" type="application/atom+xml">
+    
 </head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -78,7 +80,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -95,7 +97,7 @@
       <span id="i-top" class="info" style="display:none;">back_to_top</span>
       <span id="i-share" class="info" style="display:none;">Share</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/12/20/SpringBoot文件上传/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
@@ -157,7 +159,7 @@
 
   <div class="content" itemprop="articleBody">
     <h4 id="编写Controller"><a href="#编写Controller" class="headerlink" title="编写Controller"></a>编写Controller</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* SpringBoot 文件上传</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">//@Controller</span></span><br><span class="line"><span class="meta">@RestController</span> <span class="comment">//表示该类下的方法的返回值会自动做 json 格式的转换</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileUploadController</span> </span>&#123;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 处理文件上传</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/fileUploadController"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">fileUpload</span><span class="params">(MultipartFile filename)</span><span class="keyword">throws</span></span></span><br><span class="line"><span class="function">Exception</span>&#123;</span><br><span class="line">System.out.println(filename.getOriginalFilename());</span><br><span class="line">filename.transferTo(<span class="keyword">new</span></span><br><span class="line">File(<span class="string">"e:/"</span>+filename.getOriginalFilename()));</span><br><span class="line">Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">map.put(<span class="string">"msg"</span>, <span class="string">"ok"</span>);</span><br><span class="line"><span class="keyword">return</span> map;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="编写启动类"><a href="#编写启动类" class="headerlink" title="编写启动类"></a>编写启动类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">SpringApplication.run(App.class, args);</span><br></pre></td></tr></table></figure>
+<h4 id="编写启动类"><a href="#编写启动类" class="headerlink" title="编写启动类"></a>编写启动类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">SpringApplication.run(App<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br></pre></td></tr></table></figure>
 <h4 id="编写HTML页面"><a href="#编写HTML页面" class="headerlink" title="编写HTML页面"></a>编写HTML页面</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"fileUploadController"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"filename"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">from</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h4 id="设置上传文件大小的默认值"><a href="#设置上传文件大小的默认值" class="headerlink" title="设置上传文件大小的默认值"></a>设置上传文件大小的默认值</h4><p>application.properties<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">设置单个上传文件的大小</span><br><span class="line">spring.http.multipart.maxFileSize=200MB</span><br><span class="line">设置一次请求上传文件的总容量</span><br><span class="line">spring.http.multipart.maxRequestSize=200MB</span><br></pre></td></tr></table></figure></p>
 

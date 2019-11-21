@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang=ja>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <!-- so meta -->
     <meta charset="utf-8">
     <meta name="baidu-site-verification" content="R1qagnyoKf">
@@ -54,6 +54,8 @@
     <!-- rss -->
     
     
+      <link rel="alternate" href="/atom.xml" title="悲伤的桔子树" type="application/atom+xml">
+    
 </head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -80,7 +82,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -97,7 +99,7 @@
       <span id="i-top" class="info" style="display:none;">back_to_top</span>
       <span id="i-share" class="info" style="display:none;">Share</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/01/12/nginx/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
@@ -205,7 +207,7 @@
 <blockquote>
 <p>修改nginx.conf</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">先增加一个upstream ，用来指向这两个tomcat</span><br><span class="line"> </span><br><span class="line">    upstream tomcat_8111_8222&#123;</span><br><span class="line">	server	<span class="number">127.0</span>.0.1:<span class="number">8111</span> weight=<span class="number">1</span>;</span><br><span class="line">	server	<span class="number">127.0</span>.0.1:<span class="number">8222</span> weight=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">然后修改location，反向代理到上述配置。</span><br><span class="line"> </span><br><span class="line">        location / &#123;</span><br><span class="line">        	proxy_pass http:<span class="comment">//tomcat_8111_8222;</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">先增加一个upstream ，用来指向这两个tomcat</span><br><span class="line"> </span><br><span class="line">    upstream tomcat_8111_8222&#123;</span><br><span class="line">	server	<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8111</span> weight=<span class="number">1</span>;</span><br><span class="line">	server	<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8222</span> weight=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">然后修改location，反向代理到上述配置。</span><br><span class="line"> </span><br><span class="line">        location / &#123;</span><br><span class="line">        	proxy_pass http:<span class="comment">//tomcat_8111_8222;</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 <p>weight表示权重，值越大，被分配到的几率越大。</p>
 <blockquote>
 <p>重启nginx并访问</p>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang=ja>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <!-- so meta -->
     <meta charset="utf-8">
     <meta name="baidu-site-verification" content="R1qagnyoKf">
@@ -52,6 +52,8 @@
     <!-- rss -->
     
     
+      <link rel="alternate" href="/atom.xml" title="悲伤的桔子树" type="application/atom+xml">
+    
 </head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -78,7 +80,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -95,7 +97,7 @@
       <span id="i-top" class="info" style="display:none;">back_to_top</span>
       <span id="i-share" class="info" style="display:none;">Share</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/12/19/SpringBoot日志/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
@@ -186,7 +188,7 @@
 <h5 id="如何在系统中使用SLF4j"><a href="#如何在系统中使用SLF4j" class="headerlink" title="如何在系统中使用SLF4j"></a>如何在系统中使用SLF4j</h5><blockquote>
 <p>在以后开发的时候，日志记录方法的调用，不应该来直接调用日志的实现类，而是调用日志抽象层的方法</p>
 </blockquote>
-<p><strong>导入slf4j的jar和logback的实现jar</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Logger logger = LoggerFactory.getLogger(HelloWorld.class);</span><br><span class="line">    logger.info(<span class="string">"Hello World"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>导入slf4j的jar和logback的实现jar</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Logger logger = LoggerFactory.getLogger(HelloWorld<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    logger.info(<span class="string">"Hello World"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>每一个日志的实现框架都有自己的配置文件<br>使用slf4j以后，<strong>配置文件还是做成日志实现框架的配置文件</strong></p>
 <h5 id="遗留问题"><a href="#遗留问题" class="headerlink" title="遗留问题"></a>遗留问题</h5><p>a( slf4j+logback )：Spring（commons-logging）,Hibernate（jboss-logging）,MyBatis…</p>
 <p>统一日志记录，即使是别的框架和我一起使用slf4j进行输出</p>

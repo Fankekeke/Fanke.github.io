@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang=ja>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <!-- so meta -->
     <meta charset="utf-8">
     <meta name="baidu-site-verification" content="R1qagnyoKf">
@@ -54,6 +54,8 @@
     <!-- rss -->
     
     
+      <link rel="alternate" href="/atom.xml" title="悲伤的桔子树" type="application/atom+xml">
+    
 </head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -80,7 +82,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -97,7 +99,7 @@
       <span id="i-top" class="info" style="display:none;">back_to_top</span>
       <span id="i-share" class="info" style="display:none;">Share</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/06/06/从零开始的Redis/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
@@ -114,8 +116,8 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是redis"><span class="toc-number">1.</span> <span class="toc-text">什么是redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NoSQL数据库的四大分类"><span class="toc-number">2.</span> <span class="toc-text">NoSQL数据库的四大分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP的三进二"><span class="toc-number">3.</span> <span class="toc-text">CAP的三进二</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点"><span class="toc-number"></span> <span class="toc-text">只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis入门"><span class="toc-number">1.</span> <span class="toc-text">redis入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#五种数据类型"><span class="toc-number">1.1.</span> <span class="toc-text">五种数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-安装-Linux"><span class="toc-number">1.2.</span> <span class="toc-text">Redis 安装 Linux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis配置"><span class="toc-number">2.</span> <span class="toc-text">Redis配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis数据类型"><span class="toc-number">3.</span> <span class="toc-text">Redis数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型应用场景"><span class="toc-number">3.1.</span> <span class="toc-text">类型应用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-命令"><span class="toc-number">4.</span> <span class="toc-text">Redis 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#发布订阅"><span class="toc-number">4.1.</span> <span class="toc-text">发布订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-事务"><span class="toc-number">4.2.</span> <span class="toc-text">Redis 事务</span></a></li></ol></li></ol>
-    </li></div>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是redis"><span class="toc-number">1.</span> <span class="toc-text">什么是redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NoSQL数据库的四大分类"><span class="toc-number">2.</span> <span class="toc-text">NoSQL数据库的四大分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP的三进二"><span class="toc-number">3.</span> <span class="toc-text">CAP的三进二</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点"><span class="toc-number"></span> <span class="toc-text">只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis入门"><span class="toc-number">1.</span> <span class="toc-text">redis入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#五种数据类型"><span class="toc-number">1.1.</span> <span class="toc-text">五种数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-安装-Linux"><span class="toc-number">1.2.</span> <span class="toc-text">Redis 安装 Linux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis配置"><span class="toc-number">2.</span> <span class="toc-text">Redis配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis数据类型"><span class="toc-number">3.</span> <span class="toc-text">Redis数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型应用场景"><span class="toc-number">3.1.</span> <span class="toc-text">类型应用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-命令"><span class="toc-number">4.</span> <span class="toc-text">Redis 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#发布订阅"><span class="toc-number">4.1.</span> <span class="toc-text">发布订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-事务"><span class="toc-number">4.2.</span> <span class="toc-text">Redis 事务</span></a></li></ol></li></ol>
+    </div>
   </span>
 </div>
 
@@ -373,8 +375,8 @@ Sorted Set（有序集合）
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是redis"><span class="toc-number">1.</span> <span class="toc-text">什么是redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NoSQL数据库的四大分类"><span class="toc-number">2.</span> <span class="toc-text">NoSQL数据库的四大分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP的三进二"><span class="toc-number">3.</span> <span class="toc-text">CAP的三进二</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点"><span class="toc-number"></span> <span class="toc-text">只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis入门"><span class="toc-number">1.</span> <span class="toc-text">redis入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#五种数据类型"><span class="toc-number">1.1.</span> <span class="toc-text">五种数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-安装-Linux"><span class="toc-number">1.2.</span> <span class="toc-text">Redis 安装 Linux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis配置"><span class="toc-number">2.</span> <span class="toc-text">Redis配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis数据类型"><span class="toc-number">3.</span> <span class="toc-text">Redis数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型应用场景"><span class="toc-number">3.1.</span> <span class="toc-text">类型应用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-命令"><span class="toc-number">4.</span> <span class="toc-text">Redis 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#发布订阅"><span class="toc-number">4.1.</span> <span class="toc-text">发布订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-事务"><span class="toc-number">4.2.</span> <span class="toc-text">Redis 事务</span></a></li></ol></li></ol>
-    </li></div>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是redis"><span class="toc-number">1.</span> <span class="toc-text">什么是redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NoSQL数据库的四大分类"><span class="toc-number">2.</span> <span class="toc-text">NoSQL数据库的四大分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP的三进二"><span class="toc-number">3.</span> <span class="toc-text">CAP的三进二</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点"><span class="toc-number"></span> <span class="toc-text">只能在一致性和可用性之间进行权衡，没有NoSQL系统能同时保证这三点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis入门"><span class="toc-number">1.</span> <span class="toc-text">redis入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#五种数据类型"><span class="toc-number">1.1.</span> <span class="toc-text">五种数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-安装-Linux"><span class="toc-number">1.2.</span> <span class="toc-text">Redis 安装 Linux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis配置"><span class="toc-number">2.</span> <span class="toc-text">Redis配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis数据类型"><span class="toc-number">3.</span> <span class="toc-text">Redis数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型应用场景"><span class="toc-number">3.1.</span> <span class="toc-text">类型应用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-命令"><span class="toc-number">4.</span> <span class="toc-text">Redis 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#发布订阅"><span class="toc-number">4.1.</span> <span class="toc-text">发布订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-事务"><span class="toc-number">4.2.</span> <span class="toc-text">Redis 事务</span></a></li></ol></li></ol>
+    </div>
 
     <div id="share-footer" style="display: none">
       <ul>

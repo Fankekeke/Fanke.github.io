@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang=ja>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <!-- so meta -->
     <meta charset="utf-8">
     <meta name="baidu-site-verification" content="R1qagnyoKf">
@@ -52,6 +52,8 @@
     <!-- rss -->
     
     
+      <link rel="alternate" href="/atom.xml" title="悲伤的桔子树" type="application/atom+xml">
+    
 </head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -78,7 +80,7 @@
         
       </ul>
     </span>
-    <br>
+    <br/>
     <span id="actions">
       <ul>
         
@@ -95,7 +97,7 @@
       <span id="i-top" class="info" style="display:none;">back_to_top</span>
       <span id="i-share" class="info" style="display:none;">Share</span>
     </span>
-    <br>
+    <br/>
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/08/16/从零开始的Springboot与SpringCloud/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
@@ -204,7 +206,7 @@
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//开启发现服务功能</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line">----------------------------</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* RestTemplate发送Http请求</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@LoadBalanced</span> <span class="comment">//使用负载均衡机制</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>调用服务<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line"><span class="comment">//请求地址为服务注册中心的名称加所调用接口地址</span></span><br><span class="line">restTemplate.getForObject(<span class="string">"http://xxxxxx"</span>,String.class);</span><br></pre></td></tr></table></figure></p>
+<p>调用服务<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line"><span class="comment">//请求地址为服务注册中心的名称加所调用接口地址</span></span><br><span class="line">restTemplate.getForObject(<span class="string">"http://xxxxxx"</span>,String<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 
   </div>
