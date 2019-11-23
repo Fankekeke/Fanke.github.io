@@ -11,7 +11,7 @@
 <meta name="keywords" content="Java 高级">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java并发基础">
-<meta property="og:url" content="http://yoursite.com/2019/11/14/Java并发基础/index.html">
+<meta property="og:url" content="http://sasuke.club/2019/11/14/Java并发基础/index.html">
 <meta property="og:site_name" content="悲伤的桔子树">
 <meta property="og:description" content="Java 并发基础常见面试题总结1. 什么是线程和进程?1.1. 何为进程?进程是程序的一次执行过程，是系统运行程序的基本单位，因此进程是动态的。系统运行一个程序即是一个进程从创建，运行到消亡的过程。 在 Java 中，当我们启动 main 函数时其实就是启动了一个 JVM 的进程，而 main 函数所在的线程就是这个进程中的一个线程，也称主线程。 如下图所示，在 windows 中通过查看任务管">
 <meta property="og:locale" content="ja">
@@ -91,6 +91,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2019/11/21/从零开始的Python/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" href="/2019/11/13/Java容器面试题/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -105,16 +107,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/11/14/Java并发基础/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/11/14/Java并发基础/&text=Java并发基础"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/11/14/Java并发基础/&is_video=false&description=Java并发基础"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Java并发基础&body=Check out this article: http://yoursite.com/2019/11/14/Java并发基础/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/11/14/Java并发基础/&name=Java并发基础&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://sasuke.club/2019/11/14/Java并发基础/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://sasuke.club/2019/11/14/Java并发基础/&text=Java并发基础"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://sasuke.club/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://sasuke.club/2019/11/14/Java并发基础/&is_video=false&description=Java并发基础"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java并发基础&body=Check out this article: http://sasuke.club/2019/11/14/Java并发基础/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://sasuke.club/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://sasuke.club/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://sasuke.club/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://sasuke.club/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://sasuke.club/2019/11/14/Java并发基础/&name=Java并发基础&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -308,16 +310,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/11/14/Java并发基础/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/11/14/Java并发基础/&text=Java并发基础"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/11/14/Java并发基础/&is_video=false&description=Java并发基础"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Java并发基础&body=Check out this article: http://yoursite.com/2019/11/14/Java并发基础/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/11/14/Java并发基础/&name=Java并发基础&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://sasuke.club/2019/11/14/Java并发基础/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://sasuke.club/2019/11/14/Java并发基础/&text=Java并发基础"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://sasuke.club/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://sasuke.club/2019/11/14/Java并发基础/&is_video=false&description=Java并发基础"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java并发基础&body=Check out this article: http://sasuke.club/2019/11/14/Java并发基础/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://sasuke.club/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://sasuke.club/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://sasuke.club/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://sasuke.club/2019/11/14/Java并发基础/&title=Java并发基础"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://sasuke.club/2019/11/14/Java并发基础/&name=Java并发基础&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
